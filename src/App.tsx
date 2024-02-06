@@ -3,7 +3,9 @@ import Login from "./Pages/Login"
 function App() {
 
   return (
-        <Login />
+        <div className="h-screen">
+          <Login />
+        </div>
   )
 }
 

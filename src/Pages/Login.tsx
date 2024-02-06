@@ -31,7 +31,7 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col lg:flex-row">
+    <div className="h-full flex flex-col lg:flex-row">
       <div className='lg:w-1/2 flex flex-col justify-center items-center h-full'>
         <h1 className='text-primary text-3xl font-bold mb-4'>Login</h1>
         <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md">
