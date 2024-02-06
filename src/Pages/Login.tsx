@@ -27,7 +27,7 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(login);
-    // logic here
+    // now we test how the branch works
   };
 
   return (
