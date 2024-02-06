@@ -4,7 +4,6 @@ import HaveAccountOrNot from "../Components/auth/HaveAccountOrNot";
 import FormInput from "../Components/auth/FormInput";
 import Button from "../Components/auth/Button";
 import ForgetPass from "../Components/auth/ForgetPass";
-import GradientBorder from "../Components/UI/GradientBorder";
 import DoctorImg from "../Components/auth/DoctorImg";
 
 interface ILoginState {
@@ -27,6 +26,7 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(login);
     // logic here
   };
 
@@ -34,7 +34,7 @@ const Login = () => {
     <div className="h-screen flex flex-col lg:flex-row">
       <div className='lg:w-1/2 flex flex-col justify-center items-center h-full'>
         <h1 className='text-primary text-3xl font-bold mb-4'>Login</h1>
-        <GradientBorder from='primary' to='secondary' borderSize='0.5' maxWidth='md'>
+        <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md">
           <form 
             className='flex flex-col bg-white rounded-2xl py-10 px-5 gap-4'
             onSubmit={handleSubmit}
@@ -63,7 +63,7 @@ const Login = () => {
             <OrLine />
           </form>
 
-        </GradientBorder>
+        </div>
       </div>
       <DoctorImg />
     </div>
