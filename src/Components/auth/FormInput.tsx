@@ -1,11 +1,12 @@
-interface FormInputProps {
+ export interface FormInputProps {
   label: string;
   type: string;
   id: string;
   name: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  ariaLabel: string;
+  ariaLabel?: string;
+  placeholder?: string;
 }
 
 const FormInput = ({label, type, id, name, value, onChange, ariaLabel}: FormInputProps) => {
@@ -26,3 +27,4 @@ const FormInput = ({label, type, id, name, value, onChange, ariaLabel}: FormInpu
 }
 
 export default FormInput
+
