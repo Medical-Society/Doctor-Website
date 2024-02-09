@@ -1,25 +1,27 @@
 import  { useState } from "react";
-import { ISignupState } from "../interfaces/interface";
+import { ISignupState } from "../interfaces/ISignup";
 import { FormInputlist } from "../data/data";
 import Button from "../Components/auth/Button";
 import HaveAccountOrNot from "../Components/auth/HaveAccountOrNot"
 import icon from "../assets/visibility_off.jpg"
+import { registerUser } from "../services/auth";
+
 
 const Signup = () => {
+  const [isLoading, setIsLoading] = useState(false);
 
   const [signup, setSignup] = useState<ISignupState>({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    Specialization: '',
-    clinic_address: '',
-    national_id: '',
-    id_card:'',
-    Personal_photograph: '',
-    phoneNumber: '',
-    age : '',
-    Gender : ''
+    englishFullName: "",
+    arabicFullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    specialization: "",
+    clinicAddress: "",
+    nationalID: "",
+    phoneNumber: "",
+    age : "",
+    gender : ""
   });
 
  const [showPassword, setShowPassword] = useState(false);
@@ -36,10 +38,18 @@ const Signup = () => {
       [e.target.name]: e.target.value
     });
     };
-  const handleCliker = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("signup");
-    console.log(signup);
+    setIsLoading(true);
+    try {
+      const res = await registerUser(signup);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+      setIsLoading(false);
+    }
   }
 const renderFormInputList = FormInputlist.map(input => (
     <div key={input.id}>
@@ -75,12 +85,12 @@ return (
       <div className="lg:w-1/2 w-full max-w-lg flex flex-col justify-center items-center">
         <h1 className="text-primary text-3xl font-bold mb-4">Signup</h1>
         <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md lg:min-w-max mb-4">
-        <form className="grid grid-cols-1 xl:grid-cols-2 gap-2 bg-white rounded-2xl py-10 px-5 xl:px-10 xl:py-12 " onSubmit={handleCliker}>
+        <form className="grid grid-cols-1 xl:grid-cols-2 gap-2 bg-white rounded-2xl py-10 px-5 xl:px-10 xl:py-12 " onSubmit={handleSubmit}>
           {renderFormInputList}
           
         </form>
         </div>
-           <Button text="Signup" />
+          <Button text="Signup" disabled={isLoading} />
           <HaveAccountOrNot type="signup" />
       </div>
     </div>
