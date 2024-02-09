@@ -9,6 +9,7 @@ import { registerUser } from "../services/auth";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   const [signup, setSignup] = useState<ISignupState>({
     englishFullName: "",
     arabicFullName: "",
@@ -39,8 +40,7 @@ const Signup = () => {
     };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Signup form submitted");
-      setIsLoading(true);
+    setIsLoading(true);
     try {
       const res = await registerUser(signup);
       console.log(res);
@@ -49,7 +49,7 @@ const Signup = () => {
     }
     finally {
       setIsLoading(false);
-    }  
+    }
   }
 const renderFormInputList = FormInputlist.map(input => (
     <div key={input.id}>
@@ -90,7 +90,7 @@ return (
           <div className="relative xl:mt-20 xl:top-11 xl:left-25 xl:transform xl:-translate-x-1/2 xl:-translate-y-1/2">
             <Button text="Signup" disabled={isLoading} />
             <HaveAccountOrNot type="signup" />
-            
+          
           </div>
         </form>
         </div>
