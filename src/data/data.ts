@@ -1,14 +1,23 @@
 import { FormInputProps } from "../Components/auth/FormInput";
 export const FormInputlist : FormInputProps[] = [
     {
-        label: "Username",
+        label: "English FullName",
         type: "text",
-        id: "username",
-        name: "username",
+        id: "englishFullName",
+        name: "englishFullName",
         value: "",
         onChange: () => {},
-        placeholder: "Enter your username"
+        placeholder: "Enter your English FullName"
     
+    },
+    {
+        label: "Arabic Full name",
+        type: "text",
+        id: "arabicFullName",
+        name: "arabicFullName",
+        value: "",
+        onChange: () => {},
+        placeholder: "Enter your Arabic Full name"
     },
     {   label: "Email",
         type: "email",
@@ -36,45 +45,27 @@ export const FormInputlist : FormInputProps[] = [
     },
     {   label: "Specialization",
         type: "text",
-        id: "Specialization",
-        name: "Specialization",
+        id: "specialization",
+        name: "specialization",
         value: "",
         onChange: () => {},
         placeholder: "Enter your Specialization"
     },
     {   label: "Clinic_address",
         type: "text",
-        id: "clinic_address",
-        name: "clinic_address",
+        id: "clinicAddress",
+        name: "clinicAddress",
         value: "",
         onChange: () => {},
-        placeholder: "Enter your clinic_address"
+        placeholder: "Enter your clinic address"
     },
     {   label: "national_iD",
         type: "text",
-        id: "national_id",
-        name: "national_id",
+        id: "nationalID",
+        name: "nationalID",
         value: "",
         onChange: () => {},
         placeholder: "Enter your national_id"   
-    },
-    {
-        label: "ID card ",
-        type: "text",
-        id: "id_card",
-        name: "id_card",
-        value: "",
-        onChange: () => {},
-        placeholder: "Enter your id_card"
-    },
-    {
-        label: "Personal_photograph",
-        type: "text",
-        id: "Personal_photograph",
-        name: "Personal_photograph",
-        value: "",
-        onChange: () => {},
-        placeholder: "click to upload your image"
     },
     {   label: "Phone number",
          type :"number",
@@ -96,8 +87,8 @@ export const FormInputlist : FormInputProps[] = [
     {   
         label: "Gender",
         type :"text",
-        id: "Gender",
-        name: "Gender",
+        id: "gender",
+        name: "gender",
         value: "",
         onChange: () => {},
         placeholder: "Male or Female"
