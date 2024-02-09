@@ -87,11 +87,13 @@ return (
         <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md lg:min-w-max mb-4">
         <form className="grid grid-cols-1 xl:grid-cols-2 gap-2 bg-white rounded-2xl py-10 px-5 xl:px-10 xl:py-12 " onSubmit={handleSubmit}>
           {renderFormInputList}
+          <div className="relative xl:mt-20 xl:top-11 xl:left-25 xl:transform xl:-translate-x-1/2 xl:-translate-y-1/2">
+            <Button text="Signup" disabled={isLoading} />
+            <HaveAccountOrNot type="signup" />
           
+          </div>
         </form>
         </div>
-          <Button text="Signup" disabled={isLoading} />
-          <HaveAccountOrNot type="signup" />
       </div>
     </div>
   );
