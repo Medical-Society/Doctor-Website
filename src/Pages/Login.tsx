@@ -5,13 +5,12 @@ import FormInput from "../Components/auth/FormInput";
 import Button from "../Components/auth/Button";
 import ForgetPass from "../Components/auth/ForgetPass";
 import DoctorImg from "../Components/auth/DoctorImg";
+import { ILoginState } from "../interfaces/ILogin";
+import { loginUser } from "../services/auth";
 
-interface ILoginState {
-  email: string;
-  password: string;
-}
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [login, setLogin] = useState<ILoginState>({
     email: '',
     password: ''
@@ -24,11 +23,20 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(login);
-    // logic here
-  };
+    setIsLoading(true);
+    
+    try {
+      const res = await loginUser(login);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+    setIsLoading(false);
+    }
+  }
 
   return (
     <div className="h-full flex flex-col lg:flex-row">
@@ -58,7 +66,7 @@ const Login = () => {
               ariaLabel="Password"
             />
             <ForgetPass />
-            <Button text='Login' />
+            <Button text='Login' disabled={isLoading} />
             <HaveAccountOrNot type='login' />
             <OrLine />
           </form>
