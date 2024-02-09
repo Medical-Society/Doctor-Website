@@ -9,7 +9,6 @@ import { registerUser } from "../services/auth";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
-
   const [signup, setSignup] = useState<ISignupState>({
     englishFullName: "",
     arabicFullName: "",
