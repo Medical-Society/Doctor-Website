@@ -90,6 +90,7 @@ return (
           <div className="relative xl:mt-20 xl:top-11 xl:left-25 xl:transform xl:-translate-x-1/2 xl:-translate-y-1/2">
             <Button text="Signup" disabled={isLoading} />
             <HaveAccountOrNot type="signup" />
+            
           </div>
         </form>
         </div>
