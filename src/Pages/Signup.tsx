@@ -43,7 +43,7 @@ const Signup = () => {
   }
 const renderFormInputList = FormInputlist.map(input => (
     <div key={input.id}>
-       <div className='flex flex-col gap-1 relative'>
+       <div className='flex flex-col gap-1 relative lg:w-96'>
             <label>{input.label}</label>
             <input
                 type={(input.id === 'password'  && showPassword) || ( input.id === 'confirmPassword' && showConfirmPassword) ? 'text' : input.type}
@@ -74,13 +74,14 @@ return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="lg:w-1/2 w-full max-w-lg flex flex-col justify-center items-center">
         <h1 className="text-primary text-3xl font-bold mb-4">Signup</h1>
-        <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md">
-          <form className="flex flex-col bg-white rounded-2xl py-10 px-5 gap-4  xl:justify-start" onSubmit={handleCliker}>
-            {renderFormInputList}
-            <Button text="Signup" />
-            <HaveAccountOrNot type="signup" />
-          </form>
+        <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md lg:min-w-max mb-4">
+        <form className="grid grid-cols-1 xl:grid-cols-2 gap-2 bg-white rounded-2xl py-10 px-5 xl:px-10 xl:py-12 " onSubmit={handleCliker}>
+          {renderFormInputList}
+          
+        </form>
         </div>
+           <Button text="Signup" />
+          <HaveAccountOrNot type="signup" />
       </div>
     </div>
   );
