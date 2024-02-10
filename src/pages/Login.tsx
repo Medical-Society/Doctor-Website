@@ -7,9 +7,11 @@ import ForgetPass from "../Components/auth/ForgetPass";
 import DoctorImg from "../Components/auth/DoctorImg";
 import { ILoginState } from "../interfaces/ILogin";
 import { loginUser } from "../services/auth";
-
+import { toast } from "react-hot-toast";
 
 const Login = () => {
+  const passwordregx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
   const [isLoading, setIsLoading] = useState(false);
   const [login, setLogin] = useState<ILoginState>({
     email: '',
@@ -25,8 +27,11 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if(!passwordregx.test(login.password)){
+      toast.error("Password must contain at least 8 characters, including UPPER/lowercase and numbers");
+        return;
+    }
     setIsLoading(true);
-    
     try {
       const res = await loginUser(login);
       console.log(res);
@@ -35,7 +40,7 @@ const Login = () => {
     }
     finally {
     setIsLoading(false);
-    }
+    } 
   }
 
   return (

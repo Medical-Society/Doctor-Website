@@ -1,12 +1,12 @@
-//import Login from "./pages/Login"
-import Signup from "./pages/Signup"
+import Login from "./pages/Login"
+//import Signup from "./pages/Signup"
 
 function App() {
 
   return (
         <div className="h-screen">
-     {/*  <Login />  */}
-     <Signup /> 
+    <Login />  
+   {/*     <Signup /> */}
 
         </div>
   )

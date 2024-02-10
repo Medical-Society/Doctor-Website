@@ -5,13 +5,10 @@ import Button from "../Components/auth/Button";
 import HaveAccountOrNot from "../Components/auth/HaveAccountOrNot"
 import icon from "../assets/visibility_off.jpg"
 import { registerUser } from "../services/auth";
- 
-
- 
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
-
   const [signup, setSignup] = useState<ISignupState>({
     englishFullName: "",
     arabicFullName: "",
@@ -26,11 +23,11 @@ const Signup = () => {
     gender : ""
   });
 
-
-
-
+ const passwordregx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+ const phoneregx = /^01[0-2]\d{8}$/;
  const [showPassword, setShowPassword] = useState(false);
  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+ 
  const Showpassword = (field: string) => {
     if (field === "password") setShowPassword(!showPassword);
     if (field === "confirmPassword")  setShowConfirmPassword(!showConfirmPassword);
@@ -44,17 +41,26 @@ const Signup = () => {
     }); 
      };
 
-const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSignup({
-        ...signup,
-        [e.target.name]: e.target.value
-    }); 
-};
-
- 
+    const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSignup({
+            ...signup,
+            [e.target.name]: e.target.value
+        }); 
+    };
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
- 
+    if(!passwordregx.test(signup.password)){
+        toast.error("Password must contain at least 8 characters, including UPPER/lowercase and numbers");
+        return;
+    }
+    if (signup.password !== signup.confirmPassword) {
+     toast.error("Password and Confirm Password must be the samee");
+        return;
+    }
+    if(!phoneregx.test(signup.phoneNumber)){
+      toast.error("Phone number must be 11 digits and starts with 01");
+        return;
+    }
     console.log(signup);
     setIsLoading(true);
     try {
@@ -122,21 +128,16 @@ return (
         <form className="grid grid-cols-1 xl:grid-cols-2 gap-2 bg-white rounded-2xl py-10 px-5 xl:px-10 xl:py-12 " onSubmit={handleSubmit}>
           {renderFormInputList}
           <div className="relative xl:mt-20 xl:top-11 xl:left-25 xl:transform xl:-translate-x-1/2 xl:-translate-y-1/2">
-            <Button text="Signup" disabled={isLoading}/>
+            <Button text="Signup" disabled={isLoading} />
             <HaveAccountOrNot type="signup" />
-          
           </div>
         </form>
         </div>
       </div>
     </div>
-  );
-  
-  
+  );  
 }
 
 export default Signup
-
- 
 
  
