@@ -7,6 +7,7 @@
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   ariaLabel?: string;
   placeholder?: string;
+  options?: string[];
 }
 
 const FormInput = ({label, type, id, name, value, onChange, ariaLabel}: FormInputProps) => {

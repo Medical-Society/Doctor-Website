@@ -5,7 +5,9 @@ import Button from "../Components/auth/Button";
 import HaveAccountOrNot from "../Components/auth/HaveAccountOrNot"
 import icon from "../assets/visibility_off.jpg"
 import { registerUser } from "../services/auth";
+ 
 
+ 
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +25,9 @@ const Signup = () => {
     gender : ""
   });
 
+
+
+
  const [showPassword, setShowPassword] = useState(false);
  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
  const Showpassword = (field: string) => {
@@ -30,17 +35,26 @@ const Signup = () => {
     if (field === "confirmPassword")  setShowConfirmPassword(!showConfirmPassword);
      console.log(field)
    };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+ 
+     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignup({
-      ...signup,
-      [e.target.name]: e.target.value
-    });
-    };
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        ...signup,
+        [e.target.name]: e.target.value
+    }); 
+     };
+
+const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSignup({
+        ...signup,
+        [e.target.name]: e.target.value
+    }); 
+};
+
+ 
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Signup form submitted");
-      setIsLoading(true);
+    console.log(signup);
+    setIsLoading(true);
     try {
       const res = await registerUser(signup);
       console.log(res);
@@ -49,35 +63,52 @@ const Signup = () => {
     }
     finally {
       setIsLoading(false);
-    }  
+    }   
   }
+  
 const renderFormInputList = FormInputlist.map(input => (
     <div key={input.id}>
-       <div className='flex flex-col gap-1 relative lg:w-96'>
+        <div className='flex flex-col gap-1 relative lg:w-96'>
             <label>{input.label}</label>
-            <input
-                type={(input.id === 'password'  && showPassword) || ( input.id === 'confirmPassword' && showConfirmPassword) ? 'text' : input.type}
-                name={input.name}
-                id={input.id}
-                value={signup[input.name as keyof ISignupState]} 
-                onChange={handleChange}
-                placeholder={input.placeholder}
-                className='rounded-3xl p-2 border border-gray-300'
-              />
-
+            {input.type === "select" ? (
+                <select
+                    name={input.name}
+                    id={input.id}
+                    value={signup[input.name as keyof ISignupState]} 
+                    onChange={handleChangeSelect}
+                    className='rounded-3xl p-2 border border-gray-300'
+                >
+                   <option value="">{input.placeholder}</option>
+                   {input.options?.map((Option,index)=>(
+                    <option key={index} value={Option}>{Option}</option>
+                   ))}
+                 </select>
+            ) : (
+                <input
+                    type={(input.id === 'password'  && showPassword) || ( input.id === 'confirmPassword' && showConfirmPassword) ? 'text' : input.type}
+                    name={input.name}
+                    id={input.id}
+                    value={signup[input.name as keyof ISignupState]} 
+                    onChange={handleChange}
+                    placeholder={input.placeholder}
+                    className='rounded-3xl p-2 border border-gray-300'
+                />
+            )}   
+           
             {input.id === "password" || input.id==="confirmPassword" ? ( 
-            <div
-              className="absolute top-12 right-3 transform -translate-y-1/2 focus:outline-none"
-               onClick={()=>Showpassword(input.id)}   
-            >
-              <img
-                src={icon}  alt="Password Visibility"
-              />
-            </div>
-        ) :null }
+                <div
+                    className="absolute top-12 right-3 transform -translate-y-1/2 focus:outline-none"
+                    onClick={()=>Showpassword(input.id)}   
+                >
+                    <img
+                        src={icon}  alt="Password Visibility"
+                    />
+                </div>
+            ) : null }
         </div>  
     </div>
 ));
+
       
  
 return (
@@ -88,7 +119,7 @@ return (
         <form className="grid grid-cols-1 xl:grid-cols-2 gap-2 bg-white rounded-2xl py-10 px-5 xl:px-10 xl:py-12 " onSubmit={handleSubmit}>
           {renderFormInputList}
           <div className="relative xl:mt-20 xl:top-11 xl:left-25 xl:transform xl:-translate-x-1/2 xl:-translate-y-1/2">
-            <Button text="Signup" disabled={isLoading} />
+            <Button text="Signup" disabled={isLoading}/>
             <HaveAccountOrNot type="signup" />
           </div>
         </form>
@@ -101,5 +132,7 @@ return (
 }
 
 export default Signup
+
+ 
 
  
