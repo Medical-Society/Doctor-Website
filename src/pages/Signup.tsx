@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const [signup, setSignup] = useState<ISignupState>({
     englishFullName: "",
     arabicFullName: "",
@@ -24,22 +24,45 @@ const Signup = () => {
     gender : ""
   });
 
+ const passwordregx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+ const phoneregx = /^01[0-2]\d{8}$/;
  const [showPassword, setShowPassword] = useState(false);
  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+ 
  const Showpassword = (field: string) => {
     if (field === "password") setShowPassword(!showPassword);
     if (field === "confirmPassword")  setShowConfirmPassword(!showConfirmPassword);
      console.log(field)
    };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+ 
+     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignup({
-      ...signup,
-      [e.target.name]: e.target.value
-    });
+        ...signup,
+        [e.target.name]: e.target.value
+    }); 
+     };
+
+    const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSignup({
+            ...signup,
+            [e.target.name]: e.target.value
+        }); 
     };
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if(!passwordregx.test(signup.password)){
+        toast.error("Password must contain at least 8 characters, including UPPER/lowercase and numbers");
+        return;
+    }
+    if (signup.password !== signup.confirmPassword) {
+     toast.error("Password and Confirm Password must be the samee");
+        return;
+    }
+    if(!phoneregx.test(signup.phoneNumber)){
+      toast.error("Phone number must be 11 digits and starts with 01");
+        return;
+    }
+    console.log(signup);
     setIsLoading(true);
     try {
       const res = await registerUser(signup);
@@ -49,35 +72,53 @@ const Signup = () => {
     }
     finally {
       setIsLoading(false);
+    }   
     }
-  }
+  
+  
 const renderFormInputList = FormInputlist.map(input => (
     <div key={input.id}>
        <div className='flex flex-col gap-1 relative lg:w-96 mx-5'>
             <label>{input.label}</label>
-            <input
-                type={(input.id === 'password'  && showPassword) || ( input.id === 'confirmPassword' && showConfirmPassword) ? 'text' : input.type}
-                name={input.name}
-                id={input.id}
-                value={signup[input.name as keyof ISignupState]} 
-                onChange={handleChange}
-                placeholder={input.placeholder}
-                className='rounded-3xl p-2 border border-gray-300'
-              />
-
+            {input.type === "select" ? (
+                <select
+                    name={input.name}
+                    id={input.id}
+                    value={signup[input.name as keyof ISignupState]} 
+                    onChange={handleChangeSelect}
+                    className='rounded-3xl p-2 border border-gray-300'
+                >
+                   <option value="">{input.placeholder}</option>
+                   {input.options?.map((Option,index)=>(
+                    <option key={index} value={Option}>{Option}</option>
+                   ))}
+                 </select>
+            ) : (
+                <input
+                    type={(input.id === 'password'  && showPassword) || ( input.id === 'confirmPassword' && showConfirmPassword) ? 'text' : input.type}
+                    name={input.name}
+                    id={input.id}
+                    value={signup[input.name as keyof ISignupState]} 
+                    onChange={handleChange}
+                    placeholder={input.placeholder}
+                    className='rounded-3xl p-2 border border-gray-300'
+                />
+            )}   
+           
             {input.id === "password" || input.id==="confirmPassword" ? ( 
-            <div
-              className="absolute top-12 right-3 transform -translate-y-1/2 focus:outline-none"
-               onClick={()=>Showpassword(input.id)}   
-            >
-              <img
-                src={icon}  alt="Password Visibility"
-              />
-            </div>
-        ) :null }
+                <div
+                    className="absolute top-12 right-3 transform -translate-y-1/2 focus:outline-none"
+                    onClick={()=>Showpassword(input.id)}   
+                >
+                    <img
+                        src={icon}  alt="Password Visibility"
+                    />
+                </div>
+            ) : null }
         </div>  
     </div>
 ));
+
       
  
 return (
@@ -90,15 +131,12 @@ return (
           <div className="relative lg:mt-20 lg:top-11 lg:left-25 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
             <Button text="Signup" disabled={isLoading} />
             <HaveAccountOrNot type="signup" />
-          
           </div>
         </form>
         </div>
       </div>
     </div>
-  );
-  
-  
+  );  
 }
 
 export default Signup
