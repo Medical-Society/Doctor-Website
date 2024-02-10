@@ -1,4 +1,4 @@
-import { FormInputProps } from "../Components/auth/FormInput";
+import { FormInputProps } from "../Components/authForms/FormInput";
 export const FormInputlist : FormInputProps[] = [
     {
         label: "English FullName",
