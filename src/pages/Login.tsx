@@ -1,16 +1,20 @@
 import { useState } from "react";
-import OrLine from "../Components/auth/OrLine";
-import HaveAccountOrNot from "../Components/auth/HaveAccountOrNot";
-import FormInput from "../Components/auth/FormInput";
-import Button from "../Components/auth/Button";
-import ForgetPass from "../Components/auth/ForgetPass";
-import DoctorImg from "../Components/auth/DoctorImg";
+import OrLine from "../Components/authForms/OrLine";
+import HaveAccountOrNot from "../Components/authForms/HaveAccountOrNot";
+import FormInput from "../Components/authForms/FormInput";
+import Button from "../Components/authForms/Button";
+import ForgetPass from "../Components/authForms/ForgetPass";
+import DoctorImg from "../Components/authForms/DoctorImg";
 import { ILoginState } from "../interfaces/ILogin";
 import { loginUser } from "../services/auth";
+import toast from "react-hot-toast"
+import { useAuth } from "../hooks/useAuth";
+import Cookies from 'js-cookie';
 
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { setAuth } = useAuth();
   const [login, setLogin] = useState<ILoginState>({
     email: '',
     password: ''
@@ -29,9 +33,15 @@ const Login = () => {
     
     try {
       const res = await loginUser(login);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
+      toast.success('Logged in successfully');
+      setAuth({
+        token: res.data.token,
+        doctor: res.data.doctor
+      });
+      Cookies.set('auth', res.data.token);
+      
+    } catch (error: any) {
+      toast.error(error.response.data.message)
     }
     finally {
     setIsLoading(false);

@@ -1,6 +1,14 @@
 import { ReactNode, createContext, useState } from "react";
 
-const AuthContext = createContext({});
+interface IAuthContext {
+    auth: any;
+    setAuth: (auth: any) => void;
+}
+
+const AuthContext = createContext<IAuthContext>({
+    auth: {},
+    setAuth: () => {}
+});
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [auth, setAuth] = useState({});
