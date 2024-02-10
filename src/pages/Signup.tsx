@@ -11,6 +11,7 @@ import { registerUser } from "../services/auth";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   const [signup, setSignup] = useState<ISignupState>({
     englishFullName: "",
     arabicFullName: "",
@@ -53,6 +54,7 @@ const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
  
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+ 
     console.log(signup);
     setIsLoading(true);
     try {
@@ -64,7 +66,8 @@ const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     finally {
       setIsLoading(false);
     }   
-  }
+    }
+  
   
 const renderFormInputList = FormInputlist.map(input => (
     <div key={input.id}>
@@ -121,6 +124,7 @@ return (
           <div className="relative xl:mt-20 xl:top-11 xl:left-25 xl:transform xl:-translate-x-1/2 xl:-translate-y-1/2">
             <Button text="Signup" disabled={isLoading}/>
             <HaveAccountOrNot type="signup" />
+          
           </div>
         </form>
         </div>
