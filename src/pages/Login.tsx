@@ -44,6 +44,7 @@ const Login = () => {
         doctor: res.data.doctor
       });
       Cookies.set('auth', res.data.token);
+      Cookies.set('doctor', res.data.doctor);
       
     } catch (error: any) {
       toast.error(error.response.data.message)

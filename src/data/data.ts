@@ -91,7 +91,7 @@ export const FormInputlist : FormInputProps[] = [
         name: "gender",
         value: "",
         onChange: () => {},
-        options : ["Male" , "Female"],
+        options : ["male" , "female"],
         placeholder: "select gender"
     },
 

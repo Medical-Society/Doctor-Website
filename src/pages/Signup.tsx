@@ -6,10 +6,10 @@ import HaveAccountOrNot from "../Components/authForms/HaveAccountOrNot"
 import icon from "../assets/visibility_off.jpg"
 import { registerUser } from "../services/auth";
 import toast from "react-hot-toast";
+import { Navigate } from "react-router-dom";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
-
   const [signup, setSignup] = useState<ISignupState>({
     englishFullName: "",
     arabicFullName: "",
@@ -65,10 +65,14 @@ const Signup = () => {
     console.log(signup);
     setIsLoading(true);
     try {
-      const res = await registerUser(signup);
-      console.log(res);
+      await registerUser(signup);
+      toast.success('Signed up successfully, Please Verify your email', {
+        duration: 8000
+      });
+      <Navigate to="/login" />
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      console.log(error);
+      toast.error(error.response.data.message)
     }
     finally {
       setIsLoading(false);
