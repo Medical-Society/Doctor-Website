@@ -6,7 +6,7 @@ import { ILoginState } from "../interfaces/ILogin";
 import toast from "react-hot-toast";
 import FormInput from "../Components/authForms/FormInput";
 import Button from "../Components/authForms/Button";
-import ForgetPass from "../Components/authForms/ForgetPass";
+import ForgetPass from "../Components/authForms/ForgotPassLink";
 import HaveAccountOrNot from "../Components/authForms/HaveAccountOrNot";
 import OrLine from "../Components/authForms/OrLine";
 import DoctorImg from "../Components/authForms/DoctorImg";

@@ -12,3 +12,13 @@ export async function registerUser(data: ISignupState){
     const res = await axios.post(`${API_URL}/signup`, data)
     return res.data
 }
+
+export async function forgotPassword(email: string){
+    const res = await axios.post(`${API_URL}/forgot-password`, {email})
+    return res.data
+}
+
+export async function resetPassword(token: string, password: string, confirmPassword: string){
+    const res = await axios.post(`${API_URL}/reset-password/${token}`, {password, confirmPassword})
+    return res.data
+}
