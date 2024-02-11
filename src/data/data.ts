@@ -1,7 +1,7 @@
 import { FormInputProps } from "../Components/authForms/FormInput";
 export const FormInputlist : FormInputProps[] = [
     {
-        label: "English FullName",
+        label: "English Full Name",
         type: "text",
         id: "englishFullName",
         name: "englishFullName",
@@ -11,7 +11,7 @@ export const FormInputlist : FormInputProps[] = [
     
     },
     {
-        label: "Arabic Full name",
+        label: "Arabic Full Name",
         type: "text",
         id: "arabicFullName",
         name: "arabicFullName",
@@ -33,7 +33,7 @@ export const FormInputlist : FormInputProps[] = [
         name: "password",
         value: "",
         onChange: () => {},
-        placeholder: "Enter your password",
+        placeholder: "Password",
     },
     {   label: "Confirm Password",
         type: "password",
@@ -41,7 +41,7 @@ export const FormInputlist : FormInputProps[] = [
         name: "confirmPassword",
         value: "",
         onChange: () => {},
-        placeholder: "Confirm your password"
+        placeholder: "Confirm password"
     },
     {   label: "Specialization",
         type: "text",
@@ -77,7 +77,7 @@ export const FormInputlist : FormInputProps[] = [
      },
     {   
         label: "Age",
-        type :"number",
+        type :"date",
         id: "age",
         name: "age",
         value: "",
@@ -92,7 +92,7 @@ export const FormInputlist : FormInputProps[] = [
         value: "",
         onChange: () => {},
         options : ["male" , "female"],
-        placeholder: "select gender"
+        placeholder: "Select gender"
     },
 
 ]

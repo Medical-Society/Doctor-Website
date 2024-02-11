@@ -3,15 +3,21 @@ import { useEffect } from "react"
 import router from "./router/router"
 import Cookies from 'js-cookie'
 import { useAuth } from "./hooks/useAuth"
+
 function App() {
   
   const { setAuth } = useAuth()
+
   useEffect(() => {
-    const token = Cookies.get('auth')
-    if (token) {
-      setAuth({ token })
-    }
-  }, [setAuth])
+      const token = Cookies.get('auth')
+      const doctor = Cookies.get('doctor')
+      if (token && doctor) {
+          setAuth({ token, doctor })
+      }
+      else {
+          setAuth({ token: '', doctor: null })
+      }
+  }, [])
 
   return (
     <div className="h-screen">
