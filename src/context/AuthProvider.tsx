@@ -6,7 +6,7 @@ interface IAuthContext {
     setAuth: (auth: IAuth) => void;
 }
 
-const defaultUser = {
+const defaultDoctor = {
     _id: "",
     englishFullName: "",
     arabicFullName: "",
@@ -28,7 +28,7 @@ const defaultUser = {
 const AuthContext = createContext<IAuthContext>({
     auth: {
         token: "",
-        user: defaultUser
+        doctor: defaultDoctor
     },
     setAuth: () => { }
 });
@@ -36,7 +36,7 @@ const AuthContext = createContext<IAuthContext>({
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [auth, setAuth] = useState<IAuth>({
         token: "",
-        user: defaultUser
+        doctor: defaultDoctor
     });
     
     return (

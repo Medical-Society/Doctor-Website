@@ -96,11 +96,14 @@ const renderFormInputList = FormInputlist.map(input => (
 ));
  
 return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="flex justify-center items-center mt-20">
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-primary text-3xl font-bold mb-4">Signup</h1>
-        <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md lg:min-w-max mb-4">
-        <form className="grid grid-cols-1 lg:grid-cols-2 gap-2 bg-white rounded-2xl py-10 px-5 xl:px-10 xl:py-12 " onSubmit={handleSubmit}>
+        <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 lg:min-w-max mb-4">
+        <form 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl py-10 px-5 xl:px-10 xl:py-12" 
+          onSubmit={handleSubmit}
+        >
           {renderFormInputList}
           <div className="relative lg:mt-20 lg:top-11 lg:left-25 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
             <Button text="Signup" disabled={isLoading} />

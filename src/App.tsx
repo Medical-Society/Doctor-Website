@@ -9,13 +9,14 @@ function App() {
   const { setAuth } = useAuth()
 
   useEffect(() => {
-      const token = Cookies.get('auth')
-      const doctor = Cookies.get('doctor')
+      const token = Cookies.get('token');
+      const doctor = Cookies.get('doctor');
       if (token && doctor) {
-          setAuth({ token, doctor })
-      }
-      else {
-          setAuth({ token: '', doctor: null })
+          setAuth({
+              token,
+              doctor: JSON.parse(doctor)
+          
+          });
       }
   }, [])
 

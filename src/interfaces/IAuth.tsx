@@ -19,5 +19,5 @@ interface IDoctor {
 
 export interface IAuth{
     token: string;
-    user: IDoctor;
+    doctor: IDoctor;
 }

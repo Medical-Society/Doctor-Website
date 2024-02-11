@@ -37,8 +37,8 @@ const Login = () => {
         token: res.data.token,
         doctor: res.data.doctor
       });
-      Cookies.set('auth', res.data.token, { secure: true, sameSite: 'strict' });
-      Cookies.set('doctor', res.data.doctor, { secure: true, sameSite: 'strict' });
+      Cookies.set('token', res.data.token);
+      Cookies.set('doctor', JSON.stringify(res.data.doctor));
     } catch (error: any) {
       toast.error(error.response?.data?.message || "An error occurred");
     } finally {

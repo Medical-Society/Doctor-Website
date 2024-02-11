@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth"
+import Cookies from 'js-cookie'
 interface IProps {
 
 }
@@ -11,11 +12,31 @@ const Navbar = ({}: IProps) => {
   const handleLogout = () => {
     setAuth({
       token: '',
-      doctor: null
+      doctor: {
+        _id: '',
+        englishFullName: '',
+        arabicFullName: '',
+        email: '',
+        password: '',
+        specialization: '',
+        clinicAddress: '',
+        nationalID: '',
+        phoneNumber: '',
+        age: 0,
+        createdAt: '',
+        updatedAt: '',
+        status: '',
+        gender: '',
+        isVerified: false,
+        __v: 0
+      }
     });
+    Cookies.remove('token');
+    Cookies.remove('doctor');
+
   }
   return (
-    <div className="fixed top-0 z-2 left-0 w-full drop-shadow-sm p-4 flex justify-between items-center">
+    <div className="fixed top-0 z-2 left-0 w-full drop-shadow-sm p-4 flex justify-between items-center backdropfilter backdrop-blur-lg bg-white"> 
       <h1 className="text-black">Navbar</h1>
         <div className="flex gap-4">
             <NavLink to="/" className="text-xl text-black hover:text-primary active:text-primary">Home</NavLink>
