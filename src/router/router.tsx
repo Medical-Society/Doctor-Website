@@ -4,6 +4,8 @@ import Navbar from "../Components/Navbar";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
+import ForgetPass from "../pages/ForgetPassComp";
+import ResetPass from "../pages/ResetPass";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -28,8 +30,17 @@ const router = createBrowserRouter(
                         <Signup />
                     </ProtectedRoute>
                 } />
+                <Route path="forget-password" element={
+                    <ProtectedRoute redirectPath="/">
+                        <ForgetPass />
+                    </ProtectedRoute>
+                }   />
 
             </Route>
+
+            <Route path="reset-password/:token" element={
+                <ResetPass />
+            } />
 
             {/* Page Not Found */}
             <Route path="*" element={<h1 className="text-4xl font-bold text-center">404 Not Found</h1>} />
