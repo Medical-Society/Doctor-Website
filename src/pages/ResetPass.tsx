@@ -7,7 +7,13 @@ import Button from "../Components/authForms/Button";
 import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
-    const { token } = useParams<{ token: string }>();
+    interface IResetPassParams {
+        id: string | undefined;
+        token: string | undefined;
+        [key: string]: string | undefined; 
+    }
+
+    const { id, token } = useParams<IResetPassParams>();
     const [isLoading, setIsLoading] = useState(false);
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -22,11 +28,13 @@ const ResetPassword = () => {
         }
 
         try {
-            await resetPassword(token ?? "", password, confirmPassword);
+            const res = await resetPassword(id ?? "", token ?? "", password, confirmPassword);
+            console.log(res);
             toast.success("Password reset successfully");
             navigate("/login");
         }
         catch (error: any) {
+            console.log(error);
             toast.error(error?.response.data.message || "An error occurred");
         }
         finally {

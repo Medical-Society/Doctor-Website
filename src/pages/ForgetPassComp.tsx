@@ -18,7 +18,8 @@ const ForgetPassComp = ({}: IProps) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await forgotPassword(email);
+      const res = await forgotPassword(email);
+      console.log(res);
       toast.success('Email sent successfully, Please check your email', {
           duration: 4000,
         });

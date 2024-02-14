@@ -21,7 +21,7 @@ const Signup = () => {
     clinicAddress: "",
     nationalID: "",
     phoneNumber: "",
-    age : "",
+    birthdate : new Date(),
     gender : ""
   });
 

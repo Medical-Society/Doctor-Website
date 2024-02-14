@@ -6,7 +6,7 @@ export interface FormInputProps {
   type: string;
   id: string;
   name: string;
-  value: string;
+  value: string | Date;
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   placeholder?: string;
   options?: string[];
@@ -36,7 +36,7 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
         <select
           name={name}
           id={id}
-          value={value}
+          value={value as string}
           onChange={onChange}
           className='rounded-3xl p-2 border border-gray-300'
           aria-label={ariaLabel}
@@ -51,7 +51,7 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
           type={(id === 'password' && showPassword) || (id === 'confirmPassword' && showConfirmPassword) ? 'text' : type}
           name={name}
           id={id}
-          value={value}
+          value={typeof value === 'string' ? value : (value ? value.toISOString().split('T')[0] : '')} // Check if value is defined
           onChange={onChange}
           placeholder={placeholder}
           className='rounded-3xl p-2 border border-gray-300'
