@@ -18,7 +18,7 @@ export async function forgotPassword(email: string){
     return res.data
 }
 
-export async function resetPassword(token: string, password: string, confirmPassword: string){
-    const res = await axios.post(`${API_URL}/reset-password/${token}`, {password, confirmPassword})
+export async function resetPassword(id: string, token: string, password: string, confirmPassword: string){
+    const res = await axios.post(`${API_URL}/reset-password/`, {password, confirmPassword, token, id})
     return res.data
 }

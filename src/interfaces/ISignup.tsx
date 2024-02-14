@@ -8,7 +8,7 @@
     clinicAddress: string;
     nationalID: string;
     phoneNumber: string;
-    age : string;   
+    birthdate : Date;
     gender : string;
 }
 
