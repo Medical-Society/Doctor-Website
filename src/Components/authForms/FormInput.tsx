@@ -52,7 +52,7 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
 
       {(id === "password" || id === "confirmPassword") && ShowpasswordIcon ? (
         <div
-          className="absolute top-12 right-3 transform -translate-y-1/2 focus:outline-none"
+          className="absolute top-11 right-3 transform -translate-y-1/2 focus:outline-none"
           onClick={() => Showpassword(id)}
         >
           <img
