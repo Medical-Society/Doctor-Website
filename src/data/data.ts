@@ -1,4 +1,4 @@
-import { FormInputProps } from "../Components/authForms/FormInput";
+import { FormInputProps } from "../interfaces";
 export const FormInputlist : FormInputProps[] = [
     {
         label: "English Full Name",
@@ -76,13 +76,13 @@ export const FormInputlist : FormInputProps[] = [
          placeholder: "Enter your phone number" 
      },
     {   
-        label: "Age",
+        label: "Birthdate",
         type :"date",
-        id: "age",
-        name: "age",
+        id: "birthdate",
+        name: "birthdate",
         value: "",
         onChange: () => {},
-        placeholder: "Enter your age"
+        placeholder: "Enter your birthdate"
     }, 
     {   
         label: "Gender",
