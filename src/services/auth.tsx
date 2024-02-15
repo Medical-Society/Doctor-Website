@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { ISignupState } from '../interfaces/ISignup';
-import { ILoginState } from '../interfaces/ILogin';
+import { ISignupState } from '../interfaces';
+import { ILoginState } from '../interfaces';
 const API_URL = "https://medicalsociety.onrender.com/api/v1/doctors"
 
 export async function loginUser(data: ILoginState){

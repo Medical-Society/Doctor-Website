@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Cookies from 'js-cookie';
 import { useAuth } from "../hooks/useAuth";
 import { loginUser } from "../services/auth";
-import { ILoginState } from "../interfaces/ILogin";
+import { ILoginState } from "../interfaces";
 import toast from "react-hot-toast";
 import FormInput from "../Components/authForms/FormInput";
 import Button from "../Components/authForms/Button";

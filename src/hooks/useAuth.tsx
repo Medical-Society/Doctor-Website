@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../context/AuthProvider";
-import { IAuth } from "../interfaces/IAuth";
+import { IAuth } from "../interfaces";
 interface IAuthContext {
     auth: IAuth;
     setAuth: (auth: IAuth) => void;

@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
-import { IAuth } from "../interfaces/IAuth";
+import { IAuth } from "../interfaces";
 
 interface IAuthContext {
     auth: IAuth;
