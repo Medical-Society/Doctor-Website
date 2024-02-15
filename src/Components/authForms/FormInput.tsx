@@ -1,20 +1,11 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import ShowpasswordIcon from "../../assets/visibility_off.jpg";
+import ErrorMessage from "./ErrorMessage";
+import { FormInputProps } from "../../interfaces";
 
-export interface FormInputProps {
-  label: string;
-  type: string;
-  id: string;
-  name: string;
-  value: string | Date;
-  onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
-  placeholder?: string;
-  options?: string[];
-  signup?: boolean;
-  ariaLabel?: string;
-}
 
-const FormInput = ({ label, type, id, name, value, onChange, placeholder, options, signup, ariaLabel }: FormInputProps) => {
+
+const FormInput = ({ label, type, id, name, value, onChange, placeholder, options, signup, ariaLabel, errorMsg }: FormInputProps) => {
 
 
   const [showPassword, setShowPassword] = useState(false);
@@ -30,15 +21,15 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
   }
   
   return (
-    <div className={`flex flex-col relative gap-1 ${signup? 'lg:w-96 mx-3' : ''}`}>
-      <label>{label}</label>
+    <div className={`flex flex-col relative ${signup? 'lg:w-96 mx-3' : ''} min-h-20`}>
+      <label htmlFor={id} className="mb-[2px] text-sm font-medium text-gray-700">{label}</label>
       {type === "select" ? (
         <select
           name={name}
           id={id}
           value={value as string}
           onChange={onChange}
-          className='rounded-3xl p-2 border border-gray-300'
+          className='border-[1px] border-gray-300 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-2 text-md'
           aria-label={ariaLabel}
         >
           <option value="">{placeholder}</option>
@@ -54,7 +45,7 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
           value={typeof value === 'string' ? value : (value ? value.toISOString().split('T')[0] : '')} // Check if value is defined
           onChange={onChange}
           placeholder={placeholder}
-          className='rounded-3xl p-2 border border-gray-300'
+          className='border-[1px] border-gray-300 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-2 text-md'
           aria-label={ariaLabel}
         />
       )}
@@ -69,6 +60,7 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
           />
         </div>
       ) : null}
+      <ErrorMessage msg={errorMsg} />
     </div>
   );
 }
