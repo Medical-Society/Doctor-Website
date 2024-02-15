@@ -5,7 +5,6 @@ import Cookies from 'js-cookie'
 import { useAuth } from "./hooks/useAuth"
 
 function App() {
-  
   const { setAuth } = useAuth()
 
   useEffect(() => {

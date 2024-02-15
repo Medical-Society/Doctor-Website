@@ -1,19 +1,18 @@
 import axios from 'axios';
 import { ISignupState } from '../interfaces';
 import { ILoginState } from '../interfaces';
-const API_URL = "https://medicalsociety.onrender.com/api/v1/doctors"
 
 export async function loginUser(data: ILoginState){
-    const res = await axios.post(`${API_URL}/login`, data)
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, data)
     return res.data
 }
 
 export async function registerUser(data: ISignupState){
-    const res = await axios.post(`${API_URL}/signup`, data)
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/signup`, data)
     return res.data
 }
 
 export async function forgotPassword(email: string){
-    const res = await axios.post(`${API_URL}/forgot-password`, {email})
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/forgot-password`, {email})
     return res.data
 }
