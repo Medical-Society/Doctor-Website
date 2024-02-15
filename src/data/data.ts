@@ -51,7 +51,7 @@ export const FormInputlist : FormInputProps[] = [
         onChange: () => {},
         placeholder: "Enter your Specialization"
     },
-    {   label: "Clinic_address",
+    {   label: "Clinic Address",
         type: "text",
         id: "clinicAddress",
         name: "clinicAddress",
@@ -59,7 +59,7 @@ export const FormInputlist : FormInputProps[] = [
         onChange: () => {},
         placeholder: "Enter your clinic address"
     },
-    {   label: "national_iD",
+    {   label: "National Id",
         type: "text",
         id: "nationalID",
         name: "nationalID",
@@ -76,7 +76,7 @@ export const FormInputlist : FormInputProps[] = [
          placeholder: "Enter your phone number" 
      },
     {   
-        label: "Birthdate",
+        label: "Birth Date",
         type :"date",
         id: "birthdate",
         name: "birthdate",

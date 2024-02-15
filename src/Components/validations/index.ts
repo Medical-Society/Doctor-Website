@@ -49,10 +49,10 @@ export const validateSignup = (values: ISignupState) => {
         errors.clinicAddress = "Clinic address is required";
     }
     if (!values.nationalID.trim() || values.nationalID.length != 14) {
-        errors.nationalID = "National ID is required";
+        errors.nationalID = "National Id must be 14 digits";
     }
     if (!values.phoneNumber.trim() || values.phoneNumber.length != 11) {
-        errors.phoneNumber = "valid phone number is required";
+        errors.phoneNumber = "Valid phone number is required";
     }
     if (!values.birthdate) {
         errors.birthdate = "Birthdate is required";

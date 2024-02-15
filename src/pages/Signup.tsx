@@ -115,7 +115,7 @@ const renderFormInputList = FormInputlist.map(input => (
 ));
  
 return (
-    <div className="flex justify-center items-center mt-20">
+    <div className="flex justify-center items-center mt-14">
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-primary text-3xl font-bold mb-4">Signup</h1>
         <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-0.5 lg:min-w-max mb-4">
