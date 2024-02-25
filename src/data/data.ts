@@ -1,4 +1,5 @@
 import { FormInputProps } from "../interfaces";
+import { ReviewsProps } from "../interfaces";
 export const FormInputlist : FormInputProps[] = [
     {
         label: "English Full Name",
@@ -95,4 +96,35 @@ export const FormInputlist : FormInputProps[] = [
         placeholder: "Select gender"
     },
 
+]
+
+export const ReviewList : ReviewsProps[] = [
+    {
+        name: "yostena",
+        initialRating: 1,
+        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+    },
+    {
+        name: "yostena",
+        initialRating: 2,
+        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+    },
+    {
+        name: "yostena",
+        initialRating: 3,
+        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+    },
+    {
+        name: "yostena",
+        initialRating: 4,
+        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+    },
+    {
+        name: "yostena",
+        initialRating: 4,
+        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+    }
+    
+
+ 
 ]
