@@ -100,7 +100,7 @@ export const FormInputlist : FormInputProps[] = [
 
 export const ReviewList : ReviewsProps[] = [
     {
-        name: "yostena",
+        name: "Efraim",
         initialRating: 1,
         review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
     },
