@@ -75,9 +75,5 @@ export interface ReviewsProps {
   review: string;
   }
 
-  
-export interface IPostsDoc {
-    postTitle: string;
-    postContent: string;
-    }
+
   
