@@ -15,7 +15,7 @@ const DoctorsProfile = () => {
     };
         
     return (
-        <div className="py-16">
+        <div className="py-20">
               <div className="flex items-center h-16 border justify-around text-lg font-semibold">
              <button
                 onClick={handlePostClick}
