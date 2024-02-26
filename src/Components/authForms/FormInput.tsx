@@ -29,7 +29,7 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
           id={id}
           value={value as string}
           onChange={onChange}
-          className='border-[1px] border-gray-300 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-2 text-md'
+          className='border-[1px] border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-2 text-sm'
           aria-label={ariaLabel}
         >
           <option value="">{placeholder}</option>
@@ -45,7 +45,7 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
           value={typeof value === 'string' ? value : (value ? value.toISOString().split('T')[0] : '')} // Check if value is defined
           onChange={onChange}
           placeholder={placeholder}
-          className='border-[1px] border-gray-300 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-2 text-md'
+          className='border-[1px] border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-2 text-sm'
           aria-label={ariaLabel}
         />
       )}
