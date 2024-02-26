@@ -1,6 +1,7 @@
 import  { useState } from "react";
 import ReviewsOnDoc from "../Components/ReviewsOnDoc";
-import { ReviewList } from "../data/data";
+import { DoctorsPosts, ReviewList } from "../data/data";
+import PostsDoc from "../Components/Posts-doctor";
  
 
 const DoctorsProfile = () => {
@@ -21,7 +22,7 @@ const DoctorsProfile = () => {
     };
 
     /* ---------------------Render--------------------- */
-      const reviews = ReviewList.map((review,index) => {
+      const Reviews = ReviewList.map((review,index) => {
         return (
             <ReviewsOnDoc
                 key={index}
@@ -31,6 +32,15 @@ const DoctorsProfile = () => {
             />
         )});  
 
+    const doctorsPosts = DoctorsPosts.map((post,index) => {
+        return (
+            <PostsDoc
+                key={index}
+                postTitle={post.postTitle}
+                postContent={post.postContent}
+            />
+        )});
+        
     return (
             <div> 
               <div className="relative top-40 flex items-center min-h-16 border justify-around  text-lg font-semibold">
@@ -47,7 +57,8 @@ const DoctorsProfile = () => {
                 Reviews
               </button>
              </div>
-        {isReviewClicked && reviews}
+        {isReviewClicked && Reviews}
+        {isPostClicked && doctorsPosts}
        </div> 
     );
 };

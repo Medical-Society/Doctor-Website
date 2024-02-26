@@ -74,4 +74,10 @@ export interface ReviewsProps {
   initialRating?: number;
   review: string;
   }
+
+  
+export interface IPostsDoc {
+    postTitle: string;
+    postContent: string;
+    }
   

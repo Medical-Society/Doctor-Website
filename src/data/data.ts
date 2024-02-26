@@ -1,4 +1,4 @@
-import { FormInputProps } from "../interfaces";
+import { FormInputProps, IPostsDoc } from "../interfaces";
 import { ReviewsProps } from "../interfaces";
 export const FormInputlist : FormInputProps[] = [
     {
@@ -127,4 +127,28 @@ export const ReviewList : ReviewsProps[] = [
     
 
  
+]
+
+
+export const DoctorsPosts: IPostsDoc[] = [
+    {
+        postTitle: "10% OFF for your first appointment",
+        postContent: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
+    },
+    {
+        postTitle: "20% OFF for your first appointment",
+        postContent: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
+    },
+    {
+        postTitle: "30% OFF for your first appointment",
+        postContent: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
+    },
+    {
+        postTitle: "40% OFF for your first appointment",
+        postContent: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
+    },
+    {
+        postTitle: "50% OFF for your first appointment",
+        postContent: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
+    }
 ]
