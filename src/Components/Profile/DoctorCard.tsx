@@ -11,7 +11,7 @@ const DoctorCard = ({}: IProps) => {
     const imgUrl: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkQdml7doThTYtvv80DP51Ek_7l1f64sOtg&usqp=CAU";
     return (
         <div className="flex flex-col items-center justify-center gap-10 w-10/12 lg:flex-row">
-            <img src={imgUrl} alt="Doctor Image" className="h-[417px] w-[417px]" />
+            <img src={imgUrl} alt="Doctor Image" className="h-[417px]" />
             <div className="flex flex-col gap-5">
                 <h1 className="text-6xl text-[#060B73] font-medium ">
                     DR: {englishFullName}
