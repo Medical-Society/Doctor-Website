@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
-import DoctorsProfile from "../pages/Profile";
+import Profile from "../pages/Profile";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -13,7 +13,7 @@ const router = createBrowserRouter(
             <Route 
                 path="/" 
                 element={
-                    <div className="flex flex-col" >
+                    <div className="h-full flex flex-col" >
                         <Navbar />
                         <Outlet />
                     </div>
@@ -21,22 +21,24 @@ const router = createBrowserRouter(
             >
                 <Route index element={<Home />} />
                 <Route path="login" element={
-                    <ProtectedRoute redirectPath="/">
+                    <ProtectedRoute redirectPath="/" isAuth={false}>
                         <Login />
                     </ProtectedRoute>
                 } />
                 <Route path="signup" element={
-                    <ProtectedRoute redirectPath="/">
+                    <ProtectedRoute redirectPath="/" isAuth={false}>
                         <Signup />
                     </ProtectedRoute>
                 } />
                 <Route path="forget-password" element={
-                    <ProtectedRoute redirectPath="/">
+                    <ProtectedRoute redirectPath="/" isAuth={false}>
                         <ForgetPass />
                     </ProtectedRoute>
                 }   />
-                 <Route path="Doctor-Profile" element={
-                      <DoctorsProfile />
+                 <Route path="Profile" element={
+                    <ProtectedRoute redirectPath="/" isAuth={true}>
+                        <Profile />
+                    </ProtectedRoute>
                 }   />
             </Route>
 
