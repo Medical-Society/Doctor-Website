@@ -1,55 +1,40 @@
 import  { useState } from "react";
-import ReviewsOnDoc from "../Components/ReviewsOnDoc";
-import { ReviewList } from "../data/data";
- 
+import Posts from "../Components/Posts";
+import Reviews from "../Components/Reviews";
 
 const DoctorsProfile = () => {
     /* --------------------- States --------------------- */
-    const [isPostClicked, setIsPostClicked] = useState(false);
-    const [isReviewClicked, setIsReviewClicked] = useState(false);
+    const [isActivePage, setIsActivePage] = useState<"Posts" | "Reviews">("Posts");
 
     /* -------------------- Handlers -------------------- */
     const handlePostClick = () => {
-        setIsPostClicked(true);
-        setIsReviewClicked(false);  
-
+        setIsActivePage("Posts");
     };
-
     const handleReviewClick = () => {
-        setIsReviewClicked(true);
-        setIsPostClicked(false);  
+        setIsActivePage("Reviews");
     };
-
-    /* ---------------------Render--------------------- */
-      const reviews = ReviewList.map((review,index) => {
-        return (
-            <ReviewsOnDoc
-                key={index}
-                name={review.name}
-                initialRating={review.initialRating}
-                review={review.review}
-            />
-        )});  
-
+        
     return (
-            <div> 
-              <div className="relative top-40 flex items-center min-h-16 border justify-around  text-lg font-semibold">
+        <div className="py-20">
+              <div className="flex items-center h-16 border justify-around text-lg font-semibold">
              <button
                 onClick={handlePostClick}
-                style={{ color: isPostClicked ? "blue" : "" }}
+                style={{ color: isActivePage === "Posts" ? "blue" : "" }}
               >
                 Posts
              </button>
              <button
                 onClick={handleReviewClick}
-                style={{ color: isReviewClicked ? "blue" : "" }}
+                style={{ color: isActivePage === "Reviews" ? "blue" : "" }}
              >
                 Reviews
               </button>
-             </div>
-        {isReviewClicked && reviews}
-       </div> 
+            </div>
+            {
+                isActivePage === "Posts" ? <Posts/> : <Reviews />
+            }
+        
+        </div>
     );
-};
-
+}
 export default DoctorsProfile;

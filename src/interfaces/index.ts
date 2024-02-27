@@ -74,4 +74,11 @@ export interface ReviewsProps {
   initialRating?: number;
   review: string;
   }
+
+
+  export interface IPostsdoctor {
+    firstUrl?: string;
+    secondUrl?: string;
+    description?: string;
+  }
   

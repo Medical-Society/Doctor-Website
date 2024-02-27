@@ -28,8 +28,8 @@ const ReviewsOnDoc = ({name,initialRating=0,review} : ReviewsProps) => {
     };
      /* --------------------- JSX --------------------- */
     return (
-        <div className="relative top-60 left-16 flex flex-col items-center min-h-8 justify-around w-10/12">
-            <div className="p-4 ">
+        <div className=" top-60 left-16 flex flex-col items-center min-h-8 justify-around w-10/12 pt-5">
+            <div className="p-1">
                 <div className="flex items-center gap-5">
                     <h1 className="text-xl font-bold ">{name}</h1>
                     <div className="flex flex-row gap-2">
@@ -56,7 +56,7 @@ const ReviewsOnDoc = ({name,initialRating=0,review} : ReviewsProps) => {
                         })}
                     </div>
                 </div>
-                <p className="mt-4 border rounded-lg p-4 font-sans text-md">
+                <p className="mt-4 border  rounded-2xl p-4 font-semibold text-md">
                     {review}
                 </p>
             </div>
