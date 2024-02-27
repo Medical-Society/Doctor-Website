@@ -16,7 +16,7 @@ const Profile = () => {
     };
         
     return (
-        <div className="flex flex-col items-center py-20">
+        <div className="flex flex-col items-center">
             <button className= "text-[#060B73] rounded-full border-2 border-[#060B73] shadow-md hover:shadow-lg py-2 px-20 text-xl font-semibold w-fit md:ml-auto m-10">
                 Edit Profile
             </button>

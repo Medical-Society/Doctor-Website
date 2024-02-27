@@ -8,6 +8,7 @@ interface IProps {
 const Navbar = ({}: IProps) => {
 
   const { auth, setAuth } = useAuth();
+  
 
   const handleLogout = () => {
     setAuth({
@@ -36,26 +37,54 @@ const Navbar = ({}: IProps) => {
 
   }
   return (
-    <div className="fixed top-0 z-20 left-0 w-full drop-shadow-sm p-4 flex justify-between items-center backdropfilter backdrop-blur-sm"> 
+    <div className="z-50 sticky top-0"> 
+      <nav className="duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-white px-5 py-3 z-50 shadow-md">
       <h1 className="text-black">Navbar</h1>
         <div className="flex gap-4">
-            <NavLink to="/" className="text-xl text-black hover:text-primary active:text-primary">Home</NavLink>
+            <NavLink 
+              to="/" 
+              className="text-2xl text-black hover:text-primary active:text-primary"
+            >
+              Home
+            </NavLink>
+
             { !auth.token ? (<>
 
-              <NavLink to="/login" className="text-xl text-black hover:text-primary active:text-primary">Login</NavLink>
-            <NavLink to="/signup" className="text-xl text-black hover:text-primary active:text-primary">Signup</NavLink> 
-            </>) :
+              <NavLink 
+                to="/login" 
+                className="text-2xl text-black hover:text-primary active:text-primary"
+              >
+                Login
+              </NavLink>
+
+              <NavLink 
+                to="/signup" 
+                className="text-2xl text-black hover:text-primary active:text-primary"
+              >
+                Signup
+              </NavLink> 
+
+            </>
+            ) :
             <>
-              <NavLink to="/Doctor-profile" className="text-xl text-black hover:text-primary active:text-primary">Doctor profile</NavLink>
+              <NavLink 
+                to="/profile" 
+                className="text-2xl text-black hover:text-primary active:text-primary"
+              >
+                profile
+              </NavLink>
+
               <button 
-                className="text-xl text-black hover:text-primary active:text-primary"
+                className="text-2xl text-black hover:text-primary active:text-primary"
                 onClick={handleLogout}
               > 
               Logout
               </button>
+
             </>
             }
         </div>
+      </nav>
     </div>
   )
 }
