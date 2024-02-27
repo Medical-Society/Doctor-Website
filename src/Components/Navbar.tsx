@@ -44,6 +44,7 @@ const Navbar = ({}: IProps) => {
 
               <NavLink to="/login" className="text-xl text-black hover:text-primary active:text-primary">Login</NavLink>
             <NavLink to="/signup" className="text-xl text-black hover:text-primary active:text-primary">Signup</NavLink> 
+            <NavLink to="/Doctor-profile" className="text-xl text-black hover:text-primary active:text-primary">Doctor profile</NavLink>
             </>) :
             <button 
               className="text-xl text-black hover:text-primary active:text-primary"

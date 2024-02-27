@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
+import DoctorsProfile from "../pages/DoctorsProfile";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -34,7 +35,11 @@ const router = createBrowserRouter(
                         <ForgetPass />
                     </ProtectedRoute>
                 }   />
-
+                 <Route path="Doctor-Profile" element={
+                    <ProtectedRoute redirectPath="/">
+                      <DoctorsProfile />
+                    </ProtectedRoute>
+                }   />
             </Route>
 
             {/* Page Not Found */}

@@ -68,3 +68,17 @@ export interface ISignupErrors {
     nationalID: string;
     phoneNumber: string;
 }
+
+export interface ReviewsProps {
+  name: string;
+  initialRating?: number;
+  review: string;
+  }
+
+
+  export interface IPostsdoctor {
+    firstUrl?: string;
+    secondUrl?: string;
+    description?: string;
+  }
+  
