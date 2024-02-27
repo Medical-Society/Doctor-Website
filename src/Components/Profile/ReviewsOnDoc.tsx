@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-import { ReviewsProps } from '../interfaces';
+import { ReviewsProps } from '../../interfaces';
 
 
 const ReviewsOnDoc = ({name,initialRating=0,review} : ReviewsProps) => {

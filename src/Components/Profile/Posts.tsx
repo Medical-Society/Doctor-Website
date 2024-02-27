@@ -1,4 +1,4 @@
-import { DoctorsPosts } from "../data/data";
+import { DoctorsPosts } from "../../data/data";
 import Post from "./Post";
 
 interface IProps {

@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
-import DoctorsProfile from "../pages/DoctorsProfile";
+import DoctorsProfile from "../pages/Profile";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -13,7 +13,7 @@ const router = createBrowserRouter(
             <Route 
                 path="/" 
                 element={
-                    <div className="h-full flex flex-col" >
+                    <div className="flex flex-col" >
                         <Navbar />
                         <Outlet />
                     </div>

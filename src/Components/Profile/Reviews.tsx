@@ -1,4 +1,4 @@
-import { ReviewList } from "../data/data";
+import { ReviewList } from "../../data/data";
 import ReviewsOnDoc from "./ReviewsOnDoc";
 
 interface IProps {

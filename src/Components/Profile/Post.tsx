@@ -1,4 +1,4 @@
-import { IPostsdoctor } from "../interfaces";
+import { IPostsdoctor } from "../../interfaces";
 
  
 
