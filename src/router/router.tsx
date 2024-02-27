@@ -36,9 +36,7 @@ const router = createBrowserRouter(
                     </ProtectedRoute>
                 }   />
                  <Route path="Doctor-Profile" element={
-                    <ProtectedRoute redirectPath="/">
                       <DoctorsProfile />
-                    </ProtectedRoute>
                 }   />
             </Route>
 
