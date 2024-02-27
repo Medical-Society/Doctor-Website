@@ -1,4 +1,4 @@
-import { ISignupState } from "../../interfaces";
+import { ISignupState } from "../interfaces";
 
 export const validateSignup = (values: ISignupState) => {
     const errors: {
