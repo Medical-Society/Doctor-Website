@@ -7,7 +7,7 @@ import { registerUser } from "../services/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../Components/authForms/FormInput";
-import { validateSignup } from "../Components/validations";
+import { validateSignup } from "../validations";
 
 const Signup = () => {
   const defaultDoctor: ISignupState = {
@@ -41,28 +41,27 @@ const Signup = () => {
   });
   const [signup, setSignup] = useState<ISignupState>(defaultDoctor);
 
-
     // Handlers
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setSignup({
-          ...signup,
-          [name]: value
-      }); 
-      setErrors({
-          ...errors,
-          [name]: ''
-      });
-     };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSignup({
+        ...signup,
+        [name]: value
+    }); 
+    setErrors({
+        ...errors,
+        [name]: ''
+    });
+  };
 
-    const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const { name, value } = e.target;
-      setSignup({
-          ...signup,
-          [name]: value
-      });
-    };
+  const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setSignup({
+        ...signup,
+        [name]: value
+    });
+  };
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -90,29 +89,28 @@ const Signup = () => {
       }   
     }
   
-const renderFormInputList = FormInputlist.map(input => (
-    <div key={input.id}>
-      <FormInput
-        label={input.label}
-        type={input.type}
-        id={input.id}
-        name={input.name}
-        value={signup[input.name]}
-        onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-          if (input.type === "select") {
-            handleChangeSelect(e as React.ChangeEvent<HTMLSelectElement>);
-          } else {
-            handleChange(e as React.ChangeEvent<HTMLInputElement>);
-          }
-        }}
-        placeholder={input.placeholder}
-        options={input.options}
-        // need to say every thing exept the gender
-        errorMsg={errors[input.name as keyof ISignupErrors]}
-        signup
-      />
-    </div>
-));
+  const renderFormInputList = FormInputlist.map(input => (
+      <div key={input.id}>
+        <FormInput
+          label={input.label}
+          type={input.type}
+          id={input.id}
+          name={input.name}
+          value={signup[input.name]}
+          onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+            if (input.type === "select") {
+              handleChangeSelect(e as React.ChangeEvent<HTMLSelectElement>);
+            } else {
+              handleChange(e as React.ChangeEvent<HTMLInputElement>);
+            }
+          }}
+          placeholder={input.placeholder}
+          options={input.options}
+          errorMsg={errors[input.name as keyof ISignupErrors]}
+          signup
+        />
+      </div>
+  ));
  
 return (
     <div className="flex justify-center items-center mt-14">
@@ -136,5 +134,3 @@ return (
 }
 
 export default Signup
-
- 

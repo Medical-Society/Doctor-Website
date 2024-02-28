@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
-import DoctorsProfile from "../pages/DoctorsProfile";
+import Profile from "../pages/Profile";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -21,23 +21,23 @@ const router = createBrowserRouter(
             >
                 <Route index element={<Home />} />
                 <Route path="login" element={
-                    <ProtectedRoute redirectPath="/">
+                    <ProtectedRoute redirectPath="/" isAuth={false}>
                         <Login />
                     </ProtectedRoute>
                 } />
                 <Route path="signup" element={
-                    <ProtectedRoute redirectPath="/">
+                    <ProtectedRoute redirectPath="/" isAuth={false}>
                         <Signup />
                     </ProtectedRoute>
                 } />
                 <Route path="forget-password" element={
-                    <ProtectedRoute redirectPath="/">
+                    <ProtectedRoute redirectPath="/" isAuth={false}>
                         <ForgetPass />
                     </ProtectedRoute>
                 }   />
-                 <Route path="Doctor-Profile" element={
-                    <ProtectedRoute redirectPath="/">
-                      <DoctorsProfile />
+                 <Route path="Profile" element={
+                    <ProtectedRoute redirectPath="/" isAuth={true}>
+                        <Profile />
                     </ProtectedRoute>
                 }   />
             </Route>
