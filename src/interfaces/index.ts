@@ -70,9 +70,11 @@ export interface ISignupErrors {
 }
 
 export interface ReviewsProps {
+  imgUrl?:string ;
   name: string;
   initialRating?: number;
   review: string;
+  className?: string;
   }
 
 

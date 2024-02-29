@@ -3,7 +3,7 @@ import { FaStar } from 'react-icons/fa';
 import { ReviewsProps } from '../../interfaces';
 
 
-const ReviewsOnDoc = ({name,initialRating=0,review} : ReviewsProps) => {
+const ReviewsOnDoc = ({name,initialRating=0,review,imgUrl,className} : ReviewsProps) => {
     /* --------------------- States --------------------- */
     const [rating, setRating] = useState<number | null>(initialRating);
     const [hover, setHover] = useState<number | null>(null);
@@ -26,12 +26,15 @@ const ReviewsOnDoc = ({name,initialRating=0,review} : ReviewsProps) => {
     const handleMouseLeave = () => {
         setHover(null);
     };
+
+    const hasImage = imgUrl; 
      /* --------------------- JSX --------------------- */
     return (
-        <div className=" top-60 left-16 flex flex-col items-center min-h-8 justify-around w-10/12 pt-5">
-            <div className="p-1">
-                <div className="flex items-center gap-5">
-                    <h1 className="text-xl font-bold ">{name}</h1>
+        <div className={`items-center min-h-8 pt-5 bg ${className}`}>
+            <div className={`p-1 ${hasImage?'border rounded-3xl' : ''}`}>
+                <div className={`${hasImage?'flex md:gap-10 gap-6' : 'flex justify-between ml-5 md:items-center md:gap-20 '}`}>
+                {imgUrl && <img src={imgUrl} alt={name} className="w-15 h-10 rounded-full border" />}
+                    <h1 className="text-xl font-bold  ">{name}</h1>
                     <div className="flex flex-row gap-2">
                         {[...Array(5)].map((_, index) => {
                             const currentRating = index + 1;
@@ -56,7 +59,7 @@ const ReviewsOnDoc = ({name,initialRating=0,review} : ReviewsProps) => {
                         })}
                     </div>
                 </div>
-                <p className="mt-4 border  rounded-2xl p-4 font-semibold text-md">
+                <p className={`mt-4 ${hasImage?'' : 'border'} w-96 rounded-3xl p-4 font-semibold text-md`}>
                     {review}
                 </p>
             </div>

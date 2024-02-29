@@ -1,19 +1,27 @@
-import {useAuth} from '../hooks/useAuth'
+import AppointmentsOption from '../Components/Home/AppointmentsOption';
+import PortfolioOption from '../Components/Home/PortfolioOption';
+import ReportOption from '../Components/Home/ReportOption';
+import ReviewsMedicalOption from '../Components/Home/ReviewsMedicalOption';
+import Welcome from '../Components/Home/Welcome';
+
 
 interface IProps {
-
 }
 
 const Home = ({}: IProps) => {
 
-  const {auth} = useAuth()
-  console.log(auth)
 
+  
   return (
-    <div className="h-full flex flex-col justify-center items-center">
-        <h2 className="text-2xl font-bold">Welcome {auth?.doctor?.englishFullName}</h2>
+    <div className="flex flex-col justify-center items-center">
+      <Welcome />
+    <ReviewsMedicalOption />
+     <ReportOption />
+     <PortfolioOption />
+     <AppointmentsOption /> 
     </div>
-  )
-}
+  );
+};
 
-export default Home
+ 
+export default  Home
