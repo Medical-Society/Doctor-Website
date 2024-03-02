@@ -6,9 +6,14 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'cinzel-decorative': ['"Cinzel Decorative"', 'serif'],
+      },
       colors: {
-        primary: '#128393',
-        secondary: '#1877f2',
+        primary: '#060B73',
+        "cardBg-60": 'rgba(4, 7, 64, 0.6)',
+        secondary: '#1877F2',
+        "white-90": 'rgba(255, 255, 255, 0.8)',
       }
     },
   },
