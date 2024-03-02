@@ -51,10 +51,10 @@ const Navbar = ({}: IProps) => {
   }
   return (
     <div className="z-50 fixed top-0 w-full"> 
-      <nav className={`duration-300 h-16 w-full flex justify-between items-center px-4 ${scrolled ? 'bg-white-90 shadow-md' : 'bg-transparent'} md:p-8 lg:p-10`}>
+      <nav className={`duration-300 h-14 w-full flex justify-between items-center px-4 ${scrolled ? 'bg-white-90 shadow-md' : 'bg-transparent'} md:p-8`}>
         <NavLink 
           to="/" 
-          className={`text-xl ${scrolled ? 'text-primary' : 'text-white'} font-cinzel-decorative md:text-2xl`}
+          className={`text-xl ${scrolled ? 'text-primary' : 'text-white'} font-cinzel-decorative`}
         >
           MEDICAL SOCIETY
         </NavLink>
@@ -64,14 +64,14 @@ const Navbar = ({}: IProps) => {
 
               <NavLink 
                 to="/login" 
-                className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'border-primary' : 'border-white'} ${scrolled ? 'text-primary' : 'text-white'} hover:bg-white hover:text-primary active:bg-primary active:text-white md:text-2xl md:py-2 md:px-6`}
+                className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'border-primary' : 'border-white'} ${scrolled ? 'text-primary' : 'text-white'} hover:bg-white hover:text-primary active:bg-primary active:text-white md:py-2 md:px-6`}
               >
                 Login
               </NavLink>
 
               <NavLink 
                 to="/signup" 
-                className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'bg-primary' : 'bg-white'} ${scrolled ? 'text-white' : 'text-primary'} md:text-2xl md:py-2 md:px-6`}
+                className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'bg-primary' : 'bg-white'} ${scrolled ? 'text-white' : 'text-primary'} md:py-2 md:px-6`}
               >
                 Signup
               </NavLink> 
