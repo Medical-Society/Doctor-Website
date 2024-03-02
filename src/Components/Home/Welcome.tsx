@@ -1,41 +1,55 @@
-import background from '../../assets/backgoroung-home.png'
-import {useAuth} from '../../hooks/useAuth'
+import background from "../../assets/backgoroung-home.png";
+import { useAuth } from "../../hooks/useAuth";
 
-     
-interface IProps {
+interface IProps {}
 
-}
+const WelcomeCard = ({ children, up }: { children: React.ReactNode, up?: boolean }) => {
+  return (
+    <p 
+        className={`w-11/12 h-32 font-cairo bg-cardBg-60 p-4 text-white bg-opacity-60 rounded-3xl flex justify-center items-center md:w-80 md:h-80 ${up ? "md:transform md:-translate-y-10" : null} md:text-2xl backdrop-filter backdrop-blur-lg`}
+        style={{ fontFamily: "Cairo" }}
+    >
+      {children}
+    </p>
+  );
+};
 
-const Welcome = ({} : IProps) => {  
-    const { auth } = useAuth();
+const Welcome = ({}: IProps) => {
+  const { auth } = useAuth();
   console.log(auth);
 
-    return ( 
-<>
-<img src={background} alt="background" className="w-full md:h-auto h-screen bg-black bg-opacity-20" />
-    <h2 className="text-2xl text-opacity-95 tracking-widest text-white absolute top-1 text-center pt-36">
-        WELCOME {auth?.doctor?.englishFullName.toUpperCase()} TO MEDICAL SOCIETY 
-    </h2>   
-     
-    <div className='transform md:h-64 md:w-92 transition duration-500 hover:scale-125 flex md:flex-row flex-col justify-center items-center text-center gap-4 absolute top-80'>
-        <p className="md:w-60  md:h-60  h-20 bg-slate-900 text-white bg-opacity-60 rounded-[20px] shadow flex justify-center items-center">
-            Our system is going to help you to manage your appointments
-        </p>
-        <p className="md:w-60 md:h-60 bg-slate-900 p-6 text-white bg-opacity-60 rounded-[20px] shadow flex justify-center items-center">
-            Level up your appointments with the digital prescriptions
-        </p>
-        <p className="md:w-60 md:h-60  bg-slate-900 p-6 text-white bg-opacity-60 rounded-[20px] shadow flex justify-center items-center">
-            Create your portfolio to share your latest work and get feedback from your patients
-        </p>
+  return (
+    <div
+      className="bg-cover bg-no-repeat w-full flex flex-col items-center justify-center gap-20"
+      style={{
+        backgroundImage: `url(${background})`,
+        height: "calc(100vh - 4rem)",
+      }}
+    >
+      <h2 className="text-lg text-opacity-95 font-cinzel-decorative tracking-widest text-white font-semibold md:text-3xl lg:text-4xl">
+        WELCOME {auth?.doctor?.englishFullName.toUpperCase()} TO MEDICAL SOCIETY
+      </h2>
+
+      <div className="flex flex-col w-full justify-center items-center text-center gap-5 p-5 md:flex-row md:gap-10">
+        <WelcomeCard>
+          Our system is going to help you to manage your appointments
+        </WelcomeCard>
+        <WelcomeCard up>
+          Level up your appointments with the digital prescriptions
+        </WelcomeCard>
+        <WelcomeCard>
+          Create your portfolio to share your latest work and get feedback from
+          your patients
+        </WelcomeCard>
+      </div>
+      <button
+        className="border-2 border-white rounded-full py-2 px-10 text-white hover:bg-white hover:text-primary active:bg-primary active:text-white md:text-3xl md:py-3 md:px-24"
+        type="button"
+        style={{ fontFamily: "Cairo" }}
+      >
+        Join us now !
+      </button>
     </div>
-    <button className=" absolute top-full w-[491px] h-[57px] px-20 py-2.5 rounded-[50px] border border-red justify-center items-center gap-2.5 inline-flex">
-<div className="text-center text-white text-xl font-normal font-['Cairo']">Join us now</div>
-</button>
- 
-
-</>
-
-    )
-    }
-    export default Welcome; 
-  
+  );
+};
+export default Welcome;
