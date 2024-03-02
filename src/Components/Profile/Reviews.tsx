@@ -17,7 +17,7 @@ const Reviews = ({}: IProps) => {
             />
         )});  
   return (
-    <div className="w-full flex flex-col items-center gap-4">
+    <div className="md:grid md:grid-cols-2 lg:grid-cols-3 items-center gap-10">
         {patientReviews}    
     </div>
   )

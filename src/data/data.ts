@@ -103,27 +103,37 @@ export const ReviewList : ReviewsProps[] = [
     {
         name: "Efraim",
         initialRating: 1,
-        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+        review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
     },
     {
         name: "yostena",
         initialRating: 2,
-        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+        review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper. "
     },
     {
         name: "yostena",
         initialRating: 3,
-        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+        review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
     },
     {
         name: "yostena",
         initialRating: 4,
-        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+        review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
     },
     {
         name: "yostena",
         initialRating: 4,
-        review: "Lorem ipsum dolor sit amet consectetur. Habitant sed ac amet nullam porta urna nibh. Elit tempor magna in quisque. Tortor urna sit purus sed eu nibh. Suspendisse purus etiam in eu semper purus amet mattis. Purus vel nunc pellentesque egestas congue accumsan dolor neque. Pretium justo massa leo adipiscing euismod vitae. Diam tortor adipiscing nunc phasellus. Sit tellus odio feugiat feugiat egestas et donec. Ultrices arcu nunc et luctus etiam. Mattis lorem consectetur id sit lobortis."
+        review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
+    },
+    {
+        name: "yostena",
+        initialRating: 4,
+        review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
+    },
+    {
+        name: "yostena",
+        initialRating: 4,
+        review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus. Scelerisque ornare tempus duis et. Varius consequat justo erat turpis dui ullamcorper."
     }
     
 
@@ -166,4 +176,46 @@ export const DoctorsPosts = [
     firstUrl: "https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&w=600",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristiqueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristiqueLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique"
 }
+]
+
+export const DoctorsReviews:ReviewsProps[] = [
+    { 
+    imgUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkQdml7doThTYtvv80DP51Ek_7l1f64sOtg&usqp=CAU",
+     name: "DR.Efraim",
+     initialRating: 3,
+    review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus."
+   },
+      
+   { 
+    imgUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkQdml7doThTYtvv80DP51Ek_7l1f64sOtg&usqp=CAU",
+     name: "DR.Efraim",
+     initialRating: 2,
+    review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus."
+   },
+
+   { 
+    imgUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkQdml7doThTYtvv80DP51Ek_7l1f64sOtg&usqp=CAU",
+     name: "DR.Efraim",
+     initialRating: 5,
+    review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus."
+   },
+   { 
+    imgUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkQdml7doThTYtvv80DP51Ek_7l1f64sOtg&usqp=CAU",
+     name: "DR.Efraim",
+     initialRating: 5,
+    review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus."
+   },   { 
+    imgUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkQdml7doThTYtvv80DP51Ek_7l1f64sOtg&usqp=CAU",
+     name: "DR.Efraim",
+     initialRating: 5,
+    review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus."
+   },   { 
+    imgUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkQdml7doThTYtvv80DP51Ek_7l1f64sOtg&usqp=CAU",
+     name: "DR.Efraim",
+     initialRating: 5,
+    review: "Lorem ipsum dolor sit amet consectetur. At semper sit dui pellentesque ornare scelerisque semper lacus."
+   },
+ 
+
+
 ]
