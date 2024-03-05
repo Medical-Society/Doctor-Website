@@ -26,8 +26,6 @@ const ReviewsMedicalOption = ({} : IProps) => {
         <div className="text-center mt-20">
         <h1 className="text-center  text-violet-950 text-3xl font-serif">Reviews of Medical society</h1>
         <div className="md:grid md:grid-cols-2 xl:grid-cols-3 gap-5"> {DoctorReview}  </div>
-        <button className="rounded-full border-2 border-primary bg-gradient-to-br
-         from-blue-950 to-blue-800 shadow-md hover:shadow-lg text-white py-2 px-20 text-xl font-semibold  md:ml-auto mb-10 text-center">Show all reviews</button>
         </div>
     )
     }

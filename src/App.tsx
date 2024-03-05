@@ -14,7 +14,6 @@ function App() {
           setAuth({
               token,
               doctor: JSON.parse(doctor)
-          
           });
       }
   }, [])

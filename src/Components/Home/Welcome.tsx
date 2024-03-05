@@ -6,7 +6,7 @@ interface IProps {}
 const WelcomeCard = ({ children, up }: { children: React.ReactNode, up?: boolean }) => {
   return (
     <p 
-        className={`w-11/12 h-32 font-cairo bg-cardBg-60 p-4 text-white bg-opacity-60 rounded-3xl flex justify-center items-center md:w-72 md:h-80 ${up ? "md:transform md:-translate-y-10" : null} md:text-2xl backdrop-filter backdrop-blur-lg`}
+        className={`w-11/12 h-32 font-cairo bg-cardBg-60 p-4 text-white bg-opacity-60 rounded-3xl flex justify-center items-center md:w-72 md:h-80 ${up ? "md:transform md:-translate-y-10" : null} md:text-2xl backdrop-filter backdrop-blur-lg hover:transform hover:scale-105 hover:bg-opacity-80 transition-all duration-300`}
         style={{ fontFamily: "Cairo" }}
     >
       {children}

@@ -6,6 +6,7 @@ interface IProps {
 
 const DoctorCard = ({}: IProps) => {
     const {auth} = useAuth();
+    console.log(auth)
     const {englishFullName, clinicAddress,  specialization} = auth.doctor
     const description: string = "Doctor specializing in heart diseases, with 10 years of experience in the field. I have a clinic in the city center, and I am available for online consultations. I am also available for home visits in the city center. I am available for online consultations. I am also available for home visits in the city center. I am available for online consultations. I am also available for home visits in the city center."
     const imgUrl: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkQdml7doThTYtvv80DP51Ek_7l1f64sOtg&usqp=CAU";
