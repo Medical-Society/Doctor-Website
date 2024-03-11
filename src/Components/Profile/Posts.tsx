@@ -1,15 +1,24 @@
 import React, { useState } from "react";
-import { DoctorsPosts } from "../../data/data";
-import Post from "./Post";
 import Modal from "../ui/Modal";
+import useCustomQuery from "../../hooks/useCustomQuery";
+import Cookies from "js-cookie";
+import { createPost } from "../../services/profile";
+import Post from "./Post";
 
-interface IProps {}
-
-const Posts = ({}: IProps) => {
+const Posts = () => {
     const [isNewPostOpen, setIsNewPostOpen] = useState(false);
     const [description, setDescription] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
-    const [posts, setPosts] = useState(DoctorsPosts); // State for storing posts
+    const [images, setImages] = useState<FileList | null>(null);
+    const [queryVersion, setQueryVersion] = useState(1);
+
+    const doctor = Cookies.get("doctor");
+    const id = doctor ? JSON.parse(doctor)._id : "";
+
+    const { isLoading, data } = useCustomQuery({
+        queryKey: [`doctor/${id}/posts`, `${queryVersion}`],
+        url: `${id}/posts`,
+    });
+    console.log(data);
 
     const onCloseModal = () => {
         setIsNewPostOpen(false);
@@ -23,34 +32,24 @@ const Posts = ({}: IProps) => {
         setDescription(event.target.value);
     };
 
-    const handleImageUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setImageUrl(event.target.value);
-    };
+    const handleImagesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setImages(event.target.files);
+    }
 
-    const generateUniqueId = () => {
-        return Math.random().toString(36).substr(2, 9);
-    };
+    const handleAddPost = async () => {
+        try {
+            const res = await createPost(description, images || new FileList());
+            console.log(res);
+            onCloseModal();
+            setQueryVersion(prev => prev + 1);
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
-    const handleAddPost = () => {
-        // Create a new post object with the description, images, and _id
-        const newPost = {
-            _id: generateUniqueId() as string, // Cast the generated unique id to string
-            description: description,
-            images: [imageUrl]
-        };
-
-        // Update the state with the new post
-        setPosts([newPost, ...posts]);
-
-        // Close the modal
-        onCloseModal();
-    };
-
-    const doctorsPosts = posts.map((post, index) => {
-        return (
-            <Post key={index} images={post.images} description={post.description} />
-        );
-    });
+    const doctorsPosts = data?.data?.posts.map((post: any) => (
+        <Post key={post._id} description={post.description} images={post.images} />
+    ));
 
     return (
         <div className="w-full flex flex-col items-center gap-4">
@@ -60,7 +59,13 @@ const Posts = ({}: IProps) => {
             >
                 New Post
             </button>
-            {doctorsPosts}
+            {isLoading ? (
+                <p>Loading...</p>
+            ) : (
+                <div className="flex flex-col gap-4 items-center p-5">
+                    {doctorsPosts?.length > 0 ? doctorsPosts : <p>No posts yet</p>}
+                </div>
+            )}
 
             <Modal isOpen={isNewPostOpen} closeModal={onCloseModal} title="New Post">
                 <form className="flex flex-col gap-4">
@@ -72,11 +77,11 @@ const Posts = ({}: IProps) => {
                         onChange={handleDescriptionChange}
                     />
                     <input
-                        type="text"
-                        placeholder="Image URL"
+                        type="file"
+                        placeholder="Images"
                         className="rounded-lg border border-gray-300 p-2"
-                        value={imageUrl}
-                        onChange={handleImageUrlChange}
+                        multiple
+                        onChange={handleImagesChange}
                     />
                     <button
                         type="button"

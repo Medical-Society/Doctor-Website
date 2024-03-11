@@ -46,7 +46,9 @@ export interface IDoctor {
     updatedAt: string
     posts: IPostsdoctor[]
     reviews: ReviewsProps[]
-    __v: number
+    __v: number,
+    avatar: string
+    about: string
 }
 
 export interface IAuth{
