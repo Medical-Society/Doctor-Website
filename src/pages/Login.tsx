@@ -32,14 +32,16 @@ const Login = () => {
     setIsLoading(true);
     try {
       const res = await loginUser(login);
+      console.log(res);
       toast.success('Logged in successfully');
       setAuth({
         token: res.data.token,
-        doctor: res.data.doctor
+        doctor: res.data.result
       });
       Cookies.set('token', res.data.token);
-      Cookies.set('doctor', JSON.stringify(res.data.doctor));
+      Cookies.set('doctor', JSON.stringify(res.data.result));
     } catch (error: any) {
+      console.log(error);
       toast.error(error.response?.data?.message || "An error occurred");
     } finally {
       setIsLoading(false);

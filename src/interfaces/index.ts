@@ -44,7 +44,11 @@ export interface IDoctor {
     isVerified: boolean
     createdAt: string
     updatedAt: string
-    __v: number
+    posts: IPostsdoctor[]
+    reviews: ReviewsProps[]
+    __v: number,
+    avatar: string
+    about: string
 }
 
 export interface IAuth{
@@ -79,8 +83,7 @@ export interface ReviewsProps {
 
 
   export interface IPostsdoctor {
-    firstUrl?: string;
-    secondUrl?: string;
-    description?: string;
+    images: string[]
+    description: string
   }
   

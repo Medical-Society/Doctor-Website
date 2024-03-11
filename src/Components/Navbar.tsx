@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth"
 import Cookies from 'js-cookie'
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 interface IProps {
 
 }
@@ -9,10 +10,16 @@ interface IProps {
 const Navbar = ({}: IProps) => {
 
   const { auth, setAuth } = useAuth();
+  const location = useLocation();
 
   // change navbar color on scroll
   const [scrolled, setScrolled] = useState(false);
   const changeNavbarColor = () => {
+    if(location.pathname !== '/') {
+      setScrolled(true);
+      return;
+    }
+
     if(window.scrollY >= 70) {
       setScrolled(true);
     } else {
@@ -42,7 +49,9 @@ const Navbar = ({}: IProps) => {
         status: '',
         gender: '',
         isVerified: false,
-        __v: 0
+        __v: 0,
+        posts: [],
+        reviews: [],
       }
     });
     Cookies.remove('token');
