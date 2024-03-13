@@ -94,6 +94,14 @@ const Navbar = ({}: IProps) => {
               >
                 profile
               </NavLink>
+              
+              <NavLink 
+                  to="/prescription" 
+                  className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'bg-primary' : 'bg-white'} ${scrolled ? 'text-white' : 'text-primary'} md:text-2xl md:py-2 md:px-6`}
+              >
+                  Prescription
+               </NavLink>  
+
 
               <button 
                 className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'bg-primary' : 'bg-white'} ${scrolled ? 'text-white' : 'text-primary'} md:text-2xl md:py-2 md:px-6`}
@@ -101,6 +109,10 @@ const Navbar = ({}: IProps) => {
               > 
               Logout
               </button>
+
+              
+             
+           
 
             </>
             }

@@ -87,3 +87,21 @@ export interface ReviewsProps {
     description: string
   }
   
+
+  export interface FormPrescriptionProps {
+    label: string;
+    type: string;
+    id: string;
+    name: string
+   value: string ;
+   onChange:  (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+   placeholder: string; 
+   errorMsg?: string;
+  }
+  export interface IPrescription {
+    Diseases : string;
+    Diagnose : string;
+    Medicine : string[];
+  } 
+  
+ 
