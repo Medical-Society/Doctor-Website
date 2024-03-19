@@ -44,6 +44,8 @@ const Navbar = ({}: IProps) => {
         nationalID: '',
         phoneNumber: '',
         age: 0,
+        avatar: '',
+        about: '', 
         createdAt: '',
         updatedAt: '',
         status: '',
@@ -60,7 +62,7 @@ const Navbar = ({}: IProps) => {
   }
   return (
     <div className="z-50 fixed top-0 w-full"> 
-      <nav className={`duration-300 h-14 w-full flex justify-between items-center px-4 ${scrolled ? 'bg-white-90 shadow-md' : 'bg-transparent'} md:p-8`}>
+      <nav className={`duration-300 w-full flex justify-between items-center py-2 px-4 ${scrolled ? 'bg-white-90 shadow-md' : 'bg-transparent'} md:px-8`}>
         <NavLink 
           to="/" 
           className={`text-xl ${scrolled ? 'text-primary' : 'text-white'} font-cinzel-decorative`}
@@ -73,7 +75,7 @@ const Navbar = ({}: IProps) => {
 
               <NavLink 
                 to="/login" 
-                className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'border-primary' : 'border-white'} ${scrolled ? 'text-primary' : 'text-white'} hover:bg-white hover:text-primary active:bg-primary active:text-white md:py-2 md:px-6`}
+                className={`text-xl py-1 px-3 border rounded-full ${scrolled ? 'border-primary' : 'border-white'} ${scrolled ? 'text-primary' : 'text-white'} hover:bg-white hover:text-primary active:bg-primary active:text-white md:px-4`}
               >
                 Login
               </NavLink>
@@ -90,13 +92,13 @@ const Navbar = ({}: IProps) => {
             <>
               <NavLink 
                 to="/profile" 
-                className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'border-primary' : 'border-white'} ${scrolled ? 'text-primary' : 'text-white'} hover:bg-white hover:text-primary active:bg-primary active:text-white md:text-2xl md:py-2 md:px-6`}
+                className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'border-primary' : 'border-white'} ${scrolled ? 'text-primary' : 'text-white'} hover:bg-white hover:text-primary active:bg-primary active:text-white md:px-4`}
               >
                 profile
               </NavLink>
 
               <button 
-                className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'bg-primary' : 'bg-white'} ${scrolled ? 'text-white' : 'text-primary'} md:text-2xl md:py-2 md:px-6`}
+                className={`text-xl py-1 px-4 border rounded-full ${scrolled ? 'bg-primary' : 'bg-white'} ${scrolled ? 'text-white' : 'text-primary'} md:px-4`}
                 onClick={handleLogout}
               > 
               Logout
