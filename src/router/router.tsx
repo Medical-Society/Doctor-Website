@@ -6,7 +6,7 @@ import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
 import Profile from "../pages/Profile";
-import AllApointments from "../pages/AllApointments";
+import Appointments from "../pages/Appointments";
 
 const MainLayout = () => {
     const location = useLocation();
@@ -50,7 +50,7 @@ const router = createBrowserRouter(
                 }   />
                 <Route path="all-appoinments" element={
                     <ProtectedRoute redirectPath="/" isAuth={true}>
-                        <AllApointments />
+                        <Appointments />
                     </ProtectedRoute>
                 }   />
             </Route>

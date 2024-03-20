@@ -6,7 +6,7 @@ interface IProps {
 
 }
 
-const AllApointments = ({}: IProps) => {
+const Appointments = ({}: IProps) => {
   const token = Cookies.get('token');
   const {isLoading, data} = useCustomQuery({
     queryKey: ['all-appointments'],
@@ -17,6 +17,8 @@ const AllApointments = ({}: IProps) => {
       }
     }
   })
+
+  console.log(data);
 
   const PatientsCards = () => {
     // sort the appointments by date
@@ -50,17 +52,21 @@ const AllApointments = ({}: IProps) => {
             timeArr[0] = timeArr[0].length === 1 ? `0${timeArr[0]}` : timeArr[0];
             timeArr[1] = timeArr[1].length === 1 ? `0${timeArr[1]}` : timeArr[1];
             time = timeArr.join(':');
-            
+
+            const birthDate = new Date(appointment.patient.birthdate);
+            const ageDifMs = Date.now() - birthDate.getTime();
+            const ageDate = new Date(ageDifMs);
+            const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
             return (
               <PatientCard 
                 key={appointment._id}
-                patientName="Mina Magdy"
+                patientName={appointment.patient.patientName}
                 patientNumber={index + 1}
                 date={formattedDate}
                 time={time}
                 day={day}
-                age={20}
+                age={age}
               />
             );
           })
@@ -72,7 +78,7 @@ const AllApointments = ({}: IProps) => {
 
   return (
     <div className="flex flex-col mt-10 items-center">
-      <h1 className="text-3xl font-bold text-center mt-10">All Apointments</h1>
+      <h1 className="text-2xl font-bold text-center my-10">Today Appointments</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full justify-items-center">
 
         {
@@ -80,16 +86,11 @@ const AllApointments = ({}: IProps) => {
             <h1>Loading...</h1> 
           :
           <PatientsCards /> 
-          
         }
         
-
-
       </div>
-
-        
     </div>
   )
 }
 
-export default AllApointments
+export default Appointments
