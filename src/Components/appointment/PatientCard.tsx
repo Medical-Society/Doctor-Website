@@ -37,17 +37,17 @@ const PatientCard = ({patientNumber, patientName, date, time, age, day}: IProps)
             {/* date */}
             <div className="flex items-center mt-2">
               <h1 className="text-lg text-primary">{day}</h1>
-              <span className="text-lg"> {date}</span>
+              <span className="text-lg ml-2"> {date}</span>
             </div>
             {/* time */}
             <div className="flex items-center mt-2">
               <h1 className="text-lg text-primary">Time:</h1>
-              <span className="text-lg"> {time}</span>
+              <span className="text-lg ml-2"> {time}</span>
             </div>
             {/* age */}
             <div className="flex items-center mt-2">
               <h1 className="text-lg text-primary">Age:</h1>
-              <span className="text-lg"> {age}</span>
+              <span className="text-lg ml-2"> {age}</span>
             </div>
 
             {/* button show medical history */}
