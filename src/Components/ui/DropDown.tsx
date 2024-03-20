@@ -39,9 +39,9 @@ export default function DropDown() {
   return (
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+          <Menu.Button className="inline-flex w-full justify-center border px-3 py-1 text-sm font-medium text-primary hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 rounded-3xl">
             <div className="flex items-center gap-2">
-              <img src={auth.doctor.avatar} alt="avatar" className="w-8 h-8 rounded-full bg-" />
+              <img src={auth.doctor.avatar} alt="avatar" className="w-8 h-8 rounded-full" />
               <span className="white">{auth.doctor.englishFullName}</span>
             </div>
           </Menu.Button>

@@ -8,7 +8,7 @@ interface IProps {
 
 const AllApointments = ({}: IProps) => {
   const token = Cookies.get('token');
-  const {isLoading, data, isFetching} = useCustomQuery({
+  const {isLoading, data} = useCustomQuery({
     queryKey: ['all-appointments'],
     url: '/appointments',
     config: {
