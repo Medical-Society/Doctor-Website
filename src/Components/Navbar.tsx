@@ -65,7 +65,7 @@ const Navbar = ({ path }: IProps) => {
               scrolled ? "text-primary" : "text-white"
             } hover:text-primary`}
           >
-            All Appointments
+            Appointments
           </NavLink>
         </div>
         <div className="flex gap-5">
