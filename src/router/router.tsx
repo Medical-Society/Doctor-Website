@@ -1,4 +1,4 @@
-import { Route, createBrowserRouter, createRoutesFromElements, Outlet } from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements, Outlet, useLocation } from "react-router-dom";
 import Home from "../pages/Home";
 import Navbar from "../Components/Navbar";
 import Login from "../pages/Login";
@@ -6,6 +6,17 @@ import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
 import Profile from "../pages/Profile";
+import Appointments from "../pages/Appointments";
+
+const MainLayout = () => {
+    const location = useLocation();
+    return (
+        <div className="h-full flex flex-col" >
+            <Navbar path={location.pathname} />
+            <Outlet />
+        </div>
+    )
+}
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -13,10 +24,7 @@ const router = createBrowserRouter(
             <Route 
                 path="/" 
                 element={
-                    <div className="h-full flex flex-col" >
-                        <Navbar />
-                        <Outlet />
-                    </div>
+                    <MainLayout />
                 }
             >
                 <Route index element={<Home />} />
@@ -38,6 +46,11 @@ const router = createBrowserRouter(
                  <Route path="Profile" element={
                     <ProtectedRoute redirectPath="/" isAuth={true}>
                         <Profile />
+                    </ProtectedRoute>
+                }   />
+                <Route path="all-appoinments" element={
+                    <ProtectedRoute redirectPath="/" isAuth={true}>
+                        <Appointments />
                     </ProtectedRoute>
                 }   />
             </Route>
