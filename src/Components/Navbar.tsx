@@ -58,7 +58,7 @@ const Navbar = ({ path }: IProps) => {
         >
           MEDICAL SOCIETY
         </NavLink>
-        <div className="flex">
+        <div className="flex space-x-3">
           <NavLink
             to="all-appoinments"
             className={`text-xl ${
@@ -67,6 +67,14 @@ const Navbar = ({ path }: IProps) => {
           >
             Appointments
           </NavLink>
+          <NavLink
+            to="Prescription"
+            className={`text-xl ${
+              scrolled ? "text-primary" : "text-white"
+            } hover:text-primary`}
+          >
+            Prescription
+        </NavLink>
         </div>
         <div className="flex gap-5">
           {!auth.token ? (

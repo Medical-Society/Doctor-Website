@@ -1,5 +1,6 @@
-import { FormInputProps } from "../interfaces";
+import { FormInputProps, FormPrescriptionProps } from "../interfaces";
 import { ReviewsProps } from "../interfaces";
+import { v4 as uuidv4 } from 'uuid';
 
 export const FormInputlist : FormInputProps[] = [
     {
@@ -200,3 +201,47 @@ export const DoctorsReviews:ReviewsProps[] = [
 
 
 ]
+
+export const PrescriptionList : FormPrescriptionProps[] =[
+    {
+        label: "Diseases" ,
+        type: "text",
+        id: uuidv4(),
+        name: "Diseases",
+        value: "",
+        placeholder: "Enter patients disease",
+        onChange: () => {},
+    },  
+    {
+        label: "Diagnose",
+        type: "text",
+        id: uuidv4(),
+        name: "Diagnose",
+        value: "",
+        placeholder: "Enter the diagnose",
+        onChange: () => {},
+    },
+ 
+    {
+        label: "Add Medicine",
+        type: "text",
+        id: uuidv4(),
+        name: "Medicine",
+        value: "",
+        placeholder: "Enter patients medicine",
+       onChange: () => {},
+    },
+    {
+        label: "Add Medicine",
+        type: "text",
+        id: uuidv4(),
+        name: "Medicine",
+        value: "",
+        placeholder: "Enter patients medicine",
+       onChange: () => {},
+    },
+  
+
+ 
+]
+ 

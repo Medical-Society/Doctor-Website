@@ -6,6 +6,7 @@ import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
 import Profile from "../pages/Profile";
+import Prescription from "../pages/Prescription";
 import Appointments from "../pages/Appointments";
 
 const MainLayout = () => {
@@ -48,6 +49,12 @@ const router = createBrowserRouter(
                         <Profile />
                     </ProtectedRoute>
                 }   />
+                <Route path="Prescription" element={
+                    <ProtectedRoute redirectPath="/" isAuth={true}>
+                        <Prescription />
+                    </ProtectedRoute>
+                }   />
+                
                 <Route path="all-appoinments" element={
                     <ProtectedRoute redirectPath="/" isAuth={true}>
                         <Appointments />
