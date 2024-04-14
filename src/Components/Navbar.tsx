@@ -1,20 +1,18 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
 import { useState, useEffect } from "react";
 import DropDown from "./ui/DropDown";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
 
 interface IProps {
   path: string;
 }
 
 const Navbar = ({ path }: IProps) => {
-  const { auth } = useAuth();
+  const { token } = useSelector((state: RootState) => state.auth)
 
-  // State to track if the page has been scrolled
   const [scrolled, setScrolled] = useState(false);
-  console.log(scrolled, path);
 
-  // Function to handle scroll event
   const handleScroll = () => {
     if (path !== "/") {
       setScrolled(true);
@@ -34,10 +32,8 @@ const Navbar = ({ path }: IProps) => {
     else {
       handleScroll();
     }
-    // Add scroll event listener when the component mounts
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -77,7 +73,7 @@ const Navbar = ({ path }: IProps) => {
         </NavLink>
         </div>
         <div className="flex gap-5">
-          {!auth.token ? (
+          {!token ? (
             <>
               <NavLink
                 to="/login"

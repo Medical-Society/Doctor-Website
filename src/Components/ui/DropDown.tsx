@@ -1,48 +1,24 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import useAuth from '../../hooks/useAuth';
 import { NavLink } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutReducer } from '../../app/features/authSlice';
+import { RootState } from '../../app/store';
 export default function DropDown() {
-    const { auth, setAuth } = useAuth();
+
+    const { doctor } = useSelector((state: RootState) => state.auth)
+    const dispatch = useDispatch()
     const handleLogout = () => {
-        setAuth({
-          token: '',
-          doctor: {
-            _id: '',
-            englishFullName: '',
-            arabicFullName: '',
-            email: '',
-            password: '',
-            specialization: '',
-            clinicAddress: '',
-            nationalID: '',
-            phoneNumber: '',
-            age: 0,
-            avatar: '',
-            about: '', 
-            createdAt: '',
-            updatedAt: '',
-            status: '',
-            gender: '',
-            isVerified: false,
-            __v: 0,
-            posts: [],
-            reviews: [],
-          }
-        });
-        Cookies.remove('token');
-        Cookies.remove('doctor');
-    
-      }
+        dispatch(logoutReducer())
+    }
 
   return (
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center border px-3 py-1 text-sm font-medium text-primary hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 rounded-3xl">
             <div className="flex items-center gap-2">
-              <img src={auth.doctor.avatar} alt="avatar" className="w-8 h-8 rounded-full" />
-              <span className="white">{auth.doctor.englishFullName}</span>
+              <img src={doctor?.avatar} alt="avatar" className="w-8 h-8 rounded-full" />
+              <span className="white">{doctor?.englishFullName}</span>
             </div>
           </Menu.Button>
         </div>
