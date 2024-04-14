@@ -1,7 +1,8 @@
 import { ReactNode, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 import Cookies from 'js-cookie';
+import { useDispatch } from "react-redux";
+import { loginReducer } from "../../app/features/authSlice";
 interface IProps {
     children: ReactNode;
     redirectPath: string;
@@ -9,15 +10,12 @@ interface IProps {
 }
 
 const ProtectedRoute = ({ children, redirectPath, isAuth}: IProps) => {
-    const { setAuth } = useAuth()
+    const dispatch = useDispatch()
     const token = Cookies.get('token');
     const doctor = Cookies.get('doctor');
     useEffect(() => {
         if (token && doctor) {
-            setAuth({
-                token,
-                doctor: JSON.parse(doctor)
-            });
+            dispatch(loginReducer({token, doctor: JSON.parse(doctor)}));
         }
     }, [])
 

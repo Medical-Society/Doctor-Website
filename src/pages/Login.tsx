@@ -38,7 +38,8 @@ const Login = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      dispatch(loginReducer(data));
+      console.log(data);
+      dispatch(loginReducer({token: data.data.token, doctor: data.data.result}))
       toast.success('Login successful');
     }
     if (isError && error) {
