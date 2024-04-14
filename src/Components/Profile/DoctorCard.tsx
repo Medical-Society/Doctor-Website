@@ -1,13 +1,13 @@
-import useAuth from "../../hooks/useAuth"
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
 interface IProps {
     
 }
 
 const DoctorCard = ({}: IProps) => {
-    const {auth} = useAuth();
-    console.log(auth)
-    const {englishFullName, clinicAddress,  specialization, about, avatar} = auth.doctor
+    const { doctor } = useSelector((state: RootState) => state.auth)
+    const {englishFullName, clinicAddress,  specialization, about, avatar} = doctor || {};
     return (
         <div className="flex flex-col items-center justify-center gap-10 w-10/12 lg:flex-row">
             <img src={avatar} alt="Doctor Image" className="h-60" />
