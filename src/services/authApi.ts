@@ -28,6 +28,6 @@ export const authApi = createApi({
     }),
 });
 
-export const {useLoginMutation, useRegisterMutation, useForgotPasswordMutation} = authApi;
+export const {useLoginMutation, useRegisterMutation, useForgotPasswordMutation} = authApi; 
 
 export default authApi;

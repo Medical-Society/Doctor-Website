@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../hooks/useAuth";
 import { ILoginState } from "../interfaces";
 import toast from "react-hot-toast";
 import FormInput from "../Components/authForms/FormInput";
@@ -13,7 +12,6 @@ import { useDispatch } from "react-redux";
 import { loginReducer } from "../app/features/authSlice";
 
 const Login = () => {
-  const { setAuth } = useAuth();
   const dispatch = useDispatch()
   const [loginData, setLoginData] = useState<ILoginState>({
     email: '',
@@ -43,9 +41,10 @@ const Login = () => {
       toast.success('Login successful');
     }
     if (isError && error) {
-      console.log(error);
-      }
-  }, [isSuccess, isError, data, error, setAuth]);
+      const errorMessage = error as {data: {message: string}};
+      toast.error(errorMessage.data.message);
+    }
+  }, [isSuccess, isError, data, error]);
 
 
   return (

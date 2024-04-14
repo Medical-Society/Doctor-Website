@@ -1,13 +1,13 @@
-import  { useState } from "react";
+import  { useState, useEffect } from "react";
 import { ISignupErrors, ISignupState } from "../interfaces";
 import { FormInputlist } from "../data/data";
 import Button from "../Components/authForms/Button";
 import HaveAccountOrNot from "../Components/authForms/HaveAccountOrNot"
-import { registerUser } from "../services/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../Components/authForms/FormInput";
 import { validateSignup } from "../validations";
+import { useRegisterMutation } from "../services/authApi";
 
 const Signup = () => {
   const defaultDoctor: ISignupState = {
@@ -24,10 +24,9 @@ const Signup = () => {
     gender: ''
   };
 
-  // States
-
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [registerUser, {data, isSuccess, isLoading, isError, error}] = useRegisterMutation();
+  const [signupData, setSignupData] = useState<ISignupState>(defaultDoctor);
   const [errors, setErrors] = useState<ISignupErrors>({
     englishFullName: '',
     arabicFullName: '',
@@ -39,14 +38,11 @@ const Signup = () => {
     nationalID: '',
     phoneNumber: '',
   });
-  const [signup, setSignup] = useState<ISignupState>(defaultDoctor);
-
-    // Handlers
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setSignup({
-        ...signup,
+    setSignupData({
+        ...signupData,
         [name]: value
     }); 
     setErrors({
@@ -57,37 +53,38 @@ const Signup = () => {
 
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setSignup({
-        ...signup,
+    setSignupData({
+        ...signupData,
         [name]: value
     });
   };
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const validationErrors = validateSignup(signup);
+    const validationErrors = validateSignup(signupData);
     const hasErrorMsg = Object.values(validationErrors).some(errMsg => errMsg !== '');
     console.log(validationErrors);
     if (hasErrorMsg) {
       setErrors(validationErrors);
       return;
     }
+    const { confirmPassword, ...data } = signupData;
+    await registerUser({ ...data });
+  }
 
-    setIsLoading(true);
-      try {
-        await registerUser(signup);
-        toast.success('Signed up successfully, Please Verify your email', {
-          duration: 8000
-        });
-        navigate('/login');
-      } catch (error: any) {
-        console.log(error);
-        toast.error(error.response.data.message)
-      }
-      finally {
-        setIsLoading(false);
-      }   
+  useEffect(() => {
+    if (isSuccess && data) {
+      console.log(data);
+      toast.success('Signed up successfully, Please Verify your email', {
+        duration: 8000
+      });
+      navigate('/login');
     }
+    if (isError && error) {
+      const errorMessage = error as {data: {message: string}};
+      toast.error(errorMessage.data.message);
+    }
+  }, [isSuccess, isError, data, error]);
   
   const renderFormInputList = FormInputlist.map(input => (
       <div key={input.id}>
@@ -96,7 +93,7 @@ const Signup = () => {
           type={input.type}
           id={input.id}
           name={input.name}
-          value={signup[input.name]}
+          value={signupData[input.name]}
           onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
             if (input.type === "select") {
               handleChangeSelect(e as React.ChangeEvent<HTMLSelectElement>);
