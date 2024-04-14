@@ -3,11 +3,8 @@ import FormInput from "../Components/authForms/FormInput";
 import Button from "../Components/authForms/Button";
 import toast from "react-hot-toast";
 import { useForgotPasswordMutation } from "../services/authApi";
-interface IProps {
 
-}
-
-const ForgetPassComp = ({}: IProps) => {
+const ForgetPassComp = () => {
   const [email, setEmail] = useState('');
   const [forgotPassword, {data, isSuccess, isLoading, isError, error}] = useForgotPasswordMutation();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
