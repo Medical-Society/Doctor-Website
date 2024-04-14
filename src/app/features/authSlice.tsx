@@ -25,6 +25,7 @@ export const authSlice = createSlice({
       state.token = null;
       state.doctor = null;
       Cookies.remove('token');
+      Cookies.remove('doctor');
     },
   },
 })

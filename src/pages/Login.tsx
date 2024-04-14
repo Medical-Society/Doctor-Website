@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 import { useAuth } from "../hooks/useAuth";
-import { loginUser } from "../services/auth";
 import { ILoginState } from "../interfaces";
 import toast from "react-hot-toast";
 import FormInput from "../Components/authForms/FormInput";
@@ -10,16 +9,16 @@ import ForgetPass from "../Components/authForms/ForgotPassLink";
 import HaveAccountOrNot from "../Components/authForms/HaveAccountOrNot";
 import OrLine from "../Components/authForms/OrLine";
 import DoctorImg from "../Components/authForms/DoctorImg";
+import { useLoginMutation } from "../services/authApi";
 
 const Login = () => {
-
   const { setAuth } = useAuth();
-  const [isLoading, setIsLoading] = useState(false);
   const [login, setLogin] = useState<ILoginState>({
     email: '',
     password: ''
   });
 
+  // Handle form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLogin({
       ...login,
@@ -27,26 +26,28 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const [loginUser, {data, isSuccess, isLoading, isError, error}] = useLoginMutation();
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-    try {
-      const res = await loginUser(login);
-      console.log(res);
-      toast.success('Logged in successfully');
-      setAuth({
-        token: res.data.token,
-        doctor: res.data.result
-      });
-      Cookies.set('token', res.data.token);
-      Cookies.set('doctor', JSON.stringify(res.data.result));
-    } catch (error: any) {
-      console.log(error);
-      toast.error(error.response?.data?.message || "An error occurred");
-    } finally {
-      setIsLoading(false);
+    if (!login.email || !login.password) {
+      return toast.error('Please fill in all fields');
     }
+    await loginUser(login);
   };
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      console.log(data);
+      setAuth(data);
+      Cookies.set('token', data.token);
+      toast.success('Login successful');
+    }
+    if (isError && error) {
+      console.log(error);
+      }
+  }, [isSuccess, isError, data, error, setAuth]);
+
 
   return (
     <div className="h-full flex flex-col lg:flex-row">
@@ -55,7 +56,7 @@ const Login = () => {
         <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md">
           <form
             className='flex flex-col bg-white rounded-2xl py-10 px-5 gap-4'
-            onSubmit={handleSubmit}
+            onSubmit={handleLogin}
           >
             <FormInput
               label="Email"
