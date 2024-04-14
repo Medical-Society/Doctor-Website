@@ -17,11 +17,13 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<Partial<AuthState>>) => {
-      state.token = action.payload.token || state.token;
-      state.doctor = action.payload.doctor || state.doctor;
+    loginReducer: (state, action: PayloadAction<AuthState>) => {
+      state.token = action.payload.token;
+      state.doctor = action.payload.doctor;
+      Cookies.set('token', action.payload.token || '');
+      Cookies.set('doctor', JSON.stringify(action.payload.doctor) || '');
     },
-    logout: (state) => {
+    logoutReducer: (state) => {
       state.token = null;
       state.doctor = null;
       Cookies.remove('token');
@@ -30,7 +32,7 @@ export const authSlice = createSlice({
   },
 })
 
-export const { login, logout } = authSlice.actions;
+export const { loginReducer, logoutReducer } = authSlice.actions;
 export const selectToken = (state: RootState) => state.auth.token;
 export const selectDoctor = (state: RootState) => state.auth.doctor;
 

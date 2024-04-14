@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Cookies from 'js-cookie';
 import { useAuth } from "../hooks/useAuth";
 import { ILoginState } from "../interfaces";
 import toast from "react-hot-toast";
@@ -10,37 +9,36 @@ import HaveAccountOrNot from "../Components/authForms/HaveAccountOrNot";
 import OrLine from "../Components/authForms/OrLine";
 import DoctorImg from "../Components/authForms/DoctorImg";
 import { useLoginMutation } from "../services/authApi";
+import { useDispatch } from "react-redux";
+import { loginReducer } from "../app/features/authSlice";
 
 const Login = () => {
   const { setAuth } = useAuth();
-  const [login, setLogin] = useState<ILoginState>({
+  const dispatch = useDispatch()
+  const [loginData, setLoginData] = useState<ILoginState>({
     email: '',
     password: ''
   });
+  const [loginUser, {data, isSuccess, isLoading, isError, error}] = useLoginMutation();
 
-  // Handle form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLogin({
-      ...login,
+    setLoginData({
+      ...loginData,
       [e.target.name]: e.target.value
     });
   };
 
-  const [loginUser, {data, isSuccess, isLoading, isError, error}] = useLoginMutation();
-
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!login.email || !login.password) {
+    if (!loginData.email || !loginData.password) {
       return toast.error('Please fill in all fields');
     }
-    await loginUser(login);
+    await loginUser(loginData);
   };
 
   useEffect(() => {
     if (isSuccess && data) {
-      console.log(data);
-      setAuth(data);
-      Cookies.set('token', data.token);
+      dispatch(loginReducer(data));
       toast.success('Login successful');
     }
     if (isError && error) {
@@ -63,7 +61,7 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              value={login.email}
+              value={loginData.email}
               onChange={handleChange as (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void}
               ariaLabel="Email"
             />
@@ -72,7 +70,7 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              value={login.password}
+              value={loginData.password}
               onChange={handleChange as (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void}
               ariaLabel="Password"
             />

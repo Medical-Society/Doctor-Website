@@ -2,19 +2,17 @@ import { RouterProvider } from "react-router-dom"
 import { useEffect } from "react"
 import router from "./router/router"
 import Cookies from 'js-cookie'
-import { useAuth } from "./hooks/useAuth"
+import { useDispatch } from "react-redux"
+import { loginReducer } from "./app/features/authSlice"
 
 function App() {
-  const { setAuth } = useAuth()
+  const dispatch = useDispatch()
 
   useEffect(() => {
       const token = Cookies.get('token');
       const doctor = Cookies.get('doctor');
       if (token && doctor) {
-          setAuth({
-              token,
-              doctor: JSON.parse(doctor)
-          });
+          dispatch(loginReducer({token, doctor: JSON.parse(doctor)}));
       }
   }, [])
 
