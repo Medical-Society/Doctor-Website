@@ -1,34 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormInput from "../Components/authForms/FormInput";
 import Button from "../Components/authForms/Button";
-import { forgotPassword } from "../services/auth";
 import toast from "react-hot-toast";
-
+import { useForgotPasswordMutation } from "../services/authApi";
 interface IProps {
 
 }
 
 const ForgetPassComp = ({}: IProps) => {
   const [email, setEmail] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [forgotPassword, {data, isSuccess, isLoading, isError, error}] = useForgotPasswordMutation();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setEmail(e.target.value);
   }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-    try {
-      const res = await forgotPassword(email);
-      console.log(res);
-      toast.success('Email sent successfully, Please check your email', {
-          duration: 4000,
-        });
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message || "An error occurred");
-    } finally {
-      setIsLoading(false);
+    if (!email) {
+      return toast.error('Please fill in all fields');
     }
-  };
+    await forgotPassword(email);
+  }
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      console.log(data);
+      toast.success('Email sent successfully, Please check your email', {
+        duration: 4000,
+      });
+    }
+    if (isError && error) {
+      console.log(error);
+      const errorMessage = error as {data: {message: string}};
+      toast.error(errorMessage.data.message);
+    }
+  }, [isSuccess, isError, data, error]);
+
+
   return (
     <div className="w-full flex flex-col justify-center items-center h-full">
         <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md">
