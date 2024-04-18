@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
 import { IDoctor } from '../../interfaces';
 import Cookies from 'js-cookie'
 
@@ -33,7 +32,5 @@ export const authSlice = createSlice({
 })
 
 export const { loginReducer, logoutReducer } = authSlice.actions;
-export const selectToken = (state: RootState) => state.auth.token;
-export const selectDoctor = (state: RootState) => state.auth.doctor;
 
 export default authSlice.reducer;
