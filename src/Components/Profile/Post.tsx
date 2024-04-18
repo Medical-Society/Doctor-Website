@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { IPostsdoctor } from "../../interfaces";
-import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
 const Post = ({ description, images }: IPostsdoctor) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const { auth } = useAuth();
-  const { avatar, englishFullName } = auth.doctor;
+  const { doctor } = useSelector((state: RootState) => state.auth);
+  const { avatar, englishFullName } = doctor || {};
 
 
   const toggleDropdown = () => {
