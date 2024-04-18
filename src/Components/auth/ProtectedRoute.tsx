@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
+import Cookies from 'js-cookie'
+
 interface IProps {
     children: ReactNode;
     redirectPath: string;
@@ -9,8 +9,7 @@ interface IProps {
 }
 
 const ProtectedRoute = ({ children, redirectPath, isAuth}: IProps) => {
-    const {token} = useSelector((state: RootState) => state.auth)
-
+    const token = Cookies.get('token');
     if(isAuth){
         return token ? <>{children}</> : <Navigate to={redirectPath} />;
     }
