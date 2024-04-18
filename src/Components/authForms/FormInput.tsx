@@ -22,7 +22,7 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
   
   return (
     <div className={`flex flex-col relative ${signup? 'lg:w-96 mx-3' : ''} min-h-20`}>
-      <label htmlFor={id} className="mb-[2px] text-sm font-medium text-gray-700">{label}</label>
+      <label htmlFor={id} className="mb-[2px] text-sm font-medium text-violet-950">{label}</label>
       {type === "select" ? (
         <select
           name={name}
@@ -45,7 +45,7 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
           value={typeof value === 'string' ? value : (value ? value.toISOString().split('T')[0] : '')} // Check if value is defined
           onChange={onChange}
           placeholder={placeholder}
-          className='border-[1px] border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-2 text-sm'
+          className='border-[1px] border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded-lg px-2 py-2 text-sm'
           aria-label={ariaLabel}
         />
       )}
