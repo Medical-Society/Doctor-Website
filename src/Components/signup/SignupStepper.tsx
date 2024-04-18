@@ -137,7 +137,7 @@ const SignupStepper: React.FC<SignupStepperProps> = ({
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: -3 }}>{renderFormInputsForStep(activeStep)}</Typography>
+          <Typography component="div" sx={{ mt: 2, mb: -3 }}>{renderFormInputsForStep(activeStep)}</Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
               Back
