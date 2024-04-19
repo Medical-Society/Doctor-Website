@@ -38,7 +38,7 @@ const Signup = () => {
     nationalID: '',
     phoneNumber: '',
   });
-   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+/*    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSignupData({
         ...signupData,
@@ -56,19 +56,19 @@ const Signup = () => {
         ...signupData,
         [name]: value
     });
-  }; 
+  };  */
  
-  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const validationErrors = validateSignup(signupData);
+    const validationErrors = validateSignup(signupData,0);
     const hasErrorMsg = Object.values(validationErrors).some(errMsg => errMsg !== '');
-    console.log(validationErrors);
+    //console.log(validationErrors);
     if (hasErrorMsg) {
       setErrors(validationErrors);
       return;
     }
-      const { confirmPassword, ...data } = signupData;
-    await registerUser({ ...data });  
+   const { confirmPassword, ...data } = signupData;
+    await registerUser({ ...data });   
     console.log(signupData);
   }
 
@@ -115,15 +115,13 @@ return (
         <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-0.5 lg:min-w-max mb-4">
         <form 
           className="grid grid-cols-1 md:grid-cols-2 gap-2 bg-white rounded-xl py-8 px-5" 
-          onSubmit={handleSubmit}
+  
         >
-         <SignupStepper signup={signupData} setSignup={setSignupData} errors={errors} setErrors={setErrors}  isLoading={isLoading} /> 
-         
-
-          <div className="relative lg:mt-80 lg:top-8 lg:left-16 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
-            
+         <SignupStepper errors={errors} setErrors={setErrors} setSignup={setSignupData} signup={signupData} isLoading={isLoading} handleSubmit={handleSubmit} /> 
+          
+         <div className="lg:mt-80 lg:top-96 lg:left-16 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2"> </div>
             <HaveAccountOrNot type="signup" />
-          </div>
+     
         </form>
         </div>
       </div>
