@@ -4,8 +4,6 @@ import HaveAccountOrNot from "../Components/authForms/HaveAccountOrNot";
 import toast from "react-hot-toast";
 import { validateSignup } from "../validations";
 import { useRegisterMutation } from "../services/authApi";
-//import { FormInputlist } from "../data/data";
-//import FormInput from "../Components/authForms/FormInput";
 import { FormInputlist } from "../data/data";
 import FormInput from "../Components/authForms/FormInput";
 import {
@@ -99,7 +97,7 @@ const Signup = () => {
     };
 
     return (
-      <div className="grid grid-cols-2 grid-rows-3 gap-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {FormInputlist.filter((input) => {
           if (step === 0) {
             return [
@@ -169,30 +167,25 @@ const Signup = () => {
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-primary text-3xl font-bold mb-4">Signup</h1>
         <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-0.5 lg:min-w-max mb-4">
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-2 bg-white rounded-xl py-8 px-5">
-            <Box
-              sx={{
-                width: { sm: "600px", md: "750px" },
-                margin: "auto",
-                marginRight: { md: "-350px", sm: "-350" },
-              }}
-            >
-              <Stepper activeStep={activeStep}>
-                {steps.map((label) => {
-                  const stepProps: { completed?: boolean } = {};
-                  const labelProps: { optional?: React.ReactNode } = {};
-                  return (
-                    <Step key={label} {...stepProps}>
-                      <StepLabel
-                        {...labelProps}
-                        StepIconProps={{ style: { color: "#060B73" } }}
-                      >
-                        {label}
-                      </StepLabel>
-                    </Step>
-                  );
-                })}
-              </Stepper>
+          <form className="flex flex-col bg-white rounded-xl py-4 px-5">
+            <Stepper activeStep={activeStep} sx={{ 
+              display: "flex",
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { xs: 'start', sm: 'center' },
+              gap: 1,
+            }}>
+              {steps.map((label) => {
+                const stepProps: { completed?: boolean } = {};
+                const labelProps: { optional?: React.ReactNode } = {};
+                return (
+                  <Step key={label} {...stepProps}>
+                    <StepLabel {...labelProps}>
+                      {label}
+                    </StepLabel>
+                  </Step>
+                );
+              })}
+            </Stepper>
 
               {activeStep === steps.length ? (
                 <>
@@ -228,10 +221,10 @@ const Signup = () => {
                       onClick={(
                         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
                       ) => handleNext(e)}
-                      disabled={isLoading} // Disable the button while loading
+                      disabled={isLoading} 
                     >
                       {isLoading ? (
-                        <CircularProgress size={24} /> // Show a loading spinner while loading
+                        <CircularProgress size={24} /> 
                       ) : activeStep === steps.length - 1 ? (
                         "Finish"
                       ) : (
@@ -241,11 +234,6 @@ const Signup = () => {
                   </Box>
                 </>
               )}
-            </Box>
-
-            <div className="lg:mt-80 lg:top-96 lg:left-16 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
-              {" "}
-            </div>
             <HaveAccountOrNot type="signup" />
           </form>
         </div>
