@@ -79,7 +79,7 @@ const Appointments = ({}: IProps) => {
   return (
     <div className="flex flex-col mt-10 items-center">
       <h1 className="text-2xl font-bold text-center my-10">Today Appointments</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full justify-items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 w-full justify-items-center">
 
         {
           isLoading ? 

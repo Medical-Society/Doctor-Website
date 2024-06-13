@@ -54,24 +54,9 @@ const Navbar = ({ path }: IProps) => {
         >
           MEDICAL SOCIETY
         </NavLink>
-        <div className="flex space-x-3">
-          <NavLink
-            to="all-appoinments"
-            className={`text-xl ${
-              scrolled ? "text-primary" : "text-white"
-            } hover:text-primary`}
-          >
-            Appointments
-          </NavLink>
-          <NavLink
-            to="Prescription"
-            className={`text-xl ${
-              scrolled ? "text-primary" : "text-white"
-            } hover:text-primary`}
-          >
-            Prescription
+        <NavLink to="/clinic" className="text-xl text-primary">
+          Clinic
         </NavLink>
-        </div>
         <div className="flex gap-5">
           {!token ? (
             <>
@@ -85,7 +70,6 @@ const Navbar = ({ path }: IProps) => {
               >
                 Login
               </NavLink>
-
               <NavLink
                 to="/signup"
                 className={`text-xl py-1 px-4 border rounded-full ${

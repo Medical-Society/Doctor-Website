@@ -8,25 +8,35 @@ import ForgetPass from "../pages/ForgetPass";
 import Profile from "../pages/Profile";
 import Prescription from "../pages/Prescription";
 import Appointments from "../pages/Appointments";
+import SideBar from "../Components/clinic/SideBar";
 
 const MainLayout = () => {
     const location = useLocation();
     return (
-        <div className="h-full flex flex-col" >
+        <div className="h-full flex flex-col">
             <Navbar path={location.pathname} />
             <Outlet />
         </div>
-    )
-}
+    );
+};
+
+const ClinicLayout = () => {
+    return (
+        <div className="p-16 flex flex-col md:flex-row h-full">
+            <SideBar />
+            <div className="w-full h-full">
+                <Outlet />
+            </div>
+        </div>
+    );
+};
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route 
                 path="/" 
-                element={
-                    <MainLayout />
-                }
+                element={<MainLayout />}
             >
                 <Route index element={<Home />} />
                 <Route path="login" element={
@@ -43,23 +53,21 @@ const router = createBrowserRouter(
                     <ProtectedRoute redirectPath="/" isAuth={false}>
                         <ForgetPass />
                     </ProtectedRoute>
-                }   />
-                 <Route path="Profile" element={
+                } />
+                <Route path="profile" element={
                     <ProtectedRoute redirectPath="/" isAuth={true}>
                         <Profile />
                     </ProtectedRoute>
-                }   />
-                <Route path="Prescription" element={
+                } />
+                <Route path="clinic" element={
                     <ProtectedRoute redirectPath="/" isAuth={true}>
-                        <Prescription />
+                        <ClinicLayout />
                     </ProtectedRoute>
-                }   />
-                
-                <Route path="all-appoinments" element={
-                    <ProtectedRoute redirectPath="/" isAuth={true}>
-                        <Appointments />
-                    </ProtectedRoute>
-                }   />
+                }>
+                    <Route index element={<Appointments />} />
+                    <Route path="appointments" element={<Appointments />} />
+                    <Route path="prescription" element={<Prescription />} />
+                </Route>
             </Route>
 
             {/* Page Not Found */}
