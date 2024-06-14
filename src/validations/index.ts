@@ -1,4 +1,4 @@
-import { IPrescription, ISignupState } from "../interfaces";
+import { ISignupState } from "../interfaces";
 
 export const validateSignup = (values: ISignupState , step:number ) => {
     const errors: {
@@ -64,23 +64,3 @@ export const validateSignup = (values: ISignupState , step:number ) => {
 }
     return errors;
 }
-
-export const validatePescriptions = (values: IPrescription) => {
-    const errors: IPrescription = {
-        Diseases: "",
-        Diagnose: "",
-        Medicine: [],
-    };
-
-    if (!values.Diseases.trim()) {
-        errors.Diseases = "Diseases is required";
-    }
-    if (!values.Diagnose.trim()) {
-        errors.Diagnose = "Diagnose is required";
-    }
-    if (values.Medicine.length === 0) {
-        errors.Medicine.push("At least one medicine is required");
-    }
-
-    return errors;
-};
