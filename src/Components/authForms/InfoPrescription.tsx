@@ -4,16 +4,7 @@ interface IProps {
 
 }
 
-const InfoCard = ({ children }: { children: React.ReactNode, up?: boolean }) => {
-  return (
-    <p 
-        className={`text-center text-zinc-700 text-base font-normal font-['Cairo'] border rounded-full py-4`}
-        style={{ fontFamily: "Cairo" }}
-    >
-      {children}
-    </p>
-  );
-};
+
 const InfoPrescription = ({} : IProps) => {
   const token = Cookies.get('token');
   const {isLoading, data} = useCustomQuery({
@@ -47,28 +38,6 @@ const InfoPrescription = ({} : IProps) => {
          <div className="flex flex-row">
          <div className="text-neutral-800 text-[22px] font-medium font-['Cairo'] leading-relaxed">Age :</div>
               <span className="text-neutral-800 text-[22px] font-light font-['Cairo'] leading-relaxed md:pl-20 pl-10 ">{age}</span>
-        </div>
-         
-
-        <div className="flex flex-col">
-         <div className="text-neutral-800 text-[22px] font-medium font-['Cairo'] leading-relaxed ">Diseases :</div>
-          <div className="grid grid-cols-2 gap-2 items-center w-auto mr-2 md:mr-8 "> 
-          <InfoCard>
-            {/* Disease name */}
-            Skin disease
-          </InfoCard>
-          </div>
-          <div className="text-neutral-800 text-[22px] font-medium font-['Cairo'] leading-relaxed ">Medicine :</div>
-            <div className="grid grid-cols-2 gap-2 items-center w-auto mr-2 md:mr-8 "> 
-                 <InfoCard>
-                  {/* Medicine name */}
-                  Panadol
-                </InfoCard>
-                 <InfoCard>
-                  {/* Medicine name */}
-                  Panadol
-                </InfoCard>       
-            </div>
         </div>
        </div>
     )

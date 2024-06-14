@@ -107,8 +107,28 @@ export interface FormPrescriptionProps {
   placeholder: string;
   errorMsg?: string;
 }
+
+/*
+prescription: 
+{
+    "patientId": "65f9e300c4c918f61379c89e",
+    "diseases": "cold and flu",
+    "diagnose": "fever or feeling feverish/chills",
+    "medicines": [
+        {
+            "name": "Paracetamol",
+            "time": "after breakfast, after dinner"
+        }
+    ]
+}*/
+export interface IMedicine {
+  name: string;
+  time: string;
+}
+
 export interface IPrescription {
-  Diseases: string;
-  Diagnose: string;
-  Medicine: string[];
+  patientId: string;
+  diseases: string;
+  diagnose: string;
+  Medicine: IMedicine[];
 }
