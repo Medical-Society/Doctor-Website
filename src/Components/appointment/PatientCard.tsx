@@ -8,9 +8,10 @@ interface IProps {
   date: string;
   time: string;
   age: number;
+  status: string;
 }
 
-const PatientCard = ({patientNumber, patientName, date, time, age, day}: IProps) => {
+const PatientCard = ({patientNumber, patientName, date, time, age, day, status}: IProps) => {
 
   const [paid, setPaid] = useState(false);
   const handlePaid = () => {
@@ -50,11 +51,18 @@ const PatientCard = ({patientNumber, patientName, date, time, age, day}: IProps)
               <span className="text-lg ml-2"> {age}</span>
             </div>
 
-            {/* button show medical history */}
-            <button className="relative text-primary px-4 py-2 rounded-md mt-4 z-10">
+            {/* status  */}
+
+            <div className="flex items-center mt-2">
+              <h1 className="text-lg text-primary">Status:</h1>
+              <span className="text-lg ml-2"> {status}</span>
+            </div>
+
+
+            {/* <button className="relative text-primary px-4 py-2 rounded-md mt-4 z-10">
               Show Medical History
               <span style={GradientBorder({ borderRadius: '50px' })} />
-            </button>
+            </button> */}
 
           </div>
           <span style={GradientBorder({ borderRadius: '15px' })} className="-z-10" />

@@ -108,27 +108,42 @@ export interface FormPrescriptionProps {
   errorMsg?: string;
 }
 
-/*
-prescription: 
-{
-    "patientId": "65f9e300c4c918f61379c89e",
-    "diseases": "cold and flu",
-    "diagnose": "fever or feeling feverish/chills",
-    "medicines": [
-        {
-            "name": "Paracetamol",
-            "time": "after breakfast, after dinner"
-        }
-    ]
-}*/
 export interface IMedicine {
   name: string;
   time: string;
 }
 
 export interface IPrescription {
-  patientId: string;
+  // patientId: string;
   diseases: string;
   diagnose: string;
-  Medicine: IMedicine[];
+  medicines: IMedicine[];
+}
+
+export interface IPatient {
+  _id: string;
+  patientName: string;
+  email: string;
+  birthdate: string;
+  gender: string;
+  address: string;
+  phoneNumber: string;
+  isVerified: boolean;
+  avatar: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export interface IAppointment {
+  _id: string;
+  patient: IPatient;
+  doctor: string;
+  date: string;
+  price: number;
+  paid: boolean;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }

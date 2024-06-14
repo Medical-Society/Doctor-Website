@@ -10,7 +10,7 @@ const Appointments = ({}: IProps) => {
   const token = Cookies.get('token');
   const {isLoading, data} = useCustomQuery({
     queryKey: ['all-appointments'],
-    url: '/appointments',
+    url: 'doctors/appointments',
     config: {
       headers: {
         Authorization: `Bearer ${token}`
@@ -28,6 +28,10 @@ const Appointments = ({}: IProps) => {
         return new Date(a.date).getTime() - new Date(b.date).getTime();
       });
     }
+    // filter the appointments by status pending
+    appointments = appointments.filter(
+      (appointment: any) => appointment.status === "PENDING" || appointment.status === "IN_PROGRESS"
+    );
     return (
       <>
         {
@@ -67,6 +71,7 @@ const Appointments = ({}: IProps) => {
                 time={time}
                 day={day}
                 age={age}
+                status={appointment.status}
               />
             );
           })
