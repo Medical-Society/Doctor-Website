@@ -44,7 +44,7 @@ export interface IPostsdoctor {
   description: string;
 }
 
-export interface IDoctor {
+interface IDoctor {
   _id: string;
   englishFullName: string;
   arabicFullName: string;
@@ -54,7 +54,7 @@ export interface IDoctor {
   clinicAddress: string;
   nationalID: string;
   phoneNumber: string;
-  age: number;
+  birthdate: string;
   gender: string;
   status: string;
   isVerified: boolean;
@@ -65,6 +65,27 @@ export interface IDoctor {
   __v: number;
   avatar: string;
   about: string;
+  availableTime: AvailableTime; // Added availableTime
+}
+
+// Define the AvailableTime interface
+interface AvailableTime {
+  weekdays: {
+    [key: string]: {
+      from: {
+        hour: number;
+        minute: number;
+      };
+      to: {
+        hour: number;
+        minute: number;
+      };
+    };
+  };
+  limit: number;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IAuth {

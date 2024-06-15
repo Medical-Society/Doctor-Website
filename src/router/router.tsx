@@ -1,4 +1,4 @@
-import { Route, createBrowserRouter, createRoutesFromElements, Outlet, useLocation } from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements, Outlet } from "react-router-dom";
 import Home from "../pages/Home";
 import Navbar from "../Components/Navbar";
 import Login from "../pages/Login";
@@ -9,12 +9,12 @@ import Profile from "../pages/Profile";
 import Prescription from "../pages/DoctorRoom";
 import Appointments from "../pages/Appointments";
 import SideBar from "../Components/clinic/SideBar";
+import MedicalHistory from "../Components/clinic/MedicalHistory";
 
 const MainLayout = () => {
-    const location = useLocation();
     return (
         <div className="h-full flex flex-col">
-            <Navbar path={location.pathname} />
+            <Navbar />
             <Outlet />
         </div>
     );
@@ -68,6 +68,7 @@ const router = createBrowserRouter(
                     <Route path="appointments" element={<Appointments />} />
                     <Route path="doctor-room" element={<Prescription />} />
                 </Route>
+                <Route path="patient/:id/medical-history" element={<MedicalHistory />} />
             </Route>
 
             {/* Page Not Found */}

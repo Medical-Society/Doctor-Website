@@ -1,16 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import { IPatient } from "../../interfaces";
 interface IProps {
   patient: IPatient;
 }
 
 const InfoPrescription = ({ patient }: IProps) => {
+  const navigate = useNavigate();
   const birthDate = new Date(patient.birthdate);
   const ageDifMs = Date.now() - birthDate.getTime();
   const ageDate = new Date(ageDifMs);
   const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
   const handleShowMedicalHistory = () => {
-    console.log("Show Medical History");
+    navigate(`/patient/${patient._id}/medical-history`);
   };
   return (
     <div className="flex flex-col gap-2 mt-5">
