@@ -44,7 +44,7 @@ export interface IPostsdoctor {
   description: string;
 }
 
-interface IDoctor {
+export interface IDoctor {
   _id: string;
   englishFullName: string;
   arabicFullName: string;
