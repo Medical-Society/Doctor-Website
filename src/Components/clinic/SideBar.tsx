@@ -16,7 +16,7 @@ const SideBar = ({}: IProps) => {
         Appointments
       </NavLink>
       <NavLink
-        to="prescription"
+        to="doctor-room"
         className={({ isActive }) =>
           `text-xl text-primary hover:text-primary ${isActive ? 'border-b-2 border-primary' : ''}`
         }

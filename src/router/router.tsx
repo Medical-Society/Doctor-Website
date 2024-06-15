@@ -66,7 +66,7 @@ const router = createBrowserRouter(
                 }>
                     <Route index element={<Appointments />} />
                     <Route path="appointments" element={<Appointments />} />
-                    <Route path="prescription" element={<Prescription />} />
+                    <Route path="doctor-room" element={<Prescription />} />
                 </Route>
             </Route>
 
