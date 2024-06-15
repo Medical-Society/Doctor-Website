@@ -41,7 +41,7 @@ const defaultDoctor = {
     clinicAddress: "",
     nationalID: "",
     phoneNumber: "",
-    age: 0,
+    birthdate: "",
     createdAt: "",
     updatedAt: "",
     gender: "",
@@ -50,6 +50,84 @@ const defaultDoctor = {
     __v: 0,
     posts: [],
     reviews: [],
+    availableTime: {
+        weekdays: {
+            "saturday": {
+                from: {
+                    hour: 0,
+                    minute: 0
+                },
+                to: {
+                    hour: 0,
+                    minute: 0
+                }
+            },
+            "sunday": {
+                from: {
+                    hour: 0,
+                    minute: 0
+                },
+                to: {
+                    hour: 0,
+                    minute: 0
+                }
+            },
+            "monday": {
+                from: {
+                    hour: 0,
+                    minute: 0
+                },
+                to: {
+                    hour: 0,
+                    minute: 0
+                }
+            },
+            "tuesday": {
+                from: {
+                    hour: 0,
+                    minute: 0
+                },
+                to: {
+                    hour: 0,
+                    minute: 0
+                }
+            },
+            "wednesday": {
+                from: {
+                    hour: 0,
+                    minute: 0
+                },
+                to: {
+                    hour: 0,
+                    minute: 0
+                }
+            },
+            "thursday": {
+                from: {
+                    hour: 0,
+                    minute: 0
+                },
+                to: {
+                    hour: 0,
+                    minute: 0
+                }
+            },
+            "friday": {
+                from: {
+                    hour: 0,
+                    minute: 0
+                },
+                to: {
+                    hour: 0,
+                    minute: 0
+                }
+            }
+        },
+        limit: 0,
+        _id: "",
+        createdAt: "",
+        updatedAt: ""
+    },
     avatar: "",
     about: ""
     
