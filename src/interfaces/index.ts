@@ -114,7 +114,6 @@ export interface IMedicine {
 }
 
 export interface IPrescription {
-  // patientId: string;
   diseases: string;
   diagnose: string;
   medicines: IMedicine[];

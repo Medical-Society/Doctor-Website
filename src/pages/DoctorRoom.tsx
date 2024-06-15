@@ -4,11 +4,11 @@ import { IPatient, IPrescription } from "../interfaces";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import axiosInstance from "../services/axios.config";
+import Prescription from "../Components/clinic/Prescription";
 
-const Prescription = () => {
+const DoctorRoom = () => {
   const token = Cookies.get("token");
   const defaultPrescription: IPrescription = {
-    // patientId: "",
     diseases: "",
     diagnose: "",
     medicines: [{ name: "", time: "" }],
@@ -45,7 +45,7 @@ const Prescription = () => {
   const handleAddMedicine = () => {
     setPrescription((prevPrescription) => ({
       ...prevPrescription,
-      Medicine: [...prevPrescription.medicines, { name: "", time: "" }],
+      medicines: prevPrescription.medicines.concat({ name: "", time: "" }),
     }));
   };
 
@@ -69,62 +69,6 @@ const Prescription = () => {
       }));
     }
   };
-
-  const renderPrescription = (prescription: IPrescription) => {
-    return (
-      <div>
-        <label htmlFor="diseases" className="text-violet-950 text-lg">
-          Diseases
-        </label>
-        <input
-          type="text"
-          name="diseases"
-          value={prescription.diseases}
-          onChange={handleChange}
-          className="border-2 rounded-md border-primary p-1"
-        />
-        <label htmlFor="diagnose" className="text-violet-950 text-lg">
-          Diagnose
-        </label>
-        <input
-          type="text"
-          name="diagnose"
-          value={prescription.diagnose}
-          onChange={handleChange}
-          className="border-2 rounded-md border-primary p-1"
-        />
-      </div>
-    );
-  };
-
-  const renderMedicines = prescription.medicines.map((medicine, index) => {
-    return (
-      <div key={index}>
-        <label htmlFor={`name-${index}`} className="text-violet-950 text-lg">
-          Medicine {index + 1}
-        </label>
-        <input
-          type="text"
-          name="name"
-          data-index={index}
-          value={medicine.name}
-          onChange={handleChange}
-          className="border-2 rounded-md border-primary p-1"
-        />
-        <label htmlFor={`time-${index}`} className="text-violet-950 text-lg">
-          Time
-        </label>
-        <input
-          type="text"
-          name="time"
-          data-index={index}
-          value={medicine.time}
-          onChange={handleChange}
-          className="border-2 rounded-md border-primary p-1"
-        />
-      </div>
-    );
-  });
 
   const handleAddPrescription = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -218,43 +162,15 @@ const Prescription = () => {
           </button>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center w-full">
-          <div>
+        <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col items-center">
             <InfoPrescription patient={patient} />
-            <div className="md:mt-16 mt-10 md:ml-auto ml-2 mr-2 relative md:right-5 ">
-              <div className="flex flex-col justify-center items-center ">
-                <h1 className="text-violet-950 text-[32px] font-medium font-['Cairo'] ">
-                  Your report
-                </h1>
-                <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-0.5 lg:min-w-max mb-4">
-                  <form
-                    className="grid gap-2 bg-white rounded-xl py-1 px-1"
-                    onSubmit={handleAddPrescription}
-                  >
-                    {/* Render other prescriptions */}
-                    <div className="grid grid-cols-1 gap-2">
-                      {renderPrescription(prescription)}
-                    </div>
-                    {/* Render medicine prescriptions in grid-cols-2 */}
-                    <div className="grid grid-cols-1">
-                      {renderMedicines}
-                    </div>
-                    <div className="flex flex-col gap-5 m-5 ">
-                      <button
-                        type="button"
-                        className="text-xl py-2 border-2 rounded-full border-primary to-secondary text-violet-950 md:text-2xl sm:py-2 sm:px-4"
-                        onClick={handleAddMedicine}
-                      >
-                        Click to add more medicine
-                      </button>
-                      <button className="text-xl bg-gradient-to-l from-violet-950 to-slate-900 text-white py-2 rounded-full md:text-2xl md:py-2 md:px-4">
-                        Done
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <Prescription
+              prescription={prescription}
+              handleChange={handleChange}
+              handleAddMedicine={handleAddMedicine}
+              handleAddPrescription={handleAddPrescription}
+            />
           </div>
           <button
             className="bg-primary text-white p-2 rounded-md"
@@ -268,4 +184,4 @@ const Prescription = () => {
   );
 };
 
-export default Prescription;
+export default DoctorRoom;

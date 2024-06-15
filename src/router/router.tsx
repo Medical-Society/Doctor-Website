@@ -6,7 +6,7 @@ import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
 import Profile from "../pages/Profile";
-import Prescription from "../pages/Prescription";
+import Prescription from "../pages/DoctorRoom";
 import Appointments from "../pages/Appointments";
 import SideBar from "../Components/clinic/SideBar";
 
