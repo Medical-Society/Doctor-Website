@@ -21,7 +21,7 @@ const SideBar = ({}: IProps) => {
           `text-xl text-primary hover:text-primary ${isActive ? 'border-b-2 border-primary' : ''}`
         }
       >
-        Prescription
+        Doctor Room
       </NavLink>
     </div>
   );
