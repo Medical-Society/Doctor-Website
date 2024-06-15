@@ -1,4 +1,4 @@
-import InfoPrescription from "../Components/authForms/InfoPrescription";
+import InfoPrescription from "../Components/clinic/InfoPrescription";
 import useCustomQuery from "../hooks/useCustomQuery";
 import { IPatient, IPrescription } from "../interfaces";
 import { useState } from "react";
