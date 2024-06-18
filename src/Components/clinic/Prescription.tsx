@@ -10,8 +10,8 @@ interface IProps {
 
 const Prescription = ({handleAddMedicine, handleAddPrescription, handleChange, prescription}: IProps) => {
   return (
-    <div className="flex flex-col justify-center items-center ">
-    <h1 className="text-violet-950 text-[32px] font-medium font-['Cairo'] ">
+    <div className="flex flex-col justify-center items-center lg:ml-56 ">
+    <h1 className="text-violet-950 text-[32px] font-medium font-['Cairo'] z">
       Your report
     </h1>
     <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-0.5 lg:min-w-max mb-4">

@@ -38,28 +38,33 @@ const MedicalHistory = ({}: IProps) => {
   const renderPrescriptions = () => {
     if (data?.data?.prescriptions?.length) {
       return (
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 md:mt-20 mt-[800px]'>
           {data.data.prescriptions.map((prescription: any) => (
-            <div className='border p-3 flex flex-col gap-3' key={prescription._id}>
+            <div className='border p-4 flex flex-col gap-4 bg-slate-200 rounded-md' key={prescription._id}>
               <div className='flex gap-5'>
-                <p>Doctor: {prescription.doctor.englishFullName}</p>
-                <p>Specialization: {prescription.doctor.specialization}</p>
+                <p className='font-bold text-primary'>Doctor: <span className='font-normal text-gray-800'>{prescription.doctor.englishFullName}</span></p>
+                <p className='font-bold text-primary '>Specialization: <span className='font-normal text-gray-800'>{prescription.doctor.specialization}</span></p>
               </div>
+              <hr className="border-1 border-gray-800" />
               <div className='flex gap-5'>
-                <p>Date: {prescription.createdAt}</p>
+                <p className='font-bold text-primary'>Date: <span className='font-normal text-gray-800'>{prescription.createdAt}</span></p>
               </div>
+              <hr className="border-1 border-gray-800" />
               <div className='flex gap-5'>
-                <p>Disease: {prescription.diseases}</p>
-                <p>Diagnosis: {prescription.diagnose}</p>
+                <p className='font-bold text-primary'>Disease: <span className='font-normal text-gray-800'>{prescription.diseases}</span></p>
+                <p className='font-bold text-primary'>Diagnosis: <span className='font-normal text-gray-800'>{prescription.diagnose}</span></p>
               </div>
-              Medicines:
-              <ul className='list-disc list-inside gap-3'>
-                {prescription.medicines.map((medicine: any, index: number) => (
-                  <li key={index} className='flex'>
-                    {medicine.name} - {medicine.time}
-                  </li>
-                ))}
-              </ul>
+              <hr className="border-1 border-gray-800" />
+              <div className='flex flex-col gap-3'>
+                <p className='font-bold text-primary'>Medicines:</p>
+                <ul className='list-disc list-inside'>
+                  {prescription.medicines.map((medicine: any, index: number) => (
+                    <li key={index} className='flex'>
+                      {medicine.name} - {medicine.time}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -85,27 +90,26 @@ const MedicalHistory = ({}: IProps) => {
             <div className="text-2xl font-bold text-red-500">{errorMsg}</div>
           ) : (
             <>
-            {renderPrescriptions()}
-            <div className='mt-5 flex'>
-            <Paginator 
-              page={page} 
-              pageCount={limit}
-              total={data.data.totalPages}
-              isLoading={isLoading}
-              onClickPrev={() => setPage(page - 1)}
-              onClickNext={() => setPage(page + 1)}
-              />
-              <select
-                className="border-2 rounded-md border-primary p-1"
-                value={limit}
-                onChange={(e) => setLimit(Number(e.target.value))}
-              >
-                <option value={5}>5</option>
-                <option value={10}>10</option>
-                <option value={15}>15</option>
-              </select>
-            </div>
-
+              {renderPrescriptions()}
+              <div className='mt-5 flex'>
+                <Paginator 
+                  page={page} 
+                  pageCount={limit}
+                  total={data.data.totalPages}
+                  isLoading={isLoading}
+                  onClickPrev={() => setPage(page - 1)}
+                  onClickNext={() => setPage(page + 1)}
+                />
+                <select
+                  className="border-2 rounded-md border-primary p-1 ml-2"
+                  value={limit}
+                  onChange={(e) => setLimit(Number(e.target.value))}
+                >
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={15}>15</option>
+                </select>
+              </div>
             </>
           )}
         </div>

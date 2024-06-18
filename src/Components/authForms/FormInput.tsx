@@ -4,7 +4,6 @@ import ErrorMessage from "./ErrorMessage";
 import { FormInputProps } from "../../interfaces";
 
 
-
 const FormInput = ({ label, type, id, name, value, onChange, placeholder, options, signup, ariaLabel, errorMsg }: FormInputProps) => {
 
 
@@ -52,8 +51,8 @@ const FormInput = ({ label, type, id, name, value, onChange, placeholder, option
 
       {(id === "password" || id === "confirmPassword") && ShowpasswordIcon ? (
         <div
-          className="absolute top-11 right-7 transform -translate-y-1/2 focus:outline-none"
-          onClick={() => Showpassword(id)}
+        className={`absolute ${ signup ? 'top-11 ml-72 cursor-pointer' : 'top-11 right-4 md:right-16'} transform -translate-y-1/2 focus:outline-none`}
+        onClick={() => Showpassword(id)}
         >
           <img
             src={ShowpasswordIcon} alt="Password"

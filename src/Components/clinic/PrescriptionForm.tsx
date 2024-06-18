@@ -12,7 +12,7 @@ const PrescriptionForm = ({handleSubmit, prescription, handleChange, handleAddMe
 
 
   return (
-    <form className="grid gap-2 bg-white rounded-xl py-1 px-1" onSubmit={handleSubmit}>
+    <form className="grid gap-2 bg-white rounded-xl py-1 px-3 md:w-[450px] w-[300px]" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 gap-2">
         <label htmlFor="diseases" className="text-violet-950 text-lg">
           Diseases

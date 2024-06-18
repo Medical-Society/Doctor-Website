@@ -64,6 +64,7 @@ const Login = () => {
               value={loginData.email}
               onChange={handleChange as (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void}
               ariaLabel="Email"
+              signup={false}
             />
             <FormInput
               label="Password"
@@ -73,6 +74,8 @@ const Login = () => {
               value={loginData.password}
               onChange={handleChange as (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void}
               ariaLabel="Password"
+              signup={false}
+              
             />
             <ForgetPass />
             <Button text='Login' disabled={isLoading} />

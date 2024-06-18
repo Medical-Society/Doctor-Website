@@ -21,7 +21,7 @@ const Navbar = ({}: IProps) => {
       >
         MEDICAL SOCIETY
       </NavLink>
-      <NavLink to="/clinic" className="text-xl text-primary">
+      <NavLink to="/clinic" className="text-xl text-primary mr-10">
         Clinic
       </NavLink>
       <div className="flex gap-5">

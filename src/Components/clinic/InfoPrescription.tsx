@@ -24,17 +24,17 @@ const InfoPrescription = ({ patient }: IProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 mt-5">
-      <div className="flex flex-row">
+    <div className="flex flex-col gap-2 md:ml-30">
+      <div className="flex flex-row items-center">
         <div className="text-neutral-800 text-[22px] font-medium font-['Cairo'] leading-relaxed">
           Name:
         </div>
-        <span className="text-neutral-800 text-[22px] font-light font-['Cairo'] leading-relaxed md:pl-10 pl-4">
+        <span className="text-neutral-800 text-[22px] font-light font-['Cairo'] leading-relaxed md:pl-10 pl-4 w-full whitespace-nowrap overflow-hidden text-ellipsis">
           {patient.patientName}
         </span>
       </div>
-
-      <div className="flex flex-row">
+  
+      <div className="flex flex-row items-center">
         <div className="text-neutral-800 text-[22px] font-medium font-['Cairo'] leading-relaxed">
           Age:
         </div>
@@ -52,6 +52,7 @@ const InfoPrescription = ({ patient }: IProps) => {
       </button>
     </div>
   );
-};
+  };
+  
 
 export default InfoPrescription;

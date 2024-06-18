@@ -132,6 +132,7 @@ const Signup = () => {
                 placeholder={input.placeholder}
                 options={input.options}
                 errorMsg={errors[input.name as keyof ISignupErrors]}
+                signup={true}
               />
             </div>
           </div>
