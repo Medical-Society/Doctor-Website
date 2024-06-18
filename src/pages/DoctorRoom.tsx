@@ -14,11 +14,9 @@ const DoctorRoom = () => {
     medicines: [{ name: "", time: "" }],
   };
 
-  const [prescription, setPrescription] =
-    useState<IPrescription>(defaultPrescription);
+  const [prescription, setPrescription] = useState<IPrescription>(defaultPrescription);
   const [queryVersion, setQueryVersion] = useState(0);
   const { isLoading, data } = useCustomQuery({
-    // queryKey: ["all-appointments", 'queryVersion'],
     queryKey: [`all-appointments-${queryVersion}`],
     url: "doctors/appointments",
     config: {
@@ -27,34 +25,28 @@ const DoctorRoom = () => {
       },
     },
   });
-  if (isLoading) return <h1>Loading...</h1>;
-  let appointments = data?.data?.appointments;
-  if (appointments) {
-    appointments = appointments.sort((a: any, b: any) => {
-      return new Date(a.date).getTime() - new Date(b.date).getTime();
-    });
-  }
-  appointments = appointments.filter(
-    (appointment: any) =>
-      appointment.status === "PENDING" || appointment.status === "IN_PROGRESS"
-  );
-  console.log(appointments);
-  let patient: IPatient = appointments[0].patient;
 
-  // Handle adding more medicine
+  if (isLoading) return <h1>Loading...</h1>;
+
+  let appointments = data?.data?.appointments || [];
+  appointments = appointments
+    .filter((appointment: any) => appointment.status === "PENDING" || appointment.status === "IN_PROGRESS")
+    .sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  const patient: IPatient = appointments[0]?.patient;
+
   const handleAddMedicine = () => {
     setPrescription((prevPrescription) => ({
       ...prevPrescription,
-      medicines: prevPrescription.medicines.concat({ name: "", time: "" }),
+      medicines: [...prevPrescription.medicines, { name: "", time: "" }],
     }));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const index = Number(e.target.dataset.index);
+    const { name, value, dataset } = e.target;
+    const index = Number(dataset.index);
 
     if (!isNaN(index)) {
-      // Update specific medicine details
       setPrescription((prevPrescription) => ({
         ...prevPrescription,
         medicines: prevPrescription.medicines.map((medicine, i) =>
@@ -62,7 +54,6 @@ const DoctorRoom = () => {
         ),
       }));
     } else {
-      // Update other fields
       setPrescription((prevPrescription) => ({
         ...prevPrescription,
         [name]: value,
@@ -72,111 +63,75 @@ const DoctorRoom = () => {
 
   const handleAddPrescription = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(prescription);
 
-    // check if the fileds are empty
-    if (prescription.diseases === "" || prescription.diagnose === "") {
+    if (prescription.diseases === "" || prescription.diagnose === "" ||
+      prescription.medicines.some(med => med.name === "" || med.time === "")) {
       alert("Please fill all the fields");
       return;
     }
-    // check if the medicine fields are empty
-    for (let i = 0; i < prescription.medicines.length; i++) {
-      if (
-        prescription.medicines[i].name === "" ||
-        prescription.medicines[i].time === ""
-      ) {
-        alert("Please fill all the fields");
-        return;
-      }
-    }
-    // prescription.patientId = patient._id;
-    // send the prescription to the server
-    console.log(prescription);
+
     try {
-      // patients/:patientId/prescriptions
-      const res = await axiosInstance.post(
-        "patients/" + patient._id + "/prescriptions",
-        prescription,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(res);
+      await axiosInstance.post(`patients/${patient._id}/prescriptions`, prescription, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      alert("Prescription added successfully");
     } catch (error) {
-      console.log(error);
+      alert("Error adding prescription");
+      console.error(error);
     }
   };
 
   const handleFinishAppointment = async () => {
     try {
-      //doctors/appointments/:appointmentId
-      const res = await axiosInstance.patch(
-        "doctors/appointments/" + appointments[0]._id,
-        {
-          status: "FINISHED",
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axiosInstance.patch(`doctors/appointments/${appointments[0]._id}`, { status: "FINISHED" }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setQueryVersion((prev) => prev + 1);
-      console.log(res);
+      alert("Appointment finished");
     } catch (error) {
-      console.log(error);
+      alert("Error finishing appointment");
+      console.error(error);
     }
   };
 
   const handleGetPatient = async () => {
     try {
-      const res = await axiosInstance.patch(
-        "doctors/appointments/" + appointments[0]._id,
-        {
-          status: "IN_PROGRESS",
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axiosInstance.patch(`doctors/appointments/${appointments[0]._id}`, { status: "IN_PROGRESS" }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setQueryVersion((prev) => prev + 1);
-      console.log(res);
+      alert("Patient retrieved");
     } catch (error) {
-      console.log(error);
+      alert("Error retrieving patient");
+      console.error(error);
     }
   };
 
   return (
     <div className="flex md:flex-row flex-col h-full">
-      {appointments.length && appointments[0].status === "PENDING" ? (
-        <div className="h-full w-full flex flex-col justify-center items-center ">
+      {appointments.length === 0 || appointments[0]?.status === "PENDING" ? (
+        <div className="h-full w-full flex flex-col justify-center items-center">
           <button
             className="bg-primary text-white p-2 rounded-md"
             onClick={handleGetPatient}
           >
-            get patient
+            Get Patient
           </button>
         </div>
       ) : (
         <div className="flex flex-col items-center w-full">
-          <div className="flex flex-col items-center">
-            <InfoPrescription patient={patient} />
-            <Prescription
-              prescription={prescription}
-              handleChange={handleChange}
-              handleAddMedicine={handleAddMedicine}
-              handleAddPrescription={handleAddPrescription}
-            />
-          </div>
+          <InfoPrescription patient={patient} />
+          <Prescription
+            prescription={prescription}
+            handleChange={handleChange}
+            handleAddMedicine={handleAddMedicine}
+            handleAddPrescription={handleAddPrescription}
+          />
           <button
             className="bg-primary text-white p-2 rounded-md"
             onClick={handleFinishAppointment}
           >
-            finish appointment
+            Finish Appointment
           </button>
         </div>
       )}
