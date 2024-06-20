@@ -73,6 +73,7 @@ const DoctorRoom = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Prescription added successfully");
+      setPrescription(defaultPrescription);
     } catch (error) {
       console.error("Error adding prescription", error);
       alert("Error adding prescription");
