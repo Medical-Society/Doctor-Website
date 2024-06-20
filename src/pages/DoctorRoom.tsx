@@ -132,7 +132,7 @@ const DoctorRoom = () => {
               handleAddPrescription={handleAddPrescription}
             />
           </div>
-          <button className="bg-primary text-white p-2 rounded-md" onClick={handleFinishAppointment}>
+          <button className="bg-primary text-white p-2 rounded-md md:ml-[650px]" onClick={handleFinishAppointment}>
             Finish Appointment
           </button>
         </div>

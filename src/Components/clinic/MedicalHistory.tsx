@@ -38,7 +38,7 @@ const MedicalHistory = ({}: IProps) => {
   const renderPrescriptions = () => {
     if (data?.data?.prescriptions?.length) {
       return (
-        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 md:mt-20 mt-[800px]'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 md:mt-[450px] lg:mt-[150px] mt-[1100px]'>
           {data.data.prescriptions.map((prescription: any) => (
             <div className='border p-4 flex flex-col gap-4 bg-slate-200 rounded-md' key={prescription._id}>
               <div className='flex gap-5'>
