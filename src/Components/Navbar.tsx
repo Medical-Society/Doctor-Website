@@ -21,9 +21,14 @@ const Navbar = ({}: IProps) => {
       >
         MEDICAL SOCIETY
       </NavLink>
-      <NavLink to="/clinic" className="text-xl text-primary mr-10">
-        Clinic
-      </NavLink>
+      <div className="flex gap-3">
+        <NavLink to="/clinic" className="text-xl text-primary mr-10">
+          Clinic
+        </NavLink>
+        <NavLink to="/models" className="text-xl text-primary">
+          Models
+        </NavLink>
+      </div>
       <div className="flex gap-5">
         {!token ? (
           <>

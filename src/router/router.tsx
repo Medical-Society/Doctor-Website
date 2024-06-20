@@ -10,6 +10,7 @@ import Prescription from "../pages/DoctorRoom";
 import Appointments from "../pages/Appointments";
 import SideBar from "../Components/clinic/SideBar";
 import MedicalHistory from "../Components/clinic/MedicalHistory";
+import Models from "../pages/Models";
 
 const MainLayout = () => {
     return (
@@ -69,6 +70,7 @@ const router = createBrowserRouter(
                     <Route path="doctor-room" element={<Prescription />} />
                 </Route>
                 <Route path="patient/:id/medical-history" element={<MedicalHistory />} />
+                <Route path="models" element={<Models />} />
             </Route>
 
             {/* Page Not Found */}
