@@ -10,9 +10,11 @@ import DoctorImg from "../Components/authForms/DoctorImg";
 import { useLoginMutation } from "../services/authApi";
 import { useDispatch } from "react-redux";
 import { loginReducer } from "../app/features/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState<ILoginState>({
     email: '',
     password: ''
@@ -39,6 +41,11 @@ const Login = () => {
       console.log(data);
       dispatch(loginReducer({token: data.data.token, doctor: data.data.result}))
       toast.success('Login successful');
+      setLoginData({
+        email: '',
+        password: ''
+      });
+      navigate('/clinic');
     }
     if (isError && error) {
       const errorMessage = error as {data: {message: string}};
