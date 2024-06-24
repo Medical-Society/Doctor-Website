@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import DropDown from "./ui/DropDown";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
+import NotificationBadge from "./ui/NotificationBadge";
 
 interface IProps {
 }
@@ -47,7 +48,15 @@ const Navbar = ({}: IProps) => {
             </NavLink>
           </>
         ) : (
-          <DropDown />
+          <div className="flex gap-3">
+            <NavLink
+              to="/chats"
+            >
+              <NotificationBadge notificationCount={1}/>
+            </NavLink>
+            <DropDown />
+          </div>
+
         )}
       </div>
     </nav>

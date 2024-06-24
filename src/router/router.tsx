@@ -11,6 +11,7 @@ import Appointments from "../pages/Appointments";
 import SideBar from "../Components/clinic/SideBar";
 import MedicalHistory from "../Components/clinic/MedicalHistory";
 import Models from "../pages/Models";
+import Chats from "../pages/Chats";
 
 const MainLayout = () => {
     return (
@@ -65,10 +66,16 @@ const router = createBrowserRouter(
                         <ClinicLayout />
                     </ProtectedRoute>
                 }>
+
                     <Route index element={<Appointments />} />
                     <Route path="appointments" element={<Appointments />} />
                     <Route path="doctor-room" element={<Prescription />} />
                 </Route>
+                <Route path="chats" element={
+                    <ProtectedRoute redirectPath="/" isAuth={true}>
+                        <Chats />
+                    </ProtectedRoute>
+                } />
                 <Route path="patient/:id/medical-history" element={<MedicalHistory />} />
                 <Route path="models" element={<Models />} />
             </Route>
