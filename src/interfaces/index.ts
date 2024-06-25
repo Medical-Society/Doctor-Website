@@ -39,7 +39,7 @@ export interface ISignupState {
   gender: string;
 }
 
-export interface IPostsdoctor {
+export interface IPostsDoctor {
   images: string[];
   description: string;
 }
@@ -60,7 +60,7 @@ export interface IDoctor {
   isVerified: boolean;
   createdAt: string;
   updatedAt: string;
-  posts: IPostsdoctor[];
+  posts: IPostsDoctor[];
   reviews: ReviewsProps[];
   __v: number;
   avatar: string;
@@ -163,6 +163,22 @@ export interface IAppointment {
   price: number;
   paid: boolean;
   status: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export interface IMessage {
+  userId: string;
+  text: string;
+  createdAt: string;
+}
+
+export interface IChat {
+  _id: string;
+  patient: IPatient;
+  doctor: IDoctor;
+  messages: IMessage[];
   createdAt: string;
   updatedAt: string;
   __v: number;
