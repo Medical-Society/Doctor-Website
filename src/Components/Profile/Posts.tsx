@@ -16,7 +16,7 @@ const Posts = () => {
 
     const { isLoading, data } = useCustomQuery({
         queryKey: [`doctor/${id}/posts`, `${queryVersion}`],
-        url: `${id}/posts`,
+        url: `doctors/${id}/posts`,
     });
     console.log(data);
 
