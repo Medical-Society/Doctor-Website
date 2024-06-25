@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import Cookies from 'js-cookie';
 
-export const socket = io("https://chat-qxih.onrender.com");
+export const socket = io("https://chat-58to.onrender.com/");
 const token = Cookies.get('token');
 
 socket.on('connect', () => {
