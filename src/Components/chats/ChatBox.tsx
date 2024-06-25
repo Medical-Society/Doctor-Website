@@ -57,36 +57,39 @@ const ChatBox = () => {
     if (error) return <p>Error loading messages.</p>;
     console.log('id: ', id);
     return (
-        <div className="flex flex-col w-full h-full overflow-y-hidden mt-20">
-            <div className="flex flex-col w-full h-full overflow-y-auto bg-white">
+        <div className="flex flex-col w-full h-full pt-3">
+        <div className="flex flex-col w-full overflow-y-hidden">
+            <div className="flex flex-col w-full overflow-y-auto bg-white">
                 {!id && (
-                    <div className="flex items-center justify-center h-full text-3xl text-violet-600">
+                    <div className="flex items-center justify-center text-3xl text-violet-600">
                         Select a chat to start messaging
                     </div>
                 )}
                 {id && messages.length === 0 && (
-                    <div className="flex items-center justify-center h-full text-3xl text-violet-600">
+                    <div className="flex items-center justify-center text-3xl text-violet-600">
                         No messages
                     </div>
                 )}
                 {id && messages.map((message, index) => (
                     <div className="flex flex-col w-full" key={index}>
                         <div className={`text-violet-600 text-center font-semibold text-lg ${message.userId === doctor?._id ? 'text-right ml-auto' : 'text-left mr-auto'} px-2 my-1`}>
-                            {doctor?.englishFullName}
+                            {message.userId === doctor?._id ? doctor?.englishFullName : data?.data?.patient?.patientName}
                         </div>
                         <div className={`p-2 m-2 rounded-xl ${message.userId === doctor?._id ? 'bg-violet-600 text-white self-end max-w-2xl' : 'bg-white text-black self-start border'}`}>
                             {message.text}
                         </div>
                     </div>
                 ))}
-                {id && (
+                
+                <div ref={messagesEndRef} />
+            </div>
+            {id && (
                     <div className='flex'>
                         <input type="text" className="w-full p-2 border-t-2 border-b-2 border-violet-600" value={inputMessage} onChange={(e) => setInputMessage(e.target.value)} />
                         <button className="p-2 bg-violet-600 text-white" onClick={handleSend}>Send</button>
                     </div>
                 )}
-                <div ref={messagesEndRef} />
-            </div>
+        </div>
         </div>
     );
 };
