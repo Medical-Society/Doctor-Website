@@ -12,6 +12,8 @@ import SideBar from "../Components/clinic/SideBar";
 import MedicalHistory from "../Components/clinic/MedicalHistory";
 import Models from "../pages/Models";
 import Chats from "../pages/Chats";
+import ChatBar from "../Components/chats/ChatBar";
+import ChatBox from "../Components/chats/ChatBox";
 
 const MainLayout = () => {
     return (
@@ -32,6 +34,17 @@ const ClinicLayout = () => {
         </div>
     );
 };
+
+const ChatsLayout = () => {
+    return (
+        <div className="flex flex-col md:flex-row h-full">
+            <ChatBar />
+            <div className="w-full h-full">
+                <Outlet />
+            </div>
+        </div>
+    );
+}
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -73,9 +86,12 @@ const router = createBrowserRouter(
                 </Route>
                 <Route path="chats" element={
                     <ProtectedRoute redirectPath="/" isAuth={true}>
-                        <Chats />
+                        <ChatsLayout />
                     </ProtectedRoute>
-                } />
+                }>
+                    <Route index element={<ChatBox />} />
+                    <Route path=":id" element={<ChatBox />} />
+                </Route>
                 <Route path="patient/:id/medical-history" element={<MedicalHistory />} />
                 <Route path="models" element={<Models />} />
             </Route>
