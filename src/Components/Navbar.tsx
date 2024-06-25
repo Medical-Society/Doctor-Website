@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
@@ -10,80 +10,67 @@ interface IProps {}
 const Navbar: React.FC<IProps> = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { token } = useSelector((state: RootState) => state.auth);
-  const menuRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const closeMenu = () => {
-    setIsOpen(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
-    <nav className="duration-300 w-full flex justify-between items-center py-2 px-4 bg-white-90 shadow-md md:px-8 relative">
-      <NavLink to="/" className="text-xl text-primary font-cinzel-decorative hidden md:block">
+    <nav className="flex flex-wrap items-center justify-between mx-auto p-4 w-full">
+      <NavLink
+        to="/"
+        className="text-xl text-primary font-cinzel-decorative hidden md:block hover:text-gray-800"
+      >
         MEDICAL SOCIETY
       </NavLink>
-      <button className="md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
+
+      <button
+        className="md:hidden"
+        onClick={toggleMenu}
+        aria-expanded={isOpen}
+        aria-controls="menu"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-primary"
+          className="h-6 w-6 text-primary hover:text-gray-800"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
         </svg>
       </button>
-      <div
-        ref={menuRef}
-        className={`absolute top-0 right-0 w-full h-30 md:w-auto bg-white z-10 transform transition-transform ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        } md:static md:flex md:items-center md:gap-3 md:bg-transparent md:transform-none`}
-      >
-        <button className="md:hidden absolute top-2 right-2 text-primary" onClick={closeMenu} aria-label="Close menu">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
 
-        <div className="flex flex-col md:hidden">
-          <NavLink to="/clinic" className="text-xl text-primary py-2 px-4 md:text-base" onClick={closeMenu}>
-            Clinic
-          </NavLink>
-          <NavLink to="/models" className="text-xl text-primary py-2 px-4 md:text-base" onClick={closeMenu}>
-            Models
-          </NavLink>
+      {token && (
+        <div
+          className={`md:block w-80 md:w-auto ${
+            isOpen ? "block absolute top-14" : "hidden"
+          }`}
+          id="menu"
+        >
+          <div className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-400 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+            <NavLink
+              to="/clinic"
+              className="text-xl text-primary hover:text-gray-800"
+            >
+              Clinic
+            </NavLink>
+            <NavLink
+              to="/models"
+              className="text-xl text-primary hover:text-gray-800"
+            >
+              Models
+            </NavLink>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Render links for larger screens */}
-      <div className="hidden md:flex gap-3">
-        <NavLink to="/clinic" className="text-xl text-primary">
-          Clinic
-        </NavLink>
-        <NavLink to="/models" className="text-xl text-primary">
-          Models
-        </NavLink>
-      </div>
-
-      <div className="flex flex-col gap-3 items-center py-1 md:flex-row md:gap-3">
+      <div className="flex gap-3 items-center py-1 md:flex-row md:gap-3">
         {!token ? (
           <>
             <NavLink
@@ -94,14 +81,14 @@ const Navbar: React.FC<IProps> = () => {
             </NavLink>
             <NavLink
               to="/signup"
-              className="text-xl py-1 px-4 border rounded-full bg-primary text-white md:px-6"
+              className="text-xl py-1 px-4 border rounded-full bg-primary text-white md:px-6 hover:bg-white hover:text-primary active:bg-primary active:text-white"
             >
               Signup
             </NavLink>
           </>
         ) : (
           <div className="flex gap-3">
-            <NavLink to="/chats">
+            <NavLink to="/chats" className="hover:text-gray-800">
               <NotificationBadge notificationCount={1} />
             </NavLink>
             <DropDown />
