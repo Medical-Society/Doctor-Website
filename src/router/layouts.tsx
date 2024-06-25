@@ -7,7 +7,9 @@ export const MainLayout = () => {
     return (
         <div className="h-full flex flex-col">
             <Navbar />
-            <Outlet />
+            <div className="flex-1 overflow-y-auto">
+                <Outlet />
+            </div>
         </div>
     );
 };
@@ -27,9 +29,9 @@ export const ChatsLayout = () => {
     return (
         <div className="flex flex-col md:flex-row h-full">
             <ChatBar />
-            <div className="w-full h-full">
+            <div className="flex flex-col flex-1 h-full">
                 <Outlet />
             </div>
         </div>
     );
-}
+};
