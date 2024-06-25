@@ -2,12 +2,7 @@ import Cookies from 'js-cookie';
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useCustomQuery from '../../hooks/useCustomQuery';
-
-interface IMessage {
-    userId: string;
-    text: string;
-    createdAt: string;
-}
+import { IMessage } from '../../interfaces';
 
 const ChatBox = () => {
     const { id } = useParams<{ id: string }>();

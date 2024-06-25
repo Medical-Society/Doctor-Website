@@ -1,6 +1,5 @@
-import { Route, createBrowserRouter, createRoutesFromElements, Outlet } from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import Home from "../pages/Home";
-import Navbar from "../Components/Navbar";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
@@ -8,43 +7,10 @@ import ForgetPass from "../pages/ForgetPass";
 import Profile from "../pages/Profile";
 import Prescription from "../pages/DoctorRoom";
 import Appointments from "../pages/Appointments";
-import SideBar from "../Components/clinic/SideBar";
 import MedicalHistory from "../Components/clinic/MedicalHistory";
 import Models from "../pages/Models";
-import Chats from "../pages/Chats";
-import ChatBar from "../Components/chats/ChatBar";
 import ChatBox from "../Components/chats/ChatBox";
-
-const MainLayout = () => {
-    return (
-        <div className="h-full flex flex-col">
-            <Navbar />
-            <Outlet />
-        </div>
-    );
-};
-
-const ClinicLayout = () => {
-    return (
-        <div className="p-16 flex flex-col md:flex-row h-full">
-            <SideBar />
-            <div className="w-full h-full">
-                <Outlet />
-            </div>
-        </div>
-    );
-};
-
-const ChatsLayout = () => {
-    return (
-        <div className="flex flex-col md:flex-row h-full">
-            <ChatBar />
-            <div className="w-full h-full">
-                <Outlet />
-            </div>
-        </div>
-    );
-}
+import { MainLayout, ClinicLayout, ChatsLayout } from "./layouts";
 
 const router = createBrowserRouter(
     createRoutesFromElements(

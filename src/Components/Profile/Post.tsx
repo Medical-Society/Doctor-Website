@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { IPostsdoctor } from "../../interfaces";
+import { IPostsDoctor } from "../../interfaces";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 
-const Post = ({ description, images }: IPostsdoctor) => {
+const Post = ({ description, images }: IPostsDoctor) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const { doctor } = useSelector((state: RootState) => state.auth);
   const { avatar, englishFullName } = doctor || {};
