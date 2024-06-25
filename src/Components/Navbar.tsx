@@ -53,7 +53,7 @@ const Navbar: React.FC<IProps> = () => {
           }`}
           id="menu"
         >
-          <div className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-400 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+          <div className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-400 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white gap-3">
             <NavLink
               to="/clinic"
               className="text-xl text-primary hover:text-gray-800"
