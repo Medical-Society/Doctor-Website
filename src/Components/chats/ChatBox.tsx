@@ -6,6 +6,7 @@ import { IMessage } from "../../interfaces";
 import { sendMessage, socket } from "../../services/socket";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import { v4 as uuidv4 } from "uuid";
 
 const ChatBox = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,17 +33,26 @@ const ChatBox = () => {
       setMessages((prev) => [
         ...prev,
         {
+          id: uuidv4(),
           userId: data?.data?.patient?._id,
           text: message,
           createdAt: new Date().toString(),
         },
       ]);
     });
+
+    // Cleanup listener on component unmount
+    return () => {
+      socket.off("listen message");
+    };
   }, [data]);
 
   useEffect(() => {
     if (data?.data?.messages) {
-      setMessages(data.data.messages);
+      setMessages(data.data.messages.map((msg: IMessage) => ({
+        ...msg,
+        id: uuidv4()
+      })));
     }
   }, [data]);
 
@@ -61,6 +71,7 @@ const ChatBox = () => {
     setMessages((prev) => [
       ...prev,
       {
+        id: uuidv4(),
         userId: doctor?._id,
         text: inputMessage,
         createdAt: new Date().toString(),
@@ -75,8 +86,6 @@ const ChatBox = () => {
   return (
     <div className="w-full h-full flex flex-col relative">
       <div className="flex-grow overflow-y-auto pb-16 p-3">
-        {" "}
-        {/* Make this scrollable and leave space for the send box */}
         {!id && (
           <div className="flex items-center justify-center text-3xl text-violet-600">
             Select a chat to start messaging
@@ -88,12 +97,12 @@ const ChatBox = () => {
           </div>
         )}
         {id &&
-          messages.map((message, index) => (
+          messages.map((message) => (
             <div
               className={`flex gap-2.5 mb-4 ${
                 message.userId === doctor?._id ? "justify-end" : ""
               }`}
-              key={index}
+              key={message.id}
             >
               <div className="grid">
                 <h5
@@ -133,8 +142,6 @@ const ChatBox = () => {
       </div>
       {id && (
         <form className="absolute bottom-0 w-full bg-white px-4 py-3 border-t border-gray-200 flex items-center gap-2">
-          {" "}
-          {/* Fixed send box */}
           <div className="flex items-center gap-2 w-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"

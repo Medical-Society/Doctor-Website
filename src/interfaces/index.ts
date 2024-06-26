@@ -169,6 +169,7 @@ export interface IAppointment {
 }
 
 export interface IMessage {
+  id: string;
   userId: string;
   text: string;
   createdAt: string;
