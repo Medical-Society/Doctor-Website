@@ -6,7 +6,6 @@ import { IMessage } from "../../interfaces";
 import { sendMessage, socket } from "../../services/socket";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
-import { v4 as uuidv4 } from "uuid";
 
 const ChatBox = () => {
   const { id } = useParams<{ id: string }>();
@@ -28,16 +27,11 @@ const ChatBox = () => {
   const [inputMessage, setInputMessage] = useState<string>("");
 
   useEffect(() => {
-    socket.on("listen message", ({ message }: { message: string }) => {
-      console.log("listen message:", message);
+    socket.on("listen message", (msg: IMessage) => {
+      console.log("listen message:", msg);
       setMessages((prev) => [
         ...prev,
-        {
-          id: uuidv4(),
-          userId: data?.data?.patient?._id,
-          text: message,
-          createdAt: new Date().toString(),
-        },
+        msg,
       ]);
     });
 
@@ -49,10 +43,7 @@ const ChatBox = () => {
 
   useEffect(() => {
     if (data?.data?.messages) {
-      setMessages(data.data.messages.map((msg: IMessage) => ({
-        ...msg,
-        id: uuidv4()
-      })));
+      setMessages(data.data.messages);
     }
   }, [data]);
 
@@ -68,15 +59,6 @@ const ChatBox = () => {
     if (inputMessage.trim() === "" || !id || !doctor) return;
     sendMessage(inputMessage, id);
     setInputMessage("");
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: uuidv4(),
-        userId: doctor?._id,
-        text: inputMessage,
-        createdAt: new Date().toString(),
-      },
-    ]);
   };
 
   if (isLoading) return <p>Loading...</p>;
@@ -102,7 +84,7 @@ const ChatBox = () => {
               className={`flex gap-2.5 mb-4 ${
                 message.userId === doctor?._id ? "justify-end" : ""
               }`}
-              key={message.id}
+              key={message._id}
             >
               <div className="grid">
                 <h5
@@ -155,7 +137,7 @@ const ChatBox = () => {
                   id="icon"
                   d="M6.05 17.6C6.05 15.3218 8.26619 13.475 11 13.475C13.7338 13.475 15.95 15.3218 15.95 17.6M13.475 8.525C13.475 9.89191 12.3669 11 11 11C9.6331 11 8.525 9.89191 8.525 8.525C8.525 7.1581 9.6331 6.05 11 6.05C12.3669 6.05 13.475 7.1581 13.475 8.525ZM19.25 11C19.25 15.5563 15.5563 19.25 11 19.25C6.44365 19.25 2.75 15.5563 2.75 11C2.75 6.44365 6.44365 2.75 11 2.75C15.5563 2.75 19.25 6.44365 19.25 11Z"
                   stroke="#4F46E5"
-                  stroke-width="1.6"
+                  strokeWidth="1.6"
                 />
               </g>
             </svg>
