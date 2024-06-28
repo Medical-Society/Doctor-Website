@@ -9,7 +9,6 @@ const ReviewsMedicalOption = ({} : IProps) => {
     const DoctorReview = DoctorsReviews.map((review,index) => {
         return (
             <ReviewsOnDoc
-               imgUrl={review.imgUrl}
                 key={index}
                 name={review.name}
                 initialRating={review.initialRating}

@@ -6,7 +6,7 @@ interface IProps {
   initialRating?: number;
   review: string;
   className?: string;
-  createdAt: string;
+  createdAt?: string;
 }
 
 const ReviewsOnDoc = ({ name, initialRating = 0, review, className, createdAt }: IProps) => {
@@ -31,8 +31,7 @@ const ReviewsOnDoc = ({ name, initialRating = 0, review, className, createdAt }:
     setHover(null);
   };
 
-  /* Format createdAt date */
-  const formattedDate = new Date(createdAt).toLocaleDateString();
+  const formattedDate = createdAt ? new Date(createdAt).toLocaleDateString() : '';
 
   /* --------------------- JSX --------------------- */
   return (
@@ -67,7 +66,7 @@ const ReviewsOnDoc = ({ name, initialRating = 0, review, className, createdAt }:
         <p className="mb-4 text-lg font-medium text-gray-800 bg-gray-50 p-4 rounded-2xl">
           {review}
         </p>
-        <p className="text-right text-sm text-gray-500">{formattedDate}</p>
+        <p className="text-sm font-normal text-gray-500">{formattedDate}</p>
       </div>
     </div>
   );
