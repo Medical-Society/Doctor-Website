@@ -15,6 +15,8 @@ const Posts = () => {
   const [removedImages, setRemovedImages] = useState<string[]>([]);
   const [queryVersion, setQueryVersion] = useState(1);
   const [editingPostId, setEditingPostId] = useState<string | null>(null);
+  const [isAddPostLoading, setIsAddPostLoading] = useState(false);
+  const [isEditPostLoading, setIsEditPostLoading] = useState(false);
 
   const doctor = Cookies.get("doctor");
   const id = doctor ? JSON.parse(doctor)._id : "";
@@ -54,6 +56,7 @@ const Posts = () => {
 
   const handleAddPost = async () => {
     try {
+      setIsAddPostLoading(true);
       await createPost(description, images || new FileList());
       onCloseModal();
       setQueryVersion((prev) => prev + 1);
@@ -61,12 +64,15 @@ const Posts = () => {
     } catch (err) {
       console.log(err);
       toast.error("Failed to add post");
+    } finally {
+        setIsAddPostLoading(false);
     }
   };
 
   const handleEditPost = async () => {
     if (!editingPostId) return;
     try {
+      setIsEditPostLoading(true);
       await updatePost(editingPostId, description, images, removedImages);
       onCloseModal();
       setQueryVersion((prev) => prev + 1);
@@ -74,6 +80,8 @@ const Posts = () => {
     } catch (err) {
       console.log(err);
       toast.error("Failed to update post");
+    } finally {
+        setIsEditPostLoading(false);
     }
   };
 
@@ -157,8 +165,9 @@ const Posts = () => {
             type="button"
             className="bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
             onClick={handleAddPost}
+            disabled={isAddPostLoading}
           >
-            Add Post
+            {isAddPostLoading ? "Adding Post..." : "Add Post"}
           </button>
         </form>
       </Modal>
@@ -218,8 +227,9 @@ const Posts = () => {
             type="button"
             className="bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
             onClick={handleEditPost}
+            disabled={isEditPostLoading}
           >
-            Edit Post
+            {isEditPostLoading ? "Updating Post..." : "Update Post"}
           </button>
         </form>
       </Modal>
