@@ -1,5 +1,3 @@
-// components/posts/Posts.tsx
-
 import React, { useState } from "react";
 import Modal from "../ui/Modal";
 import useCustomQuery from "../../hooks/useCustomQuery";
@@ -107,9 +105,9 @@ const Posts = () => {
   ));
 
   return (
-    <div className="w-full flex flex-col items-center gap-4 relative py-3 px-6 rounded-lg shadow-lg">
+    <div className="w-full flex flex-col items-center gap-6 relative py-8 px-6 rounded-lg shadow-lg">
       <button
-        className="absolute top-1 right-4 bg-[#060B73] text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+        className="absolute top-4 right-4 bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
         onClick={onOpenNewPostModal}
       >
         New Post
@@ -117,16 +115,16 @@ const Posts = () => {
       {isLoading ? (
         <p className="text-gray-500">Loading...</p>
       ) : (
-        <div className="flex flex-col gap-4 items-center py-10 w-full">
+        <div className="flex flex-col gap-6 items-center w-full">
           {doctorsPosts?.length > 0 ? doctorsPosts : <p className="text-gray-500">No posts yet</p>}
         </div>
       )}
 
       <Modal isOpen={isNewPostOpen} closeModal={onCloseModal} title="New Post">
         <form className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <label
-              className="block mb-2 text-sm font-medium text-gray-900"
+              className="block text-sm font-medium text-gray-700"
               htmlFor="description"
             >
               Description
@@ -140,9 +138,9 @@ const Posts = () => {
               onChange={handleDescriptionChange}
             />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <label
-              className="block mb-2 text-sm font-medium text-gray-900"
+              className="block text-sm font-medium text-gray-700"
               htmlFor="multiple_files"
             >
               Upload multiple files
@@ -157,7 +155,7 @@ const Posts = () => {
           </div>
           <button
             type="button"
-            className="bg-[#060B73] text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+            className="bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
             onClick={handleAddPost}
           >
             Add Post
@@ -167,9 +165,9 @@ const Posts = () => {
 
       <Modal isOpen={isEditPostOpen} closeModal={onCloseModal} title="Edit Post">
         <form className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <label
-              className="block mb-2 text-sm font-medium text-gray-900"
+              className="block text-sm font-medium text-gray-700"
               htmlFor="description"
             >
               Description
@@ -183,9 +181,9 @@ const Posts = () => {
               onChange={handleDescriptionChange}
             />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <label
-              className="block mb-2 text-sm font-medium text-gray-900"
+              className="block text-sm font-medium text-gray-700"
               htmlFor="multiple_files"
             >
               Upload multiple files
@@ -218,7 +216,7 @@ const Posts = () => {
           </div>
           <button
             type="button"
-            className="bg-[#060B73] text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+            className="bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
             onClick={handleEditPost}
           >
             Edit Post

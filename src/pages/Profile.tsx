@@ -17,7 +17,7 @@ const Profile = () => {
 
     return (
         <div className="relative flex flex-col items-center bg-gray-100 py-10 min-h-screen">
-            <button className="absolute top-4 right-4 bg-[#060B73] text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200">
+            <button className="absolute top-4 right-4 bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200">
                 Edit Profile
             </button>
             <DoctorCard />
