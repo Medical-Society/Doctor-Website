@@ -49,7 +49,7 @@ const Post = ({ description, images, postId, onDelete, onEdit }: PostProps) => {
 
         <DropdownMenu 
           menuItems={postMenuItems}
-          buttonClassName="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300"
+          buttonClassName="w-6 h-6 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100"
           buttonLabel="&#8942;"
           itemClassName="w-full text-left px-4 py-2 cursor-pointer hover:bg-gray-100"
           menuClassName="w-40 bg-white border rounded-lg shadow-md z-10"
