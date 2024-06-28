@@ -5,13 +5,13 @@ import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
 import Profile from "../pages/Profile";
-import Prescription from "../pages/DoctorRoom";
 import Appointments from "../pages/Appointments";
 import MedicalHistory from "../Components/clinic/MedicalHistory";
 import Models from "../pages/Models";
 import ChatBox from "../Components/chats/ChatBox";
 import { MainLayout, ClinicLayout, ChatsLayout } from "./layouts";
 import Post from "../pages/Post";
+import DoctorRoom from "../pages/DoctorRoom";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -54,7 +54,7 @@ const router = createBrowserRouter(
 
                     <Route index element={<Appointments />} />
                     <Route path="appointments" element={<Appointments />} />
-                    <Route path="doctor-room" element={<Prescription />} />
+                    <Route path="doctor-room" element={<DoctorRoom />} />
                 </Route>
                 <Route path="chats" element={
                     <ProtectedRoute redirectPath="/" isAuth={true}>

@@ -1,14 +1,12 @@
-import PatientCard from "../Components/appointment/PatientCard"
+import PatientCard from "../Components/appointment/PatientCard";
 import Cookies from 'js-cookie';
-import useCustomQuery from "../hooks/useCustomQuery"
+import useCustomQuery from "../hooks/useCustomQuery";
 
-interface IProps {
-
-}
+interface IProps {}
 
 const Appointments = ({}: IProps) => {
   const token = Cookies.get('token');
-  const {isLoading, data} = useCustomQuery({
+  const { isLoading, data } = useCustomQuery({
     queryKey: ['all-appointments'],
     url: 'doctors/appointments',
     config: {
@@ -16,7 +14,7 @@ const Appointments = ({}: IProps) => {
         Authorization: `Bearer ${token}`
       }
     }
-  })
+  });
 
   console.log(data);
 
@@ -35,8 +33,7 @@ const Appointments = ({}: IProps) => {
     return (
       <>
         {
-          isLoading ? <h1>Loading...</h1> : 
-          appointments.map((appointment: any, index:number) => {
+          appointments.map((appointment: any, index: number) => {
             // Create a new Date object from the appointment date
             const date = new Date(appointment.date);
 
@@ -51,7 +48,6 @@ const Appointments = ({}: IProps) => {
             let time = `${date.getHours()}:${date.getMinutes()}`;
 
             // make the time 2 digits
-            // 9:5 => 09:05
             const timeArr = time.split(':');
             timeArr[0] = timeArr[0].length === 1 ? `0${timeArr[0]}` : timeArr[0];
             timeArr[1] = timeArr[1].length === 1 ? `0${timeArr[1]}` : timeArr[1];
@@ -77,25 +73,26 @@ const Appointments = ({}: IProps) => {
           })
         }
       </>
-    )
+    );
   }
 
-
   return (
-    <div className="flex flex-col mt-10 items-center">
-      <h1 className="text-2xl font-bold text-center my-10">Today Appointments</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 w-full justify-items-center">
-
+    <div className="flex flex-col items-center px-6 py-5">
+      <h1 className="text-3xl font-bold text-center">Today's Appointments</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full justify-items-center">
         {
           isLoading ? 
-            <h1>Loading...</h1> 
+            <div className="flex justify-center items-center h-full w-full">
+              <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-500" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
           :
-          <PatientsCards /> 
+            <PatientsCards />
         }
-        
       </div>
     </div>
   )
 }
 
-export default Appointments
+export default Appointments;
