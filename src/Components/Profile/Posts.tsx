@@ -1,99 +1,232 @@
+// components/posts/Posts.tsx
+
 import React, { useState } from "react";
 import Modal from "../ui/Modal";
 import useCustomQuery from "../../hooks/useCustomQuery";
 import Cookies from "js-cookie";
-import { createPost } from "../../services/profile";
+import { createPost, deletePost, updatePost } from "../../services/profile";
 import Post from "./Post";
+import toast from "react-hot-toast";
 
 const Posts = () => {
-    const [isNewPostOpen, setIsNewPostOpen] = useState(false);
-    const [description, setDescription] = useState("");
-    const [images, setImages] = useState<FileList | null>(null);
-    const [queryVersion, setQueryVersion] = useState(1);
+  const [isNewPostOpen, setIsNewPostOpen] = useState(false);
+  const [isEditPostOpen, setIsEditPostOpen] = useState(false);
+  const [description, setDescription] = useState("");
+  const [images, setImages] = useState<FileList | null>(null);
+  const [initialImages, setInitialImages] = useState<string[]>([]);
+  const [removedImages, setRemovedImages] = useState<string[]>([]);
+  const [queryVersion, setQueryVersion] = useState(1);
+  const [editingPostId, setEditingPostId] = useState<string | null>(null);
 
-    const doctor = Cookies.get("doctor");
-    const id = doctor ? JSON.parse(doctor)._id : "";
+  const doctor = Cookies.get("doctor");
+  const id = doctor ? JSON.parse(doctor)._id : "";
 
-    const { isLoading, data } = useCustomQuery({
-        queryKey: [`doctor/${id}/posts`, `${queryVersion}`],
-        url: `doctors/${id}/posts`,
-    });
-    console.log(data);
+  const { isLoading, data } = useCustomQuery({
+    queryKey: [`doctor/${id}/posts`, `${queryVersion}`],
+    url: `doctors/${id}/posts`,
+  });
 
-    const onCloseModal = () => {
-        setIsNewPostOpen(false);
-    };
+  const onCloseModal = () => {
+    setIsNewPostOpen(false);
+    setIsEditPostOpen(false);
+    setDescription("");
+    setImages(null);
+    setInitialImages([]);
+    setRemovedImages([]);
+  };
 
-    const onOpenModal = () => {
-        setIsNewPostOpen(true);
-    };
+  const onOpenNewPostModal = () => {
+    setIsNewPostOpen(true);
+  };
 
-    const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDescription(event.target.value);
-    };
+  const onOpenEditPostModal = (postId: string, postDescription: string, postImages: string[]) => {
+    setEditingPostId(postId);
+    setDescription(postDescription);
+    setInitialImages(postImages);
+    setIsEditPostOpen(true);
+  };
 
-    const handleImagesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setImages(event.target.files);
+  const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDescription(event.target.value);
+  };
+
+  const handleImagesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setImages(event.target.files);
+  };
+
+  const handleAddPost = async () => {
+    try {
+      await createPost(description, images || new FileList());
+      onCloseModal();
+      setQueryVersion((prev) => prev + 1);
+      toast.success("Post added successfully");
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to add post");
     }
+  };
 
-    const handleAddPost = async () => {
-        try {
-            const res = await createPost(description, images || new FileList());
-            console.log(res);
-            onCloseModal();
-            setQueryVersion(prev => prev + 1);
-        } catch (err) {
-            console.log(err)
-        }
+  const handleEditPost = async () => {
+    if (!editingPostId) return;
+    try {
+      await updatePost(editingPostId, description, images, removedImages);
+      onCloseModal();
+      setQueryVersion((prev) => prev + 1);
+      toast.success("Post updated successfully");
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to update post");
     }
+  };
 
-    const doctorsPosts = data?.data?.posts.map((post: any) => (
-        <Post key={post._id} description={post.description} images={post.images} />
-    ));
+  const handleDeletePost = async (postId: string) => {
+    try {
+      await deletePost(postId);
+      setQueryVersion((prev) => prev + 1);
+      toast.success("Post deleted successfully");
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to delete post");
+    }
+  };
 
-    return (
-        <div className="w-full flex flex-col items-center gap-4">
-            <button
-                className="rounded-full border-2 border-primary bg-gradient-to-br from-blue-950 to-cyan-900 shadow-md hover:shadow-lg text-white py-2 px-20 text-xl font-semibold w-fit md:ml-auto m-10"
-                onClick={onOpenModal}
-            >
-                New Post
-            </button>
-            {isLoading ? (
-                <p>Loading...</p>
-            ) : (
-                <div className="flex flex-col gap-4 items-center p-5">
-                    {doctorsPosts?.length > 0 ? doctorsPosts : <p>No posts yet</p>}
-                </div>
-            )}
+  const handleRemoveInitialImage = (image: string) => {
+    setInitialImages((prev) => prev.filter((img) => img !== image));
+    setRemovedImages((prev) => [...prev, image]);
+  };
 
-            <Modal isOpen={isNewPostOpen} closeModal={onCloseModal} title="New Post">
-                <form className="flex flex-col gap-4">
-                    <input
-                        type="text"
-                        placeholder="Description"
-                        className="rounded-lg border border-gray-300 p-2"
-                        value={description}
-                        onChange={handleDescriptionChange}
-                    />
-                    <input
-                        type="file"
-                        placeholder="Images"
-                        className="rounded-lg border border-gray-300 p-2"
-                        multiple
-                        onChange={handleImagesChange}
-                    />
-                    <button
-                        type="button"
-                        className="rounded-full border-2 border-primary bg-gradient-to-br from-blue-950 to-cyan-900 shadow-md hover:shadow-lg text-white py-2 px-10 text-xl font-semibold w-fit md:ml-auto m-2"
-                        onClick={handleAddPost}
-                    >
-                        Add Post
-                    </button>
-                </form>
-            </Modal>
+  const doctorsPosts = data?.data?.posts.map((post: any) => (
+    <Post
+      key={post._id}
+      postId={post._id}
+      description={post.description}
+      images={post.images}
+      onDelete={handleDeletePost}
+      onEdit={onOpenEditPostModal}
+    />
+  ));
+
+  return (
+    <div className="w-full flex flex-col items-center gap-4 relative py-3 px-6 rounded-lg shadow-lg">
+      <button
+        className="absolute top-1 right-4 bg-[#060B73] text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+        onClick={onOpenNewPostModal}
+      >
+        New Post
+      </button>
+      {isLoading ? (
+        <p className="text-gray-500">Loading...</p>
+      ) : (
+        <div className="flex flex-col gap-4 items-center py-10 w-full">
+          {doctorsPosts?.length > 0 ? doctorsPosts : <p className="text-gray-500">No posts yet</p>}
         </div>
-    );
+      )}
+
+      <Modal isOpen={isNewPostOpen} closeModal={onCloseModal} title="New Post">
+        <form className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900"
+              htmlFor="description"
+            >
+              Description
+            </label>
+            <input
+              type="text"
+              id="description"
+              placeholder="Description"
+              className="p-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              value={description}
+              onChange={handleDescriptionChange}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900"
+              htmlFor="multiple_files"
+            >
+              Upload multiple files
+            </label>
+            <input
+              type="file"
+              id="multiple_files"
+              className="file:me-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white p-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              multiple
+              onChange={handleImagesChange}
+            />
+          </div>
+          <button
+            type="button"
+            className="bg-[#060B73] text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+            onClick={handleAddPost}
+          >
+            Add Post
+          </button>
+        </form>
+      </Modal>
+
+      <Modal isOpen={isEditPostOpen} closeModal={onCloseModal} title="Edit Post">
+        <form className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900"
+              htmlFor="description"
+            >
+              Description
+            </label>
+            <input
+              type="text"
+              id="description"
+              placeholder="Description"
+              className="p-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              value={description}
+              onChange={handleDescriptionChange}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900"
+              htmlFor="multiple_files"
+            >
+              Upload multiple files
+            </label>
+            <input
+              type="file"
+              id="multiple_files"
+              className="file:me-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white p-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              multiple
+              onChange={handleImagesChange}
+            />
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {initialImages.map((image) => (
+              <div key={image} className="relative">
+                <img
+                  src={image}
+                  alt="initial"
+                  className="w-20 h-20 object-cover rounded"
+                />
+                <button
+                  type="button"
+                  className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
+                  onClick={() => handleRemoveInitialImage(image)}
+                >
+                  X
+                </button>
+              </div>
+            ))}
+          </div>
+          <button
+            type="button"
+            className="bg-[#060B73] text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+            onClick={handleEditPost}
+          >
+            Edit Post
+          </button>
+        </form>
+      </Modal>
+    </div>
+  );
 };
 
 export default Posts;

@@ -11,6 +11,7 @@ import MedicalHistory from "../Components/clinic/MedicalHistory";
 import Models from "../pages/Models";
 import ChatBox from "../Components/chats/ChatBox";
 import { MainLayout, ClinicLayout, ChatsLayout } from "./layouts";
+import Post from "../pages/Post";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -38,6 +39,11 @@ const router = createBrowserRouter(
                 <Route path="profile" element={
                     <ProtectedRoute redirectPath="/" isAuth={true}>
                         <Profile />
+                    </ProtectedRoute>
+                } />
+                <Route path = "post/:id" element={
+                    <ProtectedRoute redirectPath="/" isAuth={true}>
+                        <Post />
                     </ProtectedRoute>
                 } />
                 <Route path="clinic" element={
