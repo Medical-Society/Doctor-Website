@@ -4,15 +4,10 @@ import Reviews from "../Components/Profile/Reviews";
 import DoctorCard from "../Components/Profile/DoctorCard";
 
 const Profile = () => {
-    /* --------------------- States --------------------- */
     const [isActivePage, setIsActivePage] = useState<"Posts" | "Reviews">("Posts");
 
-    /* -------------------- Handlers -------------------- */
-    const handlePostClick = () => {
-        setIsActivePage("Posts");
-    };
-    const handleReviewClick = () => {
-        setIsActivePage("Reviews");
+    const handlePageChange = (page: "Posts" | "Reviews") => {
+        setIsActivePage(page);
     };
 
     return (
@@ -23,17 +18,17 @@ const Profile = () => {
             <DoctorCard />
             <div className="flex w-full h-16 border-b-2 border-gray-300 justify-around text-lg font-semibold mt-6">
                 <button
-                    onClick={handlePostClick}
+                    onClick={() => handlePageChange("Posts")}
                     className={`py-2 px-4 transition-colors duration-200 ${
-                        isActivePage === "Posts" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-600"
+                        isActivePage === "Posts" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-600 hover:text-blue-600"
                     }`}
                 >
                     Posts
                 </button>
                 <button
-                    onClick={handleReviewClick}
+                    onClick={() => handlePageChange("Reviews")}
                     className={`py-2 px-4 transition-colors duration-200 ${
-                        isActivePage === "Reviews" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-600"
+                        isActivePage === "Reviews" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-600 hover:text-blue-600"
                     }`}
                 >
                     Reviews

@@ -5,31 +5,32 @@ interface IProps {}
 
 const DoctorCard = ({}: IProps) => {
   const { doctor } = useSelector((state: RootState) => state.auth);
-  const { englishFullName, clinicAddress, specialization, about, avatar } =
-    doctor || {};
+  const { englishFullName, clinicAddress, specialization, about, avatar } = doctor || {};
+
   return (
-    <div className="flex flex-col items-center justify-around gap-10 md:flex-row w-full py-5">
+    <div className="flex flex-col items-center justify-center gap-6 md:flex-row w-full p-5 rounded-lg">
       <img
         src={avatar}
         alt="Doctor Image"
-        className="w-40 h-40 shadow-lg md:self-start"
+        className="w-44 h-44 rounded-full shadow-md"
       />
-      <div className="flex flex-col gap-2">
-        <h1 className="text-[#060B73] font-medium text-xl md:text-3xl">
-          DR: {englishFullName}
+      <div className="flex flex-col gap-4 w-full md:w-2/5">
+        <h1 className="text-[#060B73] font-semibold text-2xl md:text-4xl text-center md:text-left">
+          Dr. {englishFullName}
         </h1>
-        <h4 className="font-semibold text-lg md:text-xl"
-        >
-            {specialization}
+        <h4 className="font-medium text-lg md:text-2xl text-gray-700 text-center md:text-left">
+          {specialization}
         </h4>
-        <p className="text-lg">{about}</p>
-        <div>
-          <h4 className="text-lg md:text-xl"
-          >
-            Clinic Address: 
-        </h4>
-          <p className="text-lg md:text-xl"
-          >{clinicAddress}</p>
+        <p className="text-md md:text-lg text-gray-600 text-center md:text-left">
+          {about}
+        </p>
+        <div className="mt-4">
+          <h4 className="font-medium text-lg md:text-xl text-gray-700 text-center md:text-left">
+            Clinic Address:
+          </h4>
+          <p className="text-md md:text-lg text-gray-600 text-center md:text-left">
+            {clinicAddress}
+          </p>
         </div>
       </div>
     </div>
