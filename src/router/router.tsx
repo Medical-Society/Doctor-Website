@@ -5,13 +5,15 @@ import Signup from "../pages/Signup";
 import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
 import Profile from "../pages/Profile";
-import Appointments from "../pages/Appointments";
+import Appointments from "../pages/TodayAppointments";
 import MedicalHistory from "../Components/clinic/MedicalHistory";
 import Models from "../pages/Models";
 import ChatBox from "../Components/chats/ChatBox";
 import { MainLayout, ClinicLayout, ChatsLayout } from "./layouts";
 import Post from "../pages/Post";
 import DoctorRoom from "../pages/DoctorRoom";
+import TodayAppointments from "../pages/TodayAppointments";
+import FinishedAppointments from "../pages/FinishedAppointments";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -53,7 +55,8 @@ const router = createBrowserRouter(
                 }>
 
                     <Route index element={<Appointments />} />
-                    <Route path="appointments" element={<Appointments />} />
+                    <Route path="today-appointments" element={<TodayAppointments />} />
+                    <Route path="finished-appointments" element={<FinishedAppointments />} />
                     <Route path="doctor-room" element={<DoctorRoom />} />
                 </Route>
                 <Route path="chats" element={

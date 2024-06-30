@@ -60,14 +60,22 @@ const DoctorRoom = () => {
     }));
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setPrescription((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, dataset } = e.target;
+    const index = Number(dataset.index);
+
+    setPrescription(prev => {
+      if (!isNaN(index)) {
+        return {
+          ...prev,
+          medicines: prev.medicines.map((medicine, i) =>
+            i === index ? { ...medicine, [name]: value } : medicine
+          ),
+        };
+      } else {
+        return { ...prev, [name]: value };
+      }
+    });
   };
 
   const handleAddPrescription = async (

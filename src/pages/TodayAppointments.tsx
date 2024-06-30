@@ -6,11 +6,16 @@ import { CircularProgress } from "@mui/material";
 
 interface IProps {}
 
-const Appointments = ({}: IProps) => {
+const TodayAppointments = ({}: IProps) => {
   const token = Cookies.get('token');
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  console.log(today.toISOString());
   const { isLoading, data, isError } = useCustomQuery({
     queryKey: ['todayAppointments'],
-    url: 'doctors/appointments?limit=50',
+    url: 'doctors/appointments?limit=50&startDate='+today.toISOString()+'&endDate='+tomorrow.toISOString(),
     config: {
       headers: {
         Authorization: `Bearer ${token}`
@@ -65,6 +70,7 @@ const Appointments = ({}: IProps) => {
               day={day}
               age={age}
               status={appointment.status}
+              paidbutton
             />
           );
         })}
@@ -92,4 +98,4 @@ const Appointments = ({}: IProps) => {
   );
 }
 
-export default Appointments;
+export default TodayAppointments;

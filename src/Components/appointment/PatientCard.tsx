@@ -9,24 +9,38 @@ interface IProps {
   time: string;
   age: number;
   status: string;
+  paidbutton?: boolean;
 }
 
-const PatientCard = ({ patientNumber, patientName, date, time, age, day, status }: IProps) => {
+const PatientCard = ({
+  paidbutton,
+  patientNumber,
+  patientName,
+  date,
+  time,
+  age,
+  day,
+  status,
+}: IProps) => {
   const [paid, setPaid] = useState(false);
   const handlePaid = () => {
-    setPaid(prev => !prev);
-  }
+    setPaid((prev) => !prev);
+  };
 
   return (
     <div className="relative w-72 rounded-lg overflow-hidden shadow-lg bg-white transform transition-all duration-300 hover:scale-105">
-      <button
-        className={`absolute top-0 right-0 px-3 py-1 rounded-bl-2xl font-semibold ${
-          paid ? 'bg-gradient-to-r from-green-400 to-green-600' : 'bg-gradient-to-r from-red-400 to-red-600'
-        } text-white`}
-        onClick={handlePaid}
-      >
-        {paid ? 'Paid' : 'Pending'}
-      </button>
+      {paidbutton && (
+        <button
+          className={`absolute top-0 right-0 px-3 py-1 rounded-bl-2xl font-semibold ${
+            paid
+              ? "bg-gradient-to-r from-green-400 to-green-600"
+              : "bg-gradient-to-r from-red-400 to-red-600"
+          } text-white`}
+          onClick={handlePaid}
+        >
+          {paid ? "Paid" : "Pending"}
+        </button>
+      )}
 
       <div className="flex flex-col px-4 py-6 gap-3">
         <div className="flex items-center">
@@ -53,17 +67,22 @@ const PatientCard = ({ patientNumber, patientName, date, time, age, day, status 
 
         <div className="flex items-center">
           <h1 className="text-lg text-primary font-medium">Status:</h1>
-          <span className={`text-lg ml-2 font-semibold ${
-            status === 'PENDING' ? 'text-yellow-500' : 'text-green-500'
-          }`}>
+          <span
+            className={`text-lg ml-2 font-semibold ${
+              status === "PENDING" ? "text-yellow-500" : "text-green-500"
+            }`}
+          >
             {status}
           </span>
         </div>
       </div>
 
-      <span style={GradientBorder({ borderRadius: '15px' })} className="-z-10 absolute inset-0" />
+      <span
+        style={GradientBorder({ borderRadius: "15px" })}
+        className="-z-10 absolute inset-0"
+      />
     </div>
-  )
-}
+  );
+};
 
 export default PatientCard;
