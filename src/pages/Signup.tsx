@@ -35,8 +35,7 @@ const Signup = () => {
 
   const [activeStep, setActiveStep] = useState(0);
   const [signupData, setSignupData] = useState<ISignupState>(defaultDoctor);
-  const [registerUser, { data, isSuccess, isLoading, isError, error }] =
-    useRegisterMutation();
+  const [registerUser, { data, isSuccess, isLoading, isError, error }] = useRegisterMutation();
   const [errors, setErrors] = useState<ISignupErrors>({
     englishFullName: "",
     arabicFullName: "",
@@ -49,15 +48,10 @@ const Signup = () => {
     phoneNumber: "",
   });
 
-  const handleSubmit = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const validationErrors = validateSignup(signupData, 0);
-    const hasErrorMsg = Object.values(validationErrors).some(
-      (errMsg) => errMsg !== ""
-    );
-    //console.log(validationErrors);
+    const hasErrorMsg = Object.values(validationErrors).some((errMsg) => errMsg !== "");
     if (hasErrorMsg) {
       setErrors(validationErrors);
       return;
@@ -68,23 +62,19 @@ const Signup = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      console.log(data);
       toast.success("Signed up successfully, Please Verify your email", {
         duration: 8000,
       });
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
     if (isError && error) {
-      console.log(error);
       const errorMessage = error as { data: { message: string } };
       toast.error(errorMessage.data.message);
     }
   }, [isSuccess, isError, data, error]);
 
   const renderFormInputsForStep = (step: number) => {
-    const handleChange = (
-      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-    ): void => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
       const { name, value } = e.target;
       setSignupData((prevSignup: any) => ({
         ...prevSignup,
@@ -100,21 +90,9 @@ const Signup = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {FormInputlist.filter((input) => {
           if (step === 0) {
-            return [
-              "englishFullName",
-              "arabicFullName",
-              "email",
-              "password",
-              "confirmPassword",
-            ].includes(input.name);
+            return ["englishFullName", "arabicFullName", "email", "password", "confirmPassword"].includes(input.name);
           } else if (step === 1) {
-            return [
-              "specialization",
-              "nationalID",
-              "phoneNumber",
-              "birthdate",
-              "gender",
-            ].includes(input.name);
+            return ["specialization", "nationalID", "phoneNumber", "birthdate", "gender"].includes(input.name);
           } else if (step === 2) {
             return ["clinicAddress"].includes(input.name);
           }
@@ -143,15 +121,12 @@ const Signup = () => {
 
   const handleNext = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const validationErrors = validateSignup(signupData, activeStep);
-    const hasErrors = Object.values(validationErrors).some(
-      (errMsg) => errMsg !== ""
-    );
+    const hasErrors = Object.values(validationErrors).some((errMsg) => errMsg !== "");
 
     if (hasErrors) {
       setErrors(validationErrors);
     } else {
       if (activeStep === steps.length - 1) {
-        console.log("submitted");
         handleSubmit(e);
       } else {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -164,77 +139,44 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex justify-center items-center mt-14">
-      <div className="flex flex-col justify-center items-center">
+    <div className="flex justify-center items-center h-full w-full">
+      <div className="flex flex-col justify-center items-center w-full">
         <h1 className="text-primary text-3xl font-bold mb-4">Signup</h1>
-        <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-0.5 lg:min-w-max mb-4">
+        <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-0.5 w-4/5 max-w-3xl">
           <form className="flex flex-col bg-white rounded-xl py-4 px-5">
-            <Stepper activeStep={activeStep} sx={{ 
-              display: "flex",
-              flexDirection: { xs: 'column', sm: 'row' },
-              alignItems: { xs: 'start', sm: 'center' },
-              gap: 1,
-            }}>
-              {steps.map((label) => {
-                const stepProps: { completed?: boolean } = {};
-                const labelProps: { optional?: React.ReactNode } = {};
-                return (
-                  <Step key={label} {...stepProps}>
-                    <StepLabel {...labelProps}>
-                      {label}
-                    </StepLabel>
-                  </Step>
-                );
-              })}
+            <Stepper activeStep={activeStep} sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: { xs: "start", sm: "center" }, gap: 1 }}>
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
             </Stepper>
-
-              {activeStep === steps.length ? (
-                <>
-                  <Typography component="div" sx={{ mt: 2, mb: 1 }}>
-                    <h1 className="text-primary text-2xl font-bold mb-4">
-                      All steps completed - you&apos;re finished
-                    </h1>
-                    <p className="text-gray-500 text-lg">
-                      Please verify your email
-                    </p>
-                  </Typography>
-                  <Box sx={{ display: "flex", flexDirection: "column", pt: 3 }}>
-                    <Box sx={{ flex: "1 1 auto" }} />
-                  </Box>
-                </>
-              ) : (
-                <>
-                  <Typography component="div" sx={{ mt: 2, mb: -3 }}>
-                    {renderFormInputsForStep(activeStep)}
-                  </Typography>
-                  <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                    <Button
-                      color="inherit"
-                      disabled={activeStep === 0}
-                      onClick={handleBack}
-                      sx={{ mr: 1 }}
-                    >
-                      Back
-                    </Button>
-                    <Box sx={{ flex: "1 1 auto" }} />
-                    <Button
-                      type="button"
-                      onClick={(
-                        e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-                      ) => handleNext(e)}
-                      disabled={isLoading} 
-                    >
-                      {isLoading ? (
-                        <CircularProgress size={24} /> 
-                      ) : activeStep === steps.length - 1 ? (
-                        "Finish"
-                      ) : (
-                        "Next"
-                      )}
-                    </Button>
-                  </Box>
-                </>
-              )}
+            {activeStep === steps.length ? (
+              <>
+                <Typography component="div" sx={{ mt: 2, mb: 1 }}>
+                  <h1 className="text-primary text-2xl font-bold mb-4">All steps completed - you're finished</h1>
+                  <p className="text-gray-500 text-lg">Please verify your email</p>
+                </Typography>
+                <Box sx={{ display: "flex", flexDirection: "column", pt: 3 }}>
+                  <Box sx={{ flex: "1 1 auto" }} />
+                </Box>
+              </>
+            ) : (
+              <>
+                <Typography component="div" sx={{ mt: 2, mb: 0 }}>
+                  {renderFormInputsForStep(activeStep)}
+                </Typography>
+                <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                  <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
+                    Back
+                  </Button>
+                  <Box sx={{ flex: "1 1 auto" }} />
+                  <Button type="button" onClick={handleNext} disabled={isLoading}>
+                    {isLoading ? <CircularProgress size={24} /> : activeStep === steps.length - 1 ? "Finish" : "Next"}
+                  </Button>
+                </Box>
+              </>
+            )}
             <HaveAccountOrNot type="signup" />
           </form>
         </div>

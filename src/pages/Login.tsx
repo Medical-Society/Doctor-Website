@@ -13,13 +13,13 @@ import { loginReducer } from "../app/features/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState<ILoginState>({
     email: '',
     password: ''
   });
-  const [loginUser, {data, isSuccess, isLoading, isError, error}] = useLoginMutation();
+  const [loginUser, { data, isSuccess, isLoading, isError, error }] = useLoginMutation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginData({
@@ -39,7 +39,7 @@ const Login = () => {
   useEffect(() => {
     if (isSuccess && data) {
       console.log(data);
-      dispatch(loginReducer({token: data.data.token, doctor: data.data.result}))
+      dispatch(loginReducer({ token: data.data.token, doctor: data.data.result }));
       toast.success('Login successful');
       setLoginData({
         email: '',
@@ -48,19 +48,18 @@ const Login = () => {
       navigate('/clinic');
     }
     if (isError && error) {
-      const errorMessage = error as {data: {message: string}};
+      const errorMessage = error as { data: { message: string } };
       toast.error(errorMessage.data.message);
     }
   }, [isSuccess, isError, data, error]);
 
-
   return (
     <div className="h-full flex flex-col lg:flex-row">
-      <div className='lg:w-1/2 flex flex-col justify-center items-center h-full'>
-        <h1 className='text-primary text-3xl font-bold mb-4'>Login</h1>
-        <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-0.5 w-10/12 max-w-md">
+      <div className="lg:w-1/2 flex flex-col justify-center items-center h-full p-6 lg:p-12">
+        <h1 className="text-primary text-4xl font-bold mb-8">Login</h1>
+        <div className="rounded-2xl shadow-lg bg-gradient-to-r from-primary to-secondary p-0.5 w-full max-w-md">
           <form
-            className='flex flex-col bg-white rounded-2xl py-10 px-5 gap-4'
+            className="flex flex-col bg-white rounded-2xl py-10 px-8 gap-6"
             onSubmit={handleLogin}
           >
             <FormInput
@@ -82,11 +81,10 @@ const Login = () => {
               onChange={handleChange as (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void}
               ariaLabel="Password"
               signup={false}
-              
             />
             <ForgetPass />
-            <Button text='Login' disabled={isLoading} />
-            <HaveAccountOrNot type='login' />
+            <Button text="Login" disabled={isLoading} />
+            <HaveAccountOrNot type="login" />
             <OrLine />
           </form>
         </div>
