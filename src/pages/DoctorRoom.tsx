@@ -7,6 +7,7 @@ import Prescription from "../Components/clinic/Prescription";
 import { IPatient, IPrescription } from "../interfaces";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import toast from "react-hot-toast";
 
 const DoctorRoom = () => {
   const token = Cookies.get("token");
@@ -18,8 +19,7 @@ const DoctorRoom = () => {
     medicines: [{ name: "", time: "" }],
   };
 
-  const [prescription, setPrescription] =
-    useState<IPrescription>(defaultPrescription);
+  const [prescription, setPrescription] = useState<IPrescription>(defaultPrescription);
   const [queryVersion, setQueryVersion] = useState(0);
 
   const { isLoading, data } = useCustomQuery({
@@ -37,25 +37,19 @@ const DoctorRoom = () => {
   );
 
   const handleShowMedicalHistory = () => {
-    navigate(
-      `/patient/${filteredAppointments[0]?.patient?._id}/medical-history`
-    );
+    navigate(`/patient/${filteredAppointments[0]?.patient?._id}/medical-history`);
   };
 
   const handleGetPatient = async () => {
     try {
-      await axiosInstance.patch(
-        `doctors/appointments/${filteredAppointments[0]?._id}`,
-        { status: "IN_PROGRESS" },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axiosInstance.patch(`doctors/appointments/${filteredAppointments[0]?._id}`, { status: "IN_PROGRESS" }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setQueryVersion((prev) => prev + 1);
-      alert("Patient retrieved");
+      toast.success("Patient retrieved");
     } catch (error) {
       console.error("Error retrieving patient", error);
-      alert("Error retrieving patient");
+      toast.error("Error retrieving patient");
     }
   };
 
@@ -76,7 +70,9 @@ const DoctorRoom = () => {
     }));
   };
 
-  const handleAddPrescription = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleAddPrescription = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
 
     if (
@@ -84,7 +80,7 @@ const DoctorRoom = () => {
       prescription.diagnose === "" ||
       prescription.medicines.some((m) => m.name === "" || m.time === "")
     ) {
-      alert("Please fill all the fields");
+      toast.error("Please fill all the fields");
       return;
     }
 
@@ -96,12 +92,12 @@ const DoctorRoom = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      alert("Prescription added successfully");
+      toast.success("Prescription added successfully");
       setPrescription(defaultPrescription);
       setQueryVersion((prev) => prev + 1);
     } catch (error) {
       console.error("Error adding prescription", error);
-      alert("Error adding prescription");
+      toast.error("Error adding prescription");
     }
   };
 
@@ -115,18 +111,20 @@ const DoctorRoom = () => {
         }
       );
       setQueryVersion((prev) => prev + 1);
-      alert("Appointment finished");
+      toast.success("Appointment finished");
     } catch (error) {
       console.error("Error finishing appointment", error);
-      alert("Error finishing appointment");
+      toast.error("Error finishing appointment");
     }
   };
 
-  if (isLoading) return (
-    <div className="h-full w-full flex flex-col justify-center items-center">
-      <CircularProgress size={48} />
-    </div>
-  )
+  if (isLoading) {
+    return (
+      <div className="h-full w-full flex flex-col justify-center items-center">
+        <CircularProgress size={48} />
+      </div>
+    );
+  }
 
   if (appointments.length === 0) {
     return (
