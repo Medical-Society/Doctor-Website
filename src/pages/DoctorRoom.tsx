@@ -6,6 +6,7 @@ import InfoPrescription from "../Components/clinic/InfoPrescription";
 import Prescription from "../Components/clinic/Prescription";
 import { IPatient, IPrescription } from "../interfaces";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 const DoctorRoom = () => {
   const token = Cookies.get("token");
@@ -121,7 +122,11 @@ const DoctorRoom = () => {
     }
   };
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return (
+    <div className="h-full w-full flex flex-col justify-center items-center">
+      <CircularProgress size={48} />
+    </div>
+  )
 
   if (appointments.length === 0) {
     return (
