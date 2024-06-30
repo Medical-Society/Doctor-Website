@@ -70,7 +70,12 @@ const router = createBrowserRouter(
                 </Route>
                 <Route path="patient/:id/medical-history" element={<MedicalHistory />} />
                 <Route path="models" element={<Models />} />
-                <Route path="settings" element={<SettingsLayout />}>
+                <Route path="settings" element={
+                    <ProtectedRoute redirectPath="/" isAuth={true}>
+                        <SettingsLayout />
+                    </ProtectedRoute>
+                }>
+                    <Route index element={<UpdatePassword />} />
                     <Route path="update-password" index element={<UpdatePassword />} />
                 </Route>
             </Route>
