@@ -16,9 +16,9 @@ export const MainLayout = () => {
 
 export const ClinicLayout = () => {
     return (
-        <div className="p-16 flex flex-col md:flex-row h-full">
+        <div className="px-3 py-10 flex flex-col lg:flex-row h-full">
             <SideBar />
-            <div className="w-full h-full">
+            <div className="w-full h-full overflow-y-auto">
                 <Outlet />
             </div>
         </div>

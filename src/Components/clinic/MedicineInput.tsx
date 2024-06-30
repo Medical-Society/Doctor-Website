@@ -8,33 +8,39 @@ interface MedicineInputProps {
 
 const MedicineInput: React.FC<MedicineInputProps> = ({ index, medicine, onChange }) => {
   return (
-    <div className="grid grid-cols-2 gap-2">
-        <div className="grid grid-cols-1 gap-2">
-            <label htmlFor={`name-${index}`} className="text-violet-950 text-lg">
-                Medicine {index + 1}
-            </label>
-            <input
-                type="text"
-                name="name"
-                data-index={index}
-                value={medicine.name}
-                onChange={onChange}
-                className="border-2 rounded-md border-primary p-1"
-            />
-        </div>
-        <div className="grid grid-cols-1 gap-2">
-            <label htmlFor={`time-${index}`} className="text-violet-950 text-lg">
-                Time
-            </label>
-            <input
-                type="text"
-                name="time"
-                data-index={index}
-                value={medicine.time}
-                onChange={onChange}
-                className="border-2 rounded-md border-primary p-1"
-            />
-        </div>
+    <div className="flex flex-col md:flex-row gap-6 w-full">
+      <div className="flex flex-col gap-1 w-full">
+        <label htmlFor={`name-${index}`} className="text-violet-950 text-lg font-medium">
+          Medicine Name:
+        </label>
+        <input
+          type="text"
+          id={`name-${index}`}
+          name="name"
+          data-index={index}
+          value={medicine.name}
+          onChange={onChange}
+          className="border rounded-md border-primary p-2 focus:outline-none focus:border-secondary"
+          placeholder="Enter medicine name"
+          required
+        />
+      </div>
+      <div className="flex flex-col gap-1 w-full">
+        <label htmlFor={`time-${index}`} className="text-violet-950 text-lg font-medium">
+          Time:
+        </label>
+        <input
+          type="text"
+          id={`time-${index}`}
+          name="time"
+          data-index={index}
+          value={medicine.time}
+          onChange={onChange}
+          className="border rounded-md border-primary p-2 focus:outline-none focus:border-secondary"
+          placeholder="Enter time"
+          required
+        />
+      </div>
     </div>
   );
 };
