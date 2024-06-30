@@ -8,12 +8,13 @@ import Profile from "../pages/Profile";
 import Appointments from "../pages/TodayAppointments";
 import Models from "../pages/Models";
 import ChatBox from "../Components/chats/ChatBox";
-import { MainLayout, ClinicLayout, ChatsLayout } from "./layouts";
+import { MainLayout, ClinicLayout, ChatsLayout, SettingsLayout } from "./layouts";
 import Post from "../pages/Post";
 import DoctorRoom from "../pages/DoctorRoom";
 import TodayAppointments from "../pages/TodayAppointments";
 import FinishedAppointments from "../pages/FinishedAppointments";
 import MedicalHistory from "../pages/MedicalHistory";
+import UpdatePassword from "../pages/UpdatePassword";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -69,6 +70,9 @@ const router = createBrowserRouter(
                 </Route>
                 <Route path="patient/:id/medical-history" element={<MedicalHistory />} />
                 <Route path="models" element={<Models />} />
+                <Route path="settings" element={<SettingsLayout />}>
+                    <Route path="update-password" index element={<UpdatePassword />} />
+                </Route>
             </Route>
 
             {/* Page Not Found */}

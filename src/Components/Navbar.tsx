@@ -18,6 +18,7 @@ const Navbar: React.FC<IProps> = () => {
 
   const profileMenuItems: MenuItem[] = [
     { type: 'navlink', label: 'Profile', path: '/profile' },
+    { type: 'navlink', label: 'Settings', path: '/settings' },
     { type: 'button', label: 'Logout', onClick: handleLogout },
   ]
 
