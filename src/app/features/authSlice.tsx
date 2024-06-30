@@ -28,9 +28,13 @@ export const authSlice = createSlice({
       Cookies.remove('token');
       Cookies.remove('doctor');
     },
+    updateProfileReducer: (state, action: PayloadAction<IDoctor>) => {
+      state.doctor = action.payload;
+      Cookies.set('doctor', JSON.stringify(action.payload));
+    },
   },
-})
+});
 
-export const { loginReducer, logoutReducer } = authSlice.actions;
+export const { loginReducer, logoutReducer, updateProfileReducer } = authSlice.actions;
 
 export default authSlice.reducer;

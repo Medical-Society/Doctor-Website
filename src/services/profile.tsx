@@ -56,3 +56,13 @@ export async function updatePost(postId: string, description: string, images: Fi
 
     return res.data;
 }
+
+export async function updateProfile(specialization: string, clinicAddress: string, phoneNumber: string) {
+    const res = await axiosInstance.patch(`doctors`, { specialization, clinicAddress, phoneNumber }, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    return res.data;
+}
