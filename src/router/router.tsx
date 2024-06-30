@@ -6,7 +6,6 @@ import ProtectedRoute from "../Components/auth/ProtectedRoute";
 import ForgetPass from "../pages/ForgetPass";
 import Profile from "../pages/Profile";
 import Appointments from "../pages/TodayAppointments";
-import MedicalHistory from "../Components/clinic/MedicalHistory";
 import Models from "../pages/Models";
 import ChatBox from "../Components/chats/ChatBox";
 import { MainLayout, ClinicLayout, ChatsLayout } from "./layouts";
@@ -14,6 +13,7 @@ import Post from "../pages/Post";
 import DoctorRoom from "../pages/DoctorRoom";
 import TodayAppointments from "../pages/TodayAppointments";
 import FinishedAppointments from "../pages/FinishedAppointments";
+import MedicalHistory from "../pages/MedicalHistory";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
