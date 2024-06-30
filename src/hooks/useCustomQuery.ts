@@ -6,16 +6,17 @@ interface IAuthQuery {
     queryKey: string[];
     url: string;
     config?: AxiosRequestConfig;
+    pollInterval?: number;
 }
 
-
-const useCustomQuery = ({queryKey, url, config}: IAuthQuery) => {
+const useCustomQuery = ({queryKey, url, config, pollInterval}: IAuthQuery) => {
     return useQuery({
         queryKey,
         queryFn: async () => {
           const {data} = await axiosInstance.get(url, config);
           return data;
-        }
+        },
+        refetchInterval: pollInterval,
       })
 }
 

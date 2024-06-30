@@ -15,7 +15,8 @@ const FinishedAppointments = ({}: IProps) => {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    }
+    },
+    pollInterval: 60000
   });
 
   useEffect(() => {

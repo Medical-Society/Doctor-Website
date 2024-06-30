@@ -20,8 +20,11 @@ const TodayAppointments = ({}: IProps) => {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    }
+    },
+    pollInterval: 60000
   });
+
+  console.log(data);
 
   useEffect(() => {
     if (isError) {
