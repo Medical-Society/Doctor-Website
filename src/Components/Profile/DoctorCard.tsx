@@ -5,7 +5,8 @@ interface IProps {}
 
 const DoctorCard = ({}: IProps) => {
   const { doctor } = useSelector((state: RootState) => state.auth);
-  const { englishFullName, clinicAddress, specialization, about, avatar } = doctor || {};
+  const { englishFullName, clinicAddress, specialization, about, avatar, availableTime } = doctor || {};
+  console.log(availableTime?.weekdays);
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 md:flex-row w-full p-5 rounded-lg">
@@ -32,6 +33,21 @@ const DoctorCard = ({}: IProps) => {
             {clinicAddress}
           </p>
         </div>
+          <div className="mt-4">
+            <h4 className="font-medium text-lg md:text-xl text-gray-700 text-center md:text-left">
+              Available Time:
+            </h4>
+            <div className="text-md md:text-lg text-gray-600 text-center md:text-left">
+              {Object.keys(availableTime?.weekdays || {}).map((day) => (
+                <p key={day}>
+                  {day}: {availableTime?.weekdays[day].from.hour}:
+                  {availableTime?.weekdays[day].from.minute} -{" "}
+                  {availableTime?.weekdays[day].to.hour}:
+                  {availableTime?.weekdays[day].to.minute}
+                </p>
+              ))}
+            </div>
+          </div>
       </div>
     </div>
   );

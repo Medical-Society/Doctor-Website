@@ -65,7 +65,7 @@ export interface IDoctor {
   __v: number;
   avatar: string;
   about: string;
-  availableTime: availableTime[];
+  availableTime: availableTime;
 }
 
 export interface ITime {
@@ -81,7 +81,7 @@ export interface IWeekDays {
 }
 
 interface availableTime {
-  weekDays: IWeekDays;
+  weekdays: IWeekDays;
   createdAt: string;
   limit: number;
   updatedAt: string;
