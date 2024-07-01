@@ -84,6 +84,16 @@ const AvailableTime = () => {
     }));
   }, []);
 
+  const handleDayChange = useCallback((oldDay: string, newDay: string) => {
+    setWeekDays((prev) => {
+      const { [oldDay]: time, ...rest } = prev;
+      return {
+        ...rest,
+        [newDay]: time,
+      };
+    });
+  }, []);
+
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
@@ -113,6 +123,7 @@ const AvailableTime = () => {
             time={time}
             onRemove={handleRemoveDay}
             onChange={handleChange}
+            onDayChange={handleDayChange}
           />
         ))}
         <button
@@ -135,15 +146,16 @@ interface TimeRangeInputProps {
   };
   onRemove: (day: string) => void;
   onChange: (day: string, field: string, value: any) => void;
+  onDayChange: (oldDay: string, newDay: string) => void;
 }
 
-const TimeRangeInput: React.FC<TimeRangeInputProps> = ({ day, time, onRemove, onChange }) => {
+const TimeRangeInput: React.FC<TimeRangeInputProps> = ({ day, time, onRemove, onChange, onDayChange }) => {
   return (
     <div className="mb-4 p-2 border border-gray-300 rounded">
       <div className="flex justify-between items-center mb-2">
         <select
           value={day}
-          onChange={(e) => onChange(day, "day", e.target.value)}
+          onChange={(e) => onDayChange(day, e.target.value)}
           className="p-2 border border-gray-300 rounded"
         >
           <option value="SATURDAY">Saturday</option>
