@@ -13,7 +13,7 @@ const DoctorCard = ({}: IProps) => {
       <img
         src={avatar}
         alt="Doctor Image"
-        className="w-44 h-44 rounded-full shadow-md"
+        className="w-44 h-44 rounded-full shadow-md hover:shadow-lg"
       />
       <div className="flex flex-col gap-4 w-full md:w-2/5">
         <h1 className="text-[#060B73] font-semibold text-2xl md:text-4xl text-center md:text-left">
