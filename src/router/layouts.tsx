@@ -87,6 +87,17 @@ export const SettingsLayout = () => {
             <RiLockPasswordLine />
             Update Password
         </NavLink>
+        <NavLink
+          to="available-time"
+          className={({ isActive }) =>
+            `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-lg transition duration-200 ease-in-out ${
+              isActive ? "bg-blue-100 text-blue-600" : ""
+            }`
+          }
+        >
+          <FaCalendarAlt />
+          Available Time
+        </NavLink>
       </SideBar>
       <div className="w-full h-full overflow-y-auto">
         <Outlet />

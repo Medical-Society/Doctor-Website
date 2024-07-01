@@ -6,7 +6,7 @@ import Reviews from "../Components/Profile/Reviews";
 import DoctorCard from "../Components/Profile/DoctorCard";
 import { updateProfile } from "../services/profile";
 import toast from "react-hot-toast";
-import { updateProfileReducer } from "../app/features/authSlice";
+import { updateDoctor } from "../app/features/authSlice";
 import { IDoctor } from "../interfaces";
 import Cookies from "js-cookie";
 
@@ -31,7 +31,7 @@ const Profile = () => {
             toast.success("Profile updated successfully");
             const updatedDoctor: IDoctor = { ...doctor, ...profileData };
             console.log(updatedDoctor);
-            dispatch(updateProfileReducer(updatedDoctor));
+            dispatch(updateDoctor(updatedDoctor));
         } catch (error) {
             toast.error("Failed to update profile");
         } finally {

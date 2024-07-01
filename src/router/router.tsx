@@ -15,6 +15,7 @@ import TodayAppointments from "../pages/TodayAppointments";
 import FinishedAppointments from "../pages/FinishedAppointments";
 import MedicalHistory from "../pages/MedicalHistory";
 import UpdatePassword from "../pages/UpdatePassword";
+import AvailableTime from "../pages/AvailableTime";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -77,6 +78,7 @@ const router = createBrowserRouter(
                 }>
                     <Route index element={<UpdatePassword />} />
                     <Route path="update-password" index element={<UpdatePassword />} />
+                    <Route path="available-time" element={<AvailableTime />} />
                 </Route>
             </Route>
 

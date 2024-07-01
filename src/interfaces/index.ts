@@ -65,27 +65,27 @@ export interface IDoctor {
   __v: number;
   avatar: string;
   about: string;
-  availableTime: AvailableTime; // Added availableTime
+  availableTime: availableTime[];
 }
 
-// Define the AvailableTime interface
-interface AvailableTime {
-  weekdays: {
-    [key: string]: {
-      from: {
-        hour: number;
-        minute: number;
-      };
-      to: {
-        hour: number;
-        minute: number;
-      };
-    };
+export interface ITime {
+  hour: number;
+  minute: number;
+}
+
+export interface IWeekDays {
+  [day: string]: {
+    from: { hour: number; minute: number };
+    to: { hour: number; minute: number };
   };
-  limit: number;
-  _id: string;
+}
+
+interface availableTime {
+  weekDays: IWeekDays;
   createdAt: string;
+  limit: number;
   updatedAt: string;
+  _id: string;
 }
 
 export interface IAuth {
