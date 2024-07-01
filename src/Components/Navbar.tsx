@@ -28,7 +28,7 @@ const Navbar: React.FC<IProps> = () => {
   ]
 
   return (
-    <nav className="flex flex-wrap items-center justify-between mx-auto py-1 px-3 w-full">
+    <nav className="flex flex-wrap items-center justify-between py-1 px-3 w-full">
       <NavLink
         to="/"
         className="text-xl text-primary font-cinzel-decorative hidden md:block hover:text-gray-800"
@@ -90,7 +90,7 @@ const Navbar: React.FC<IProps> = () => {
             </NavLink>
           </>
         ) : (
-          <div className="flex gap-3">
+          <div className="flex gap-3 items-center">
             <NavLink to="/chats" className="hover:text-gray-800">
               <NotificationBadge notificationCount={1} />
             </NavLink>
