@@ -27,7 +27,7 @@ const Welcome = ({}: IProps) => {
       }}
     >
       <h2 className="text-lg text-opacity-95 font-cinzel-decorative tracking-widest text-white font-semibold md:text-2xl lg:text-3xl">
-        WELCOME {auth?.doctor?.englishFullName.toUpperCase()} TO MEDICAL SOCIETY
+        Welcome {auth?.doctor?.englishFullName.toUpperCase()} to medical society
       </h2>
 
       <div className="flex flex-col w-full justify-center items-center text-center gap-5 p-5 md:flex-row md:gap-10">

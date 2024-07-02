@@ -20,7 +20,7 @@ const MedicineInput: React.FC<MedicineInputProps> = ({ index, medicine, onChange
           data-index={index}
           value={medicine.name}
           onChange={onChange}
-          className="border rounded-md border-primary p-2 focus:outline-none focus:border-secondary"
+          className="border rounded-lg border-gray-300 shadow-sm  p-2 focus:outline-none focus:border-secondary"
           placeholder="Enter medicine name"
           required
         />
@@ -36,7 +36,7 @@ const MedicineInput: React.FC<MedicineInputProps> = ({ index, medicine, onChange
           data-index={index}
           value={medicine.time}
           onChange={onChange}
-          className="border rounded-md border-primary p-2 focus:outline-none focus:border-secondary"
+          className="border rounded-lg border-gray-300 shadow-sm  p-2 focus:outline-none focus:border-secondary"
           placeholder="Enter time"
           required
         />

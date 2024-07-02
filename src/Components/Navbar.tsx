@@ -25,7 +25,6 @@ const Navbar: React.FC<IProps> = () => {
 
   const navMenuItems: MenuItem[] = [
     { type: 'navlink', label: 'Clinic', path: '/clinic' },
-    { type: 'navlink', label: 'Models', path: '/models' },
   ]
 
   return (
@@ -66,7 +65,7 @@ const Navbar: React.FC<IProps> = () => {
        <div className={`md:block w-80 md:w-auto hidden`} id="menu">
         <div className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-400 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white gap-3">
           {token && location.pathname !== '/login' && location.pathname !== '/signup' && (
-            <NavLink to="/clinic" className="text-xl text-primary hover:text-gray-800 ">
+            <NavLink to="/clinic" className="text-xl text-primary hover:text-gray-800 font-cinzel-decorative-regular ">
               Clinic
             </NavLink>
           )}
@@ -98,7 +97,7 @@ const Navbar: React.FC<IProps> = () => {
             </NavLink>
             <NavbarDropDown
               menuItems={profileMenuItems}
-              buttonClassName="inline-flex w-full justify-center border px-3 py-1 text-sm font-medium text-primary hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 rounded-3xl"
+              buttonClassName="inline-flex w-full justify-center px-3 py-1 text-sm font-medium text-primary hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 rounded-3xl"
               menuClassName="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
               itemClassName="group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-gray-100"
               buttonLabel="Actions"

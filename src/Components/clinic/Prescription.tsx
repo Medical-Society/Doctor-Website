@@ -16,11 +16,11 @@ const Prescription = ({
 }: IProps) => {
   return (
     <div className="flex flex-col items-center justify-center h-full">
-      <h1 className="text-violet-950 text-3xl font-medium font-Cairo mb-4">
+      <h1 className="text-violet-950 text-3xl font-medium font-Cairo mb-3">
         Prescription
       </h1>
       <form
-        className="bg-white rounded-xl shadow-md p-4 w-full max-w-4xl"
+        className="bg-white rounded-xl border border-primary p-4 w-full max-w-4xl"
         onSubmit={handleAddPrescription}
       >
         <div className="flex flex-col md:flex-row gap-6 w-full">
@@ -37,7 +37,7 @@ const Prescription = ({
               name="diseases"
               value={prescription.diseases}
               onChange={handleChange}
-              className="border rounded-md border-primary p-2 focus:outline-none focus:border-secondary"
+              className="border rounded-lg border-gray-300 shadow-sm p-2 focus:outline-none focus:border-secondary"
               placeholder="Enter diseases"
               required
             />
@@ -55,7 +55,7 @@ const Prescription = ({
               name="diagnose"
               value={prescription.diagnose}
               onChange={handleChange}
-              className="border rounded-md border-primary p-2 focus:outline-none focus:border-secondary"
+              className="border rounded-lg border-gray-300 shadow-sm  p-2 focus:outline-none focus:border-secondary"
               placeholder="Enter diagnosis"
               required
             />
@@ -75,14 +75,14 @@ const Prescription = ({
           <button
             type="button"
             onClick={handleAddMedicine}
-            className="bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary"
+            className="  py-2 px-4  border border-primary rounded-lg text-primary hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
           >
             Add Medicine
           </button>
           <button
             type="submit"
-            className="bg-gradient-to-l from-violet-950 to-slate-900 text-white py-2 px-4 ml-4 rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary"
-          >
+            className=" py-2 px-4 ml-4 rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary bg-primary text-white "
+          > 
             Add Prescription
           </button>
         </div>

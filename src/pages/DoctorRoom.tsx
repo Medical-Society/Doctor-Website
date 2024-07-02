@@ -162,7 +162,7 @@ const DoctorRoom = () => {
             <div className="flex md:flex-col lg:flex-row md:mb-[11px] justify-between items-center">
               <InfoPrescription patient={patient} />
               <button
-                  className="bg-gradient-to-l py-2 px-4 from-violet-950 to-slate-900 text-white rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary "
+                  className="py-2 px-4 rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary bg-primary text-white"
                   onClick={handleFinishAppointment}
                 >
                   Finish Appointment
