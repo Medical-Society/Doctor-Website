@@ -159,24 +159,25 @@ const DoctorRoom = () => {
       ) : (
         <div className="flex flex-col items-center w-full">
           <div className="w-full p-4 rounded-xl">
-            <div className="flex flex-col md:flex-row gap-5 justify-between items-center">
+            <div className="flex md:flex-col lg:flex-row md:mb-[11px] justify-between items-center">
               <InfoPrescription patient={patient} />
-              <div className="flex flex-col md:flex-row gap-5 items-center">
-                <button
-                  type="button"
-                  className="text-sm py-2 px-4 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
-                  onClick={handleShowMedicalHistory}
-                >
-                  Show Medical History
-                </button>
-                <button
-                  className="bg-gradient-to-l py-2 px-4 from-violet-950 to-slate-900 text-white rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary"
+              <button
+                  className="bg-gradient-to-l py-2 px-4 from-violet-950 to-slate-900 text-white rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary "
                   onClick={handleFinishAppointment}
                 >
                   Finish Appointment
                 </button>
-              </div>
-            </div>
+                </div>
+                <button
+                  type="button"
+                  className="mt-5 md:mt-0 text-sm py-2 md:ml-6 px-4 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
+                  onClick={handleShowMedicalHistory}
+                >
+                  Show Medical History
+                </button> 
+                
+              
+         
             <Prescription
               prescription={prescription}
               handleChange={handleChange}
