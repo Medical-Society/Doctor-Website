@@ -77,7 +77,7 @@ export const FormInputlist: FormInputProps[] = [
   },
   {
     label: "Phone number",
-    type: "number",
+    type: "text",
     id: "phoneNumber",
     name: "phoneNumber",
     value: "",

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
 import NotificationBadge from './ui/NotificationBadge'
@@ -12,6 +12,7 @@ const Navbar: React.FC<IProps> = () => {
   const { token, doctor } = useSelector((state: RootState) => state.auth)
 
   const dispatch = useDispatch()
+  const location = useLocation()
   const handleLogout = () => {
     dispatch(logoutReducer())
   }
@@ -24,6 +25,7 @@ const Navbar: React.FC<IProps> = () => {
 
   const navMenuItems: MenuItem[] = [
     { type: 'navlink', label: 'Clinic', path: '/clinic' },
+    { type: 'navlink', label: 'Models', path: '/models' },
   ]
 
   return (
@@ -61,17 +63,19 @@ const Navbar: React.FC<IProps> = () => {
         </NavbarDropDown>
       )}
 
-      <div className={`md:block w-80 md:w-auto hidden`} id="menu">
+       <div className={`md:block w-80 md:w-auto hidden`} id="menu">
         <div className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-400 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white gap-3">
-          <NavLink to="/clinic" className="text-xl text-primary hover:text-gray-800">
-            Clinic
-          </NavLink>
-         
+          {token && location.pathname !== '/login' && location.pathname !== '/signup' && (
+            <NavLink to="/clinic" className="text-xl text-primary hover:text-gray-800">
+              Clinic
+            </NavLink>
+          )}
         </div>
       </div>
 
+
       <div className="flex gap-3 items-center py-1 md:flex-row md:gap-3">
-        {!token ? (
+      {!token && location.pathname !== '/login'  && location.pathname !== '/signup' && (
           <>
             <NavLink
               to="/login"
@@ -86,7 +90,8 @@ const Navbar: React.FC<IProps> = () => {
               Signup
             </NavLink>
           </>
-        ) : (
+        )}
+        {token && (
           <div className="flex gap-3 items-center">
             <NavLink to="/chats" className="hover:text-gray-800">
               <NotificationBadge notificationCount={1} />

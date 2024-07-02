@@ -5,7 +5,7 @@ interface IProps {
 
 const Button = ({text, disabled}: IProps) => {
   return (
-    <button className='bg-primary text-white w-full rounded-3xl p-2' type='submit' disabled={disabled}>
+    <button className='bg-primary text-white w-full rounded-[10px] p-2' type='submit' disabled={disabled}>
       {disabled ? 'Loading...' : text}
     </button>
   )

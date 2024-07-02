@@ -5,7 +5,7 @@ import FormInput from "../Components/authForms/FormInput";
 import Button from "../Components/authForms/Button";
 import ForgetPass from "../Components/authForms/ForgotPassLink";
 import HaveAccountOrNot from "../Components/authForms/HaveAccountOrNot";
-import OrLine from "../Components/authForms/OrLine";
+/* import OrLine from "../Components/authForms/OrLine"; */
 import DoctorImg from "../Components/authForms/DoctorImg";
 import { useLoginMutation } from "../services/authApi";
 import { useDispatch } from "react-redux";
@@ -54,12 +54,12 @@ const Login = () => {
   }, [isSuccess, isError, data, error]);
 
   return (
-    <div className="h-full flex flex-col lg:flex-row">
-      <div className="lg:w-1/2 flex flex-col justify-center items-center h-full p-6 lg:p-12">
+    <div className="h-full flex flex-col lg:flex-row font-['Cairo']  ">
+      <div className="lg:w-1/2 flex flex-col justify-center items-center h-full p-6 lg:p-12 -mt-8">
         <h1 className="text-primary text-4xl font-bold mb-8">Login</h1>
-        <div className="rounded-2xl shadow-lg bg-gradient-to-r from-primary to-secondary p-0.5 w-full max-w-md">
+        <div className="rounded-[10px] bg-gradient-to-r from-primary to-secondary p-0.5 w-full max-w-md">
           <form
-            className="flex flex-col bg-white rounded-2xl py-10 px-8 gap-3"
+            className="flex flex-col bg-white rounded-[10px] py-10 px-8 gap-3 "
             onSubmit={handleLogin}
           >
             <FormInput
@@ -87,7 +87,7 @@ const Login = () => {
             <ForgetPass />
             <Button text="Login" disabled={isLoading} />
             <HaveAccountOrNot type="login" />
-            <OrLine />
+           {/*<OrLine />*/} 
           </form>
         </div>
       </div>
