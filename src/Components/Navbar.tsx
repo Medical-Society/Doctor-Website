@@ -24,7 +24,6 @@ const Navbar: React.FC<IProps> = () => {
 
   const navMenuItems: MenuItem[] = [
     { type: 'navlink', label: 'Clinic', path: '/clinic' },
-    { type: 'navlink', label: 'Models', path: '/models' },
   ]
 
   return (
@@ -67,9 +66,7 @@ const Navbar: React.FC<IProps> = () => {
           <NavLink to="/clinic" className="text-xl text-primary hover:text-gray-800">
             Clinic
           </NavLink>
-          <NavLink to="/models" className="text-xl text-primary hover:text-gray-800">
-            Models
-          </NavLink>
+         
         </div>
       </div>
 
