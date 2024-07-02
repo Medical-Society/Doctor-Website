@@ -45,7 +45,7 @@ const Post = ({ description, images, postId, onDelete, onEdit }: PostProps) => {
   ];
 
   return (
-    <div className=" flex flex-col w-full h-[410px] p-5 gap-4 border rounded-3xl bg-white shadow-md items-center justify-between max-w-lg overflow-hidden ">
+    <div className=" flex flex-col w-full h-[410px] p-5 gap-4 border rounded-3xl bg-white items-center justify-between max-w-lg overflow-hidden ">
     <div className="flex justify-between w-auto  ml-auto ">
         <DropdownMenu 
           menuItems={postMenuItems}
@@ -84,7 +84,7 @@ const Post = ({ description, images, postId, onDelete, onEdit }: PostProps) => {
             </Link> 
           )}
         </div>
-        <p className={`text-sky-950  font-['Cairo'] overflow-hidden ${isExpanded ? 'text-sm' : ''}`}>
+        <p className={`text-sky-950 h-[320px] font-['Cairo'] overflow-hidden ${isExpanded ? 'text-sm' : ''}`}>
           {trimmedDescription}
           {description.length > 350 && (
             <span

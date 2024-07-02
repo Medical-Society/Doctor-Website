@@ -170,7 +170,7 @@ const DoctorRoom = () => {
                 </div>
                 <button
                   type="button"
-                  className="mt-5 md:mt-0 text-sm py-2 md:ml-6 px-4 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
+                  className="mt-5 md:mt-0 text-sm py-2 md:ml-6 px-4 border border-primary rounded-lg text-primary hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
                   onClick={handleShowMedicalHistory}
                 >
                   Show Medical History

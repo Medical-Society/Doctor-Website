@@ -59,7 +59,7 @@ const Login = () => {
         <h1 className="text-primary text-4xl font-bold mb-8">Login</h1>
         <div className="rounded-2xl shadow-lg bg-gradient-to-r from-primary to-secondary p-0.5 w-full max-w-md">
           <form
-            className="flex flex-col bg-white rounded-2xl py-10 px-8 gap-6"
+            className="flex flex-col bg-white rounded-2xl py-10 px-8 gap-3"
             onSubmit={handleLogin}
           >
             <FormInput
@@ -71,6 +71,7 @@ const Login = () => {
               onChange={handleChange as (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void}
               ariaLabel="Email"
               signup={false}
+              placeholder="Enter your email address"
             />
             <FormInput
               label="Password"
@@ -81,6 +82,7 @@ const Login = () => {
               onChange={handleChange as (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void}
               ariaLabel="Password"
               signup={false}
+              placeholder="Enter your password"
             />
             <ForgetPass />
             <Button text="Login" disabled={isLoading} />

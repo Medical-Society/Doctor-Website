@@ -75,13 +75,13 @@ const Prescription = ({
           <button
             type="button"
             onClick={handleAddMedicine}
-            className="bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-full shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary"
+            className="bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary"
           >
             Add Medicine
           </button>
           <button
             type="submit"
-            className="bg-gradient-to-l from-violet-950 to-slate-900 text-white py-2 px-4 ml-4 rounded-full shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary"
+            className="bg-gradient-to-l from-violet-950 to-slate-900 text-white py-2 px-4 ml-4 rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary"
           >
             Add Prescription
           </button>
