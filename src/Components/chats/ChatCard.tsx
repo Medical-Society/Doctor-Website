@@ -4,7 +4,7 @@ interface IProps {
 
 const ChatCard = ({name}: IProps) => {
   return (
-    <div className="flex items-center p-3 border-b border-gray-200 w-full">
+    <div className="flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-xl transition duration-200 ease-in-out   ">
         <h1 className="text-lg font-bold">{name}</h1>
     </div>
   )
