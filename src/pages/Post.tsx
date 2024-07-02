@@ -29,10 +29,10 @@ const Post = () => {
             <p className="text-xs text-gray-500">{new Date(post.createdAt).toLocaleDateString()}</p>
           </div>
         </div>
-        <h2 className="text-2xl font-semibold text-sky-950 mb-4">{post.description}</h2>
+        <h2 className="text-2xl font-semibold text-sky-950 mb-4 ">{post.description}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {post.images.map((url: string, index: number) => (
-            <img key={index} src={url} alt={`post-${index}`} className="rounded-lg w-1/2 object-cover" />
+            <img key={index} src={url} alt={`post-${index}`} className="rounded-lg w-[520px] object-cover" />
           ))}
         </div>
       </div>

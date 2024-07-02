@@ -115,7 +115,7 @@ const Posts = () => {
   return (
     <div className="w-full flex flex-col items-center gap-6 relative py-8 px-6 rounded-lg shadow-lg">
       <button
-        className="absolute top-4 right-4 bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+        className="absolute -top-4 right-4 bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
         onClick={onOpenNewPostModal}
       >
         New Post
@@ -123,7 +123,7 @@ const Posts = () => {
       {isLoading ? (
         <p className="text-gray-500">Loading...</p>
       ) : (
-        <div className="flex flex-col gap-6 items-center w-full">
+        <div className="flex flex-col md:grid md:grid-cols-3 gap-10 items-center w-full">
           {doctorsPosts?.length > 0 ? doctorsPosts : <p className="text-gray-500">No posts yet</p>}
         </div>
       )}

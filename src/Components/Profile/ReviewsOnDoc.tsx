@@ -35,8 +35,8 @@ const ReviewsOnDoc = ({ name, initialRating = 0, review, className, createdAt }:
 
   /* --------------------- JSX --------------------- */
   return (
-    <div className={`flex flex-col items-center p-5 max-w-md ${className}`}>
-      <div className="p-4 border rounded-3xl w-full bg-white shadow-lg">
+    <div className={`flex flex-col items-center  max-w-md ${className}`}>
+      <div className="p-4 border rounded-3xl w-full bg-white">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-xl font-bold">{name}</h1>
           <div className="flex gap-1">

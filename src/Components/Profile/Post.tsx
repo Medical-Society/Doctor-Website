@@ -1,8 +1,7 @@
 import { IPostsDoctor } from "../../interfaces";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
 import DropdownMenu, { MenuItem } from "../DropDownMenu";
+import { useState } from "react";
 
 interface PostProps extends IPostsDoctor {
   postId: string;
@@ -11,8 +10,18 @@ interface PostProps extends IPostsDoctor {
 }
 
 const Post = ({ description, images, postId, onDelete, onEdit }: PostProps) => {
-  const { doctor } = useSelector((state: RootState) => state.auth);
-  const { avatar, englishFullName } = doctor || {};
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+ 
+
+  const toggleReadMore = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const trimmedDescription = description.length > 350 && !isExpanded 
+    ? description.substring(0, 350) + "..." 
+    : description;
 
   const handleDeletePost = () => {
     onDelete(postId);
@@ -36,17 +45,8 @@ const Post = ({ description, images, postId, onDelete, onEdit }: PostProps) => {
   ];
 
   return (
-    <div className="flex flex-col w-full p-5 gap-4 border rounded-3xl bg-white shadow-md items-center justify-center max-w-lg">
-      <div className="flex justify-between w-full">
-        <div className="flex items-center">
-          <img
-            src={avatar}
-            alt="Avatar"
-            className="w-10 h-10 rounded-full mr-2"
-          />
-          <p className="text-sm font-semibold">{englishFullName}</p>
-        </div>
-
+    <div className=" flex flex-col w-full h-[410px] p-5 gap-4 border rounded-3xl bg-white shadow-md items-center justify-between max-w-lg overflow-hidden ">
+    <div className="flex justify-between w-auto  ml-auto ">
         <DropdownMenu 
           menuItems={postMenuItems}
           buttonClassName="w-6 h-6 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100"
@@ -56,26 +56,22 @@ const Post = ({ description, images, postId, onDelete, onEdit }: PostProps) => {
         >
           <span>&#8942;</span>
         </DropdownMenu>
-
       </div>
 
-      <div className="flex flex-col gap-4 w-full">
-        <p className="text-sky-950 text-lg font-semibold overflow-hidden whitespace-normal">
-          {description}
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {images.slice(0, 3).map((url, index) => (
+      <div className="flex flex-col w-full flex-grow ">
+      <div className={`grid ${images.length === 1 ? 'flex justify-center' : 'grid grid-cols-2'} gap-4 w-full`}>
+          {images.slice(0, 2).map((url, index) => (
             <img
               key={index}
               src={url}
               alt={`post-${index}`}
-              className="rounded-lg w-full h-40 object-cover"
+                   className={`rounded-lg w-full h-40 object-cover`}
             />
           ))}
           {images.length > 3 && (
             <Link
               to={`/post/${postId}`}
-              className="relative flex items-center justify-center rounded-lg bg-gray-200 cursor-pointer overflow-hidden"
+              className="relative flex items-center justify-center rounded-lg bg-gray-200 cursor-pointer overflow-hidden "
             >
               <img
                 src={images[3]}
@@ -85,9 +81,20 @@ const Post = ({ description, images, postId, onDelete, onEdit }: PostProps) => {
               <p className="relative text-white font-semibold text-2xl">
                 +{images.length - 3} more
               </p>
-            </Link>
+            </Link> 
           )}
         </div>
+        <p className={`text-sky-950  font-['Cairo'] overflow-hidden ${isExpanded ? 'text-sm' : ''}`}>
+          {trimmedDescription}
+          {description.length > 350 && (
+            <span
+              onClick={toggleReadMore}
+              className="text-blue-500 cursor-pointer"
+            >
+              {isExpanded ? " Read Less" : " Read More"}
+            </span>
+          )}
+        </p>
       </div>
     </div>
   );
