@@ -28,7 +28,7 @@ const PatientCard = ({
   };
 
   return (
-    <div className="relative w-72 rounded-lg overflow-hidden shadow-lg bg-white transform transition-all duration-300 hover:scale-105">
+    <div className="relative w-80 rounded-lg overflow-hidden bg-white transform transition-all duration-300 hover:scale-105">
       {paidbutton && (
         <button
           className={`absolute top-0 right-0 px-3 py-1 rounded-bl-2xl font-semibold ${
@@ -44,10 +44,10 @@ const PatientCard = ({
 
       <div className="flex flex-col px-4 py-6 gap-3">
         <div className="flex items-center">
-          <div className="rounded-full bg-primary text-white flex items-center justify-center w-11 h-11 font-bold">
+          <div className="rounded-full bg-gradient-to-r from-violet-700 to-blue-600 text-white flex items-center justify-center w-11 h-11 font-bold">
             {patientNumber}
           </div>
-          <h1 className="text-xl font-bold ml-3">{patientName}</h1>
+          <h1 className="text-lg text-primary font-medium ml-3">{patientName}</h1>
         </div>
 
         <div className="flex items-center">
@@ -77,9 +77,9 @@ const PatientCard = ({
         </div>
       </div>
 
-      <span
-        style={GradientBorder({ borderRadius: "15px" })}
-        className="-z-10 absolute inset-0"
+      <span 
+        style={GradientBorder({ borderRadius: "15px"  })}
+        className="-z-10 absolute inset-0 "
       />
     </div>
   );

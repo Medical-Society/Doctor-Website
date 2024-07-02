@@ -66,8 +66,8 @@ const FinishedAppointments = ({}: IProps) => {
   }
 
   return (
-    <div className="flex flex-col items-center px-6 py-5">
-      <h1 className="text-3xl font-bold text-center mb-4">Finished Appointments</h1>
+    <div className="flex flex-col items-center px-6 py-5 font-cairo">
+      <h1 className="text-3xl font-medium text-center mb-4">Finished Appointments</h1>
       {isLoading ? (
         <div className="flex justify-center items-center h-full w-full">
           <CircularProgress size={48} />
@@ -77,7 +77,7 @@ const FinishedAppointments = ({}: IProps) => {
           <p>Failed to load appointments. Please try again later.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 w-full justify-items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8  justify-items-center">
           <PatientsCards />
         </div>
       )}

@@ -6,7 +6,7 @@ const FormPrescription = ({ id, label, name, onChange, placeholder, type, value,
     return (
         
         <div className="flex flex-col ml-5 mr-5 mt-2">
-            <label htmlFor={id} className="text-neutral-500 text-[25px] font-medium font-['Cairo'] leading-relaxed ">{label}</label>
+            <label htmlFor={id} className="text-neutral-500 text-[25px] font-medium 'Cairo'] leading-relaxed ">{label}</label>
             <input
                 type={type}
                 name={name}

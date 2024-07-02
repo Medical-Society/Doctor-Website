@@ -32,9 +32,9 @@ const Navbar: React.FC<IProps> = () => {
     <nav className="flex flex-wrap items-center justify-between py-1 px-3 w-full">
       <NavLink
         to="/"
-        className="text-xl text-primary font-cinzel-decorative hidden md:block hover:text-gray-800"
+        className="text-xl text-primary font-cinzel-decorative-regular hidden md:block hover:text-gray-800"
       >
-        MEDICAL SOCIETY
+         Medical society
       </NavLink>
 
       {token && (
@@ -66,7 +66,7 @@ const Navbar: React.FC<IProps> = () => {
        <div className={`md:block w-80 md:w-auto hidden`} id="menu">
         <div className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-400 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white gap-3">
           {token && location.pathname !== '/login' && location.pathname !== '/signup' && (
-            <NavLink to="/clinic" className="text-xl text-primary hover:text-gray-800">
+            <NavLink to="/clinic" className="text-xl text-primary hover:text-gray-800 ">
               Clinic
             </NavLink>
           )}

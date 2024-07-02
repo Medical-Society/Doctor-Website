@@ -22,8 +22,8 @@ const FormInput = ({
   };
 
   return (
-    <div className={`flex flex-col`}>
-      <label htmlFor={id} className="mb-2 text-sm font-medium text-violet-950">
+    <div className={`flex flex-col`}> 
+      <label htmlFor={id} className="mb-2 font-medium font-cairo text-violet-950">
         {label}
       </label>
       {type === "select" ? (

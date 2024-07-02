@@ -41,12 +41,12 @@ const Reviews = ({}: IProps) => {
 
   return (
     <div className="container mx-auto p-5">
-      <h2 className="text-3xl font-bold text-center mb-8">Patient Reviews</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7  ">
+      <h2 className="text-3xl font-bold font-cairo text-center mb-8">Patient Reviews</h2>
+      <div className="grid grid-cols-1 font-cairo md:grid-cols-2 lg:grid-cols-4 gap-7  ">
         {patientReviews}
       </div>
     </div>
   );
 };
-
+ 
 export default Reviews;

@@ -84,7 +84,7 @@ const Post = ({ description, images, postId, onDelete, onEdit }: PostProps) => {
             </Link> 
           )}
         </div>
-        <p className={`text-sky-950 h-[320px] font-['Cairo'] overflow-hidden ${isExpanded ? 'text-sm' : ''}`}>
+        <p className={`text-sky-950 h-[320px] font-cairo overflow-hidden ${isExpanded ? 'text-sm' : ''}`}>
           {trimmedDescription}
           {description.length > 350 && (
             <span

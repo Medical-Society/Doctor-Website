@@ -115,7 +115,7 @@ const Posts = () => {
   return (
     <div className="w-full flex flex-col items-center gap-6 relative py-8 px-6 rounded-lg shadow-lg">
       <button
-        className="absolute -top-4 right-4 bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+        className="absolute font-cairo -top-4 right-4 bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
         onClick={onOpenNewPostModal}
       >
         New Post
@@ -129,7 +129,7 @@ const Posts = () => {
       )}
 
       <Modal isOpen={isNewPostOpen} closeModal={onCloseModal} title="New Post">
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4 font-cairo">
           <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700"

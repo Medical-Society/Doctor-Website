@@ -54,9 +54,9 @@ const Login = () => {
   }, [isSuccess, isError, data, error]);
 
   return (
-    <div className="h-full flex flex-col lg:flex-row font-['Cairo']  ">
+    <div className="h-full flex flex-col lg:flex-row ">
       <div className="lg:w-1/2 flex flex-col justify-center items-center h-full p-6 lg:p-12 -mt-8">
-        <h1 className="text-primary text-4xl font-bold mb-8">Login</h1>
+        <h1 className="text-primary text-4xl font-cairo mb-8">Login</h1>
         <div className="rounded-[10px] bg-gradient-to-r from-primary to-secondary p-0.5 w-full max-w-md">
           <form
             className="flex flex-col bg-white rounded-[10px] py-10 px-8 gap-3 "
@@ -85,7 +85,7 @@ const Login = () => {
               placeholder="Enter your password"
             />
             <ForgetPass />
-            <Button text="Login" disabled={isLoading} />
+            <Button text="Login" disabled={isLoading} className="font-cairo" />
             <HaveAccountOrNot type="login" />
            {/*<OrLine />*/} 
           </form>

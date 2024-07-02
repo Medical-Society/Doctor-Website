@@ -8,6 +8,8 @@ export default {
     extend: {
       fontFamily: {
         'cinzel-decorative': ['"Cinzel Decorative"', 'serif'],
+         'cairo': ["Cairo", 'serif'],
+        'cinzel-decorative-regular' : ["Cinzel Decorative", "serif"]
       },
       colors: {
         primary: '#060B73',

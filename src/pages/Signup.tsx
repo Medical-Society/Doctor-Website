@@ -87,7 +87,7 @@ const Signup = () => {
     };
 
     return (
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 font-cairo">
         {FormInputlist.filter((input) => {
           if (step === 0) {
             return ["englishFullName", "arabicFullName", "email", "password", "confirmPassword"].includes(input.name);
@@ -140,10 +140,10 @@ const Signup = () => {
 
   return (
     <div className="flex justify-center items-center h-full w-full">
-      <div className="flex flex-col justify-center items-center w-full">
-        <h1 className="text-primary text-3xl font-bold mb-4">Signup</h1>
-        <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-0.5 w-4/5 max-w-3xl">
-          <form className="flex flex-col bg-white rounded-xl py-4 px-5">
+      <div className="flex flex-col justify-center items-center w-full ">
+        <h1 className="text-primary text-3xl font-medium font-cairo mb-4">Signup</h1>
+        <div className="rounded-[9px] bg-gradient-to-r from-primary to-secondary p-0.5 w-4/5 max-w-3xl">
+          <form className="flex flex-col bg-white rounded-[9px] py-4 px-5 ">
             <Stepper activeStep={activeStep} sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: { xs: "start", sm: "center" }, gap: 1 }}>
               {steps.map((label) => (
                 <Step key={label}>
@@ -154,8 +154,8 @@ const Signup = () => {
             {activeStep === steps.length ? (
               <>
                 <Typography component="div" sx={{ mt: 2, mb: 1 }}>
-                  <h1 className="text-primary text-2xl font-bold mb-4">All steps completed - you're finished</h1>
-                  <p className="text-gray-500 text-lg">Please verify your email</p>
+                  <h1 className="text-primary text-2xl font-bold mb-4 font-cairo">All steps completed - you're finished</h1>
+                  <p className="text-gray-500 text-lg font-cairo">Please verify your email</p>
                 </Typography>
                 <Box sx={{ display: "flex", flexDirection: "column", pt: 3 }}>
                   <Box sx={{ flex: "1 1 auto" }} />
@@ -170,8 +170,13 @@ const Signup = () => {
                   <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
                     Back
                   </Button>
-                  <Box sx={{ flex: "1 1 auto" }} />
-                  <Button type="button" onClick={handleNext} disabled={isLoading}>
+                  <Box sx={{ flex: "1 1 auto" ,   }} />
+                  <Button
+                    type="button"
+                    onClick={handleNext}
+                    disabled={isLoading}
+                    sx={{color: 'darkblue' }}
+                  >
                     {isLoading ? <CircularProgress size={24} /> : activeStep === steps.length - 1 ? "Finish" : "Next"}
                   </Button>
                 </Box>

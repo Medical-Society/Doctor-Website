@@ -37,7 +37,7 @@ export const validateSignup = (values: ISignupState , step:number ) => {
         errors.email = "Valid email is required";
     }
     if (!values.password.trim() || !validPassword) {
-        errors.password = "Password is at least 8 characters and one number is required";
+        errors.password = "Password is at least 8 characters and one number";
     }
     if (values.password !== values.confirmPassword) {
         errors.confirmPassword = "Passwords do not match";

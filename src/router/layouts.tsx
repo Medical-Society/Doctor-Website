@@ -24,7 +24,7 @@ export const ClinicLayout = () => {
           to="doctor-room"
           className={({ isActive }) =>
             `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-lg transition duration-200 ease-in-out ${
-              isActive ? "bg-blue-100 text-blue-600" : ""
+              isActive ? "border border-primary" : ""
             }`
           }
         >
@@ -35,7 +35,7 @@ export const ClinicLayout = () => {
           to="today-appointments"
           className={({ isActive }) =>
             `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-lg transition duration-200 ease-in-out ${
-              isActive ? "bg-blue-100 text-blue-600" : ""
+              isActive ? "border border-primary" : ""
             }`
           }
         >
@@ -46,7 +46,7 @@ export const ClinicLayout = () => {
           to="finished-appointments"
           className={({ isActive }) =>
             `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-lg transition duration-200 ease-in-out ${
-              isActive ? "bg-blue-100 text-blue-600" : ""
+              isActive ? "border border-primary" : ""
             }`
           }
         >
@@ -57,7 +57,7 @@ export const ClinicLayout = () => {
           to="/models" 
           className={({ isActive }) =>
           `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-lg transition duration-200 ease-in-out pl-10 ${
-            isActive ? "bg-blue-100 text-blue-600" : ""
+            isActive ? "border border-primary" : ""
           }`
         }
           >
