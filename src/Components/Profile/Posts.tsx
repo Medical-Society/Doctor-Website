@@ -115,7 +115,7 @@ const Posts = () => {
   return (
     <div className="w-full flex flex-col items-center gap-6 relative py-8 px-6 rounded-lg shadow-lg">
       <button
-        className="absolute font-cairo -top-4 right-4 bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+        className="absolute font-cairo -top-4 right-4  hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base  border border-primary rounded-lg text-primary hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
         onClick={onOpenNewPostModal}
       >
         New Post

@@ -9,13 +9,13 @@ const DoctorCard = ({}: IProps) => {
   console.log(availableTime?.weekdays);
 
   return (
-    <div className="flex flex-col md:pl-24 items-center  gap-6 md:flex-row w-full p-5 rounded-lg">
+    <div className="flex flex-col md:pl-24 items-center gap-6 md:flex-row w-full p-5 rounded-lg">
       <img
         src={avatar}
         alt="Doctor Image"
-        className="w-44 h-44 rounded-full shadow-md hover:shadow-lg"
+        className="w-64 h-64 border-2 mt-2"
       />
-      <div className="flex flex-col gap-4 w-full md:w-2/5">
+      <div className="flex flex-col gap-2 w-full md:w-2/5">
         <h1 className="text-[#060B73] font-cairo text-2xl md:text-4xl text-center md:text-left">
           Dr. {englishFullName}
         </h1>

@@ -36,7 +36,7 @@ const ReviewsOnDoc = ({ name, initialRating = 0, review, className, createdAt }:
   /* --------------------- JSX --------------------- */
   return (
     <div className={`flex flex-col items-center  max-w-md ${className}`}>
-      <div className="p-4 border rounded-3xl w-full bg-white">
+      <div className="p-4 border rounded-2xl w-full bg-white">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-xl font-bold">{name}</h1>
           <div className="flex gap-1">
@@ -53,7 +53,7 @@ const ReviewsOnDoc = ({ name, initialRating = 0, review, className, createdAt }:
                   />
                   <FaStar
                     className="cursor-pointer"
-                    color={currentRating <= (hover || rating || 0) ? "yellow" : "gray"}
+                    color={currentRating <= (hover || rating || 0) ? "blue" : "gray"}
                     onMouseEnter={() => handleMouseEnter(currentRating)}
                     onMouseLeave={handleMouseLeave}
                     size={15}

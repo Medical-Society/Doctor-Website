@@ -52,7 +52,7 @@ const Profile = () => {
     return (
         <div className="relative flex flex-col items-center bg-gray-100 py-10 min-h-screen">
             <button
-                className="absolute font-cairo top-4 right-4 bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base font-semibold transition-all duration-200"
+                className="absolute top-4 right-4 hover:shadow-lg py-2 px-6 md:px-8 text-sm md:text-base  border border-primary rounded-lg text-primary hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
                 onClick={() => setIsEditProfileModalOpen(true)} // Open modal on click
             >
                 Edit Profile
@@ -108,7 +108,7 @@ const Profile = () => {
                             name="clinicAddress"
                             value={profileData.clinicAddress}
                             onChange={handleChange}
-                            className="p-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                           className="p-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         />
                     </div>
                     <div className="flex flex-col gap-2">

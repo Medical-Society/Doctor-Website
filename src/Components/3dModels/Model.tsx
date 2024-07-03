@@ -6,8 +6,8 @@ interface IModel {
 
 const Model = ({src, title}: IModel) => {
   return (
-    <div className="flex flex-col">
-        <h1 className="text-3xl font-bold text-center">{title}</h1>
+    <div className="flex flex-col pt-10 ">
+        <h1 className="text-primary text-3xl font-medium font-cairo text-center">{title}</h1>
         <iframe
             id={title}
             style={{ aspectRatio: '4 / 3', width: '100%' }}

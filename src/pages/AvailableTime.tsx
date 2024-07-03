@@ -97,9 +97,9 @@ const AvailableTime = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-bold mb-4">Update Available Time</h1>
+        <h1 className="text-primary text-3xl font-medium font-cairo mb-4">Update Available Time</h1>
         <button
-          className="p-2 bg-blue-500 text-white rounded"
+          className="p-2 bg-primary text-white rounded"
           onClick={handleUpdateAvailableTime}
           disabled={loading}
         >
@@ -108,12 +108,12 @@ const AvailableTime = () => {
       </div>
       <div className="space-y-4">
         <div className="mb-4">
-          <label className="block">How many patients can you see in an hour?</label>
+          <label className="block font-cairo">How many patients can you see in an hour?</label>
           <input
             type="number"
             value={limit}
             onChange={(e) => setLimit(Number(e.target.value))}
-            className="p-2 border border-gray-300 rounded"
+            className="p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
           />
         </div>
         {Object.entries(weekDays).map(([day, time], index) => (
@@ -128,7 +128,7 @@ const AvailableTime = () => {
         ))}
         <button
           onClick={handleAddDay}
-          className="p-2 bg-green-500 text-white rounded disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
+          className="p-2 px-9 bg-primary text-white rounded disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
           disabled={!remainingDays.length}
         >
           Add Day
@@ -151,12 +151,12 @@ interface TimeRangeInputProps {
 
 const TimeRangeInput: React.FC<TimeRangeInputProps> = ({ day, time, onRemove, onChange, onDayChange }) => {
   return (
-    <div className="mb-4 p-2 border border-gray-300 rounded">
+    <div className="mb-4 p-2  border border-gray-300 rounded-md  ">
       <div className="flex justify-between items-center mb-2">
         <select
           value={day}
           onChange={(e) => onDayChange(day, e.target.value)}
-          className="p-2 border border-gray-300 rounded"
+          className="p-2 border border-gray-300 rounded-md font-cairo"
         >
           <option value="SATURDAY">Saturday</option>
           <option value="SUNDAY">Sunday</option>
@@ -189,14 +189,14 @@ const TimeInput: React.FC<TimeInputProps> = ({ label, time, onChange }) => (
   <div>
     <label className="block">{label}</label>
     <div className="flex space-x-2 items-center">
-      <div className="space-x-1">
+      <div className="space-x-1 font-cairo">
         <input
           type="number"
           value={time.hour}
           onChange={(e) => onChange({ ...time, hour: Number(e.target.value) })}
           min={0}
           max={23}
-          className="p-2 border border-gray-300 rounded w-16"
+          className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary w-16"
         />
         <span>h</span>
       </div>
@@ -208,7 +208,7 @@ const TimeInput: React.FC<TimeInputProps> = ({ label, time, onChange }) => (
           onChange={(e) => onChange({ ...time, minute: Number(e.target.value) })}
           min={0}
           max={59}
-          className="p-2 border border-gray-300 rounded w-16"
+          className="p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary w-16"
         />
         <span>m</span>
       </div>

@@ -38,19 +38,19 @@ const UpdatePassword: React.FC<IProps> = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full">
+    <div className="flex justify-center items-center md:-mt-14 md:-ml-36  h-full">
       <form
         onSubmit={handleUpdatePassword}
-        className="w-96 bg-white p-6 rounded-lg shadow-lg"
+        className="w-96 bg-white p-6 rounded-lg border border-blue-950"
         aria-labelledby="update-password-form"
       >
-        <h1 id="update-password-form" className="text-2xl font-semibold text-center">
+        <h1 id="update-password-form" className="text-primary text-3xl font-medium font-cairo text-center">
           Update Password
         </h1>
         <div className="mt-4">
           <label
             htmlFor="old-password"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700 font-cairo"
           >
             Old Password
           </label>
@@ -79,7 +79,7 @@ const UpdatePassword: React.FC<IProps> = () => {
         <div className="mt-4">
           <label
             htmlFor="new-password"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700 font-cairo"
           >
             New Password
           </label>
@@ -108,7 +108,7 @@ const UpdatePassword: React.FC<IProps> = () => {
         <div className="mt-4">
           <label
             htmlFor="confirm-password"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700 font-cairo"
           >
             Confirm Password
           </label>
@@ -136,7 +136,7 @@ const UpdatePassword: React.FC<IProps> = () => {
         </div>
         <button
           type="submit"
-          className="mt-6 w-full bg-primary text-white font-semibold py-2 rounded-md hover:bg-primary/90"
+          className="mt-6 w-full font-cairo bg-primary text-white font-semibold py-2 rounded-md hover:bg-primary/90"
           disabled={isLoading}
         >
           {isLoading ? "Updating..." : "Update Password"}
