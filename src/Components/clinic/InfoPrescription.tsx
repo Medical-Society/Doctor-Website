@@ -23,7 +23,7 @@ const InfoPrescription = ({ patient }: IProps) => {
     <div className="flex flex-col gap-4 md:ml-8">
       <div className="flex items-center">
         <div className="text-neutral-800 text-lg font-medium">Name:</div>
-        <div className="ml-2 text-neutral-900 text-lg font-normal truncate w-40 md:w-auto">{patient.patientName}</div>
+        <div className="ml-2 text-neutral-900 text-lg font-normal truncate md:w-40 lg:w-auto">{patient.patientName}</div>
       </div>
 
       <div className="flex items-center">
