@@ -68,8 +68,10 @@ const Signup = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
     if (isError && error) {
-      const errorMessage = error as { data: { message: string } };
-      toast.error(errorMessage.data.message);
+      const errorMessage = error as { data: { message: string, errors: any[] } };
+      errorMessage.data.errors.forEach((err: any) => {
+        toast.error(err);
+      });
     }
   }, [isSuccess, isError, data, error]);
 
