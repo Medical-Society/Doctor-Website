@@ -69,12 +69,12 @@ const ChatBox = () => {
     <div className="w-full h-full flex flex-col relative">
       <div className="flex-grow overflow-y-auto pb-16 p-3">
         {!id && (
-          <div className="flex items-center justify-center text-3xl text-violet-600">
+          <div className="flex items-center justify-center text-3xl text-center md:-ml-72">
             Select a chat to start messaging
           </div>
         )}
         {id && messages.length === 0 && (
-          <div className="flex items-center justify-center text-3xl text-violet-600">
+          <div className="flex items-center justify-center text-3xl md:-ml-72">
             No messages
           </div>
         )}

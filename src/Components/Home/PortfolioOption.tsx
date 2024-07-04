@@ -1,5 +1,6 @@
 // import { ReviewList } from "../../data/data";
 // import ReviewsOnDoc from "../Profile/ReviewsOnDoc";
+import portfolio from "../../assets/portfolio.jpeg"
  
  
 
@@ -21,8 +22,9 @@ const PortfolioOption = ({} : IProps) => {
  
     return (
       <div className=" md:flex md:flex-row justify-between w-auto h-auto mb-20 mt-20 m-auto">
-           <div className="md:ml-10">
+           <div >
             {/* {PortfolioOption}  */}
+            <img src={portfolio} alt="Your report" className="md:w-auto md:h-96" />
             </div>
          <div className='md:space-y-10 md:w-5/12 md:ml-auto mt-5'>
           <h1 className="text-center text-violet-950 text-3xl  font-cairo">Portfolio</h1>

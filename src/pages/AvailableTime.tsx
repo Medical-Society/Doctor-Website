@@ -97,7 +97,7 @@ const AvailableTime = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-primary text-3xl font-medium font-cairo mb-4">Update Available Time</h1>
+        <h1 className="text-primary text-3xl font-medium font-cairo mb-4 ml-80">Update Available Time</h1>
         <button
           className="p-2 bg-primary text-white rounded"
           onClick={handleUpdateAvailableTime}

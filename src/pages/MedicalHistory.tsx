@@ -36,32 +36,32 @@ const MedicalHistory: React.FC<IProps> = ({}) => {
   const renderPrescriptions = () => {
     if (data?.data?.prescriptions?.length) {
       return (
-        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-6 mt-8'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 mt-8'>
           {data.data.prescriptions.map((prescription: any) => (
-            <div className='relative w-72 rounded-lg overflow-hidden shadow-lg bg-white transform transition-all duration-300 hover:scale-105 p-6' key={prescription._id}>
+            <div className='relative   rounded-lg overflow-hidden border border-primary bg-white transform transition-all duration-300 hover:scale-105 p-6' key={prescription._id}>
               <div className='flex justify-between items-center mb-2'>
-                <h3 className='text-lg font-semibold text-primary'>Prescription</h3>
+                <h3 className='text-lg font-cairo text-primary'>Prescription</h3>
                 <p className='text-sm text-gray-500'>{new Date(prescription.createdAt).toLocaleDateString()}</p>
               </div>
               <hr className='my-2 border-t border-gray-300' />
               <div className='mb-2'>
-                <p className='font-semibold text-gray-600'>Doctor:</p>
+                <p className='font-cairo text-primary'>Doctor:</p>
                 <p className='text-gray-800'>{prescription.doctor.englishFullName}</p>
               </div>
               <div className='mb-2'>
-                <p className='font-semibold text-gray-600'>Specialization:</p>
+                <p className='font-cairo text-primary'>Specialization:</p>
                 <p className='text-gray-800'>{prescription.doctor.specialization}</p>
               </div>
               <div className='mb-2'>
-                <p className='font-semibold text-gray-600'>Disease:</p>
+                <p className='font-cairo text-primary'>Disease:</p>
                 <p className='text-gray-800'>{prescription.diseases}</p>
               </div>
               <div className='mb-2'>
-                <p className='font-semibold text-gray-600'>Diagnosis:</p>
+                <p className='font-cairo text-primary'>Diagnosis:</p>
                 <p className='text-gray-800'>{prescription.diagnose}</p>
               </div>
               <div>
-                <p className='font-semibold text-gray-600'>Medicines:</p>
+                <p className='font-cairo text-primary'>Medicines:</p>
                 <ul className='list-disc list-inside text-gray-800'>
                   {prescription.medicines.map((medicine: any, index: number) => (
                     <li key={index}>{medicine.name} - {medicine.time}</li>

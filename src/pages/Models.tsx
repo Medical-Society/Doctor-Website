@@ -6,7 +6,7 @@ interface IProps {
 
 const Models = ({}: IProps) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2  pl-96">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:pl-96">
         {
             ModelsData.map((model, index) => (
                 <Model key={index} src={model.src} title={model.title} />

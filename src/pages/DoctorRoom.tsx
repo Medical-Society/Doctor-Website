@@ -158,11 +158,11 @@ const DoctorRoom = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center w-full">
-          <div className="w-full p-4 rounded-xl">
+          <div className="w-full  rounded-xl">
             <div className="flex md:flex-col lg:flex-row md:mb-[11px] justify-between items-center ">
               <InfoPrescription patient={patient} />
                <button
-                  className="py-2 md:px-4 px-2 mt-5 md:mt-0   rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary bg-primary text-white"
+                  className="py-2 md:px-4 px-2 md:mt-0   rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary bg-primary text-white"
                   onClick={handleFinishAppointment}
                 >
                   Finish Appointment
