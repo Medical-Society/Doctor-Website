@@ -54,8 +54,8 @@ const Login = () => {
   }, [isSuccess, isError, data, error]);
 
   return (
-    <div className="h-full flex flex-col lg:flex-row ">
-      <div className="lg:w-1/2 flex flex-col justify-center items-center h-full p-6 lg:p-12 -mt-8">
+    <div className="h-full flex flex-col lg:flex-row items-center">
+      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center h-full p-6 lg:p-12 -mt-8">
         <h1 className="text-primary text-4xl font-cairo mb-8">Login</h1>
         <div className="rounded-[10px] bg-gradient-to-r from-primary to-secondary p-0.5 w-full max-w-md">
           <form
