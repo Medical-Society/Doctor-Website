@@ -139,7 +139,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full w-full">
+    <div className="flex justify-center items-center h-full w-full mt-14 md:mt-0">
       <div className="flex flex-col justify-center items-center w-full ">
         <h1 className="text-primary text-3xl font-medium font-cairo mb-4">Signup</h1>
         <div className="rounded-[9px] bg-gradient-to-r from-primary to-secondary p-0.5 w-4/5 max-w-3xl">

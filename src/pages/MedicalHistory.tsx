@@ -36,9 +36,9 @@ const MedicalHistory: React.FC<IProps> = ({}) => {
   const renderPrescriptions = () => {
     if (data?.data?.prescriptions?.length) {
       return (
-        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 mt-8'>
+        <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-8 mt-8'>
           {data.data.prescriptions.map((prescription: any) => (
-            <div className='relative   rounded-lg overflow-hidden border border-primary bg-white transform transition-all duration-300 hover:scale-105 p-6' key={prescription._id}>
+            <div className='relative w-72 rounded-lg overflow-hidden border border-primary bg-white transform transition-all duration-300 hover:scale-105 p-6' key={prescription._id}>
               <div className='flex justify-between items-center mb-2'>
                 <h3 className='text-lg font-cairo text-primary'>Prescription</h3>
                 <p className='text-sm text-gray-500'>{new Date(prescription.createdAt).toLocaleDateString()}</p>
@@ -85,7 +85,7 @@ const MedicalHistory: React.FC<IProps> = ({}) => {
       >
         Back
       </button>
-      <div className='w-full max-w-4xl p-4'>
+      <div className='w-full max-w-7xl p-4'>
         {isLoading && <div className='text-2xl font-bold text-primary'>Loading...</div>}
         {!isLoading && errorMsg && <div className='text-2xl font-bold text-red-500'>{errorMsg}</div>}
         {!isLoading && !errorMsg && renderPrescriptions()}

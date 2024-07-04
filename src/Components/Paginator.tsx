@@ -16,8 +16,8 @@ const Paginator: React.FC<IProps> = ({
   total,
 }) => {
   return (
-    <div className="flex items-center justify-center mt-8">
-      <div className="flex items-center gap-4">
+    <div className="flex items-center justify-center mt-8  md:w-auto md:m-auto">
+    <div className="flex items-center gap-4 ">
         <button
           className={`px-4 py-2 rounded-md ${
             page === 1 || isLoading
@@ -43,7 +43,7 @@ const Paginator: React.FC<IProps> = ({
           </svg>
           Prev
         </button>
-        <p className="text-lg font-semibold text-gray-800">
+        <p className="text-lg font-semibold text-gray-800 text-center">
           Page <span className="text-primary">{page}</span> of{' '}
           <span className="text-primary">{total}</span>
         </p>
