@@ -16,7 +16,7 @@ const Prescription = ({
 }: IProps) => {
   return (
     <div className="flex flex-col items-center justify-center h-full">
-      <h1 className="text-violet-950 text-3xl font-medium font-Cairo mb-3">
+      <h1 className="text-violet-950 text-2xl font-medium font-Cairo mb-3">
         Prescription
       </h1>
       <form
@@ -71,17 +71,17 @@ const Prescription = ({
             />
           ))}
         </div>
-        <div className="flex justify-end mt-4">
+        <div className="flex justify-center mt-4  ">
           <button
             type="button"
             onClick={handleAddMedicine}
-            className="  py-2 px-4  border border-primary rounded-lg text-primary hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
+            className="  py-2 w-[550px]  border border-primary rounded-lg text-primary hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
           >
             Add Medicine
           </button>
           <button
             type="submit"
-            className=" py-2 px-4 ml-4 rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary bg-primary text-white "
+            className=" py-1 w-[550px] ml-4 rounded-lg shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary bg-primary text-white "
           > 
             Add Prescription
           </button>

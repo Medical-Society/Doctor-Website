@@ -26,7 +26,7 @@ const Welcome = ({}: IProps) => {
         minHeight: "calc(100vh - 1rem)",
       }}
     >
-      <h2 className="text-lg text-opacity-95 font-cinzel-decorative tracking-widest text-white font-semibold md:text-2xl lg:text-3xl">
+      <h2 className="text-lg text-opacity-95 font-cinzel-decorative tracking-widest text-white font-semibold md:text-2xl lg:text-3xl ">
         Welcome {auth?.doctor?.englishFullName.toUpperCase()} to medical society
       </h2>
 
@@ -43,7 +43,7 @@ const Welcome = ({}: IProps) => {
         </WelcomeCard>
       </div>
       <button
-        className="border-2 border-white rounded-full py-2 px-10 text-white hover:bg-white hover:text-primary active:bg-primary active:text-white md:text-2xl md:py-3 md:px-24"
+        className="border-2 border-white rounded-[10px] py-2 px-10 text-white hover:bg-white hover:text-primary active:bg-primary active:text-white md:text-2xl md:py-3 md:px-24"
         type="button"
         style={{ fontFamily: "Cairo" }}
       >

@@ -78,13 +78,13 @@ const Navbar: React.FC<IProps> = () => {
           <>
             <NavLink
               to="/login"
-              className="text-xl py-1 px-3 border rounded-full border-primary text-primary hover:bg-white hover:text-primary active:bg-primary active:text-white md:px-4"
+              className="text-lg py-1 px-3  md:px-6 border rounded-[10px] border-primary text-primary hover:bg-white hover:text-primary active:bg-primary active:text-white"
             >
               Login
             </NavLink>
             <NavLink
               to="/signup"
-              className="text-xl py-1 px-4 border rounded-full bg-primary text-white md:px-6 hover:bg-white hover:text-primary active:bg-primary active:text-white"
+              className="text-lg py-1 px-4 border rounded-[10px] bg-primary text-white md:px-6 hover:bg-white hover:text-primary active:bg-primary active:text-white"
             >
               Signup
             </NavLink>

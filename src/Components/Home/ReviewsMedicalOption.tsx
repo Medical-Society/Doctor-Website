@@ -23,8 +23,8 @@ const ReviewsMedicalOption = ({} : IProps) => {
         
     return (
         <div className="text-center mt-20">
-        <h1 className="text-center  text-violet-950 text-3xl font-serif">Reviews of Medical society</h1>
-        <div className="md:grid md:grid-cols-2 xl:grid-cols-3 gap-5"> {DoctorReview}  </div>
+        <h1 className="text-center  text-violet-950 text-3xl font-cinzel-decorative-regular">Reviews of medical society</h1>
+        <div className="md:grid md:grid-cols-2 xl:grid-cols-3 gap-5 font-cairo"> {DoctorReview}  </div>
         </div>
     )
     }

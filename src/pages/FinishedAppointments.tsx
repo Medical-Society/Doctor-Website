@@ -67,7 +67,7 @@ const FinishedAppointments = ({}: IProps) => {
 
   return (
     <div className="flex flex-col items-center px-6 py-5 font-cairo">
-      <h1 className="text-3xl font-medium text-center mb-4">Finished Appointments</h1>
+      <h1 className="text-primary text-3xl font-medium font-cairo text-center mb-4">Finished Appointments</h1>
       {isLoading ? (
         <div className="flex justify-center items-center h-full w-full">
           <CircularProgress size={48} />

@@ -25,7 +25,13 @@ const ChatBar = () => {
           <p>Loading...</p>
         ) : (
           data.data.chats?.map((chat: IChat) => (
-            <NavLink to={`/chats/${chat?._id}`} key={chat?._id}>
+            <NavLink to={`/chats/${chat?._id}`} key={chat?._id} 
+            className={({ isActive }) =>
+            ` ${
+              isActive ? "border rounded-lg border-primary" : ""
+            }`
+          }
+            >
               <ChatCard key={chat?._id} name={chat.patient.patientName} />
             </NavLink>
           ))

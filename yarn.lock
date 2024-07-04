@@ -2794,6 +2794,11 @@ tailwindcss@^3.4.1:
     resolve "^1.22.2"
     sucrase "^3.32.0"
 
+taos@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/taos/-/taos-1.0.5.tgz#4669ad23455c2464dc7475b212ee63d015463de9"
+  integrity sha512-JSwR+ldec2dSjOnssN/VGjXSR44DbzUVeAXRDVEuMsc7xndx8ePcQ4QMAMUAL5V4KN1wlmhumyQ7aSykDf8uhw==
+
 text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
