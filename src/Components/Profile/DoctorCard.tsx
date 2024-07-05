@@ -41,14 +41,13 @@ const DoctorCard = ({}: IProps) => {
     e.preventDefault();
     if (!image) return;
     const formData = new FormData();
-    formData.append("image", image); // Correct the field name here
+    formData.append("image", image);
     try {
       const res = await updateAvatar(formData);
       const doctor = res.data;
       dispatch(updateDoctor(doctor));
       toast.success("Image updated successfully");
     } catch (error) {
-      console.log(error);
       toast.error("Failed to update image");
     } finally {
       setImage(null);
