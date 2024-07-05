@@ -19,6 +19,7 @@ export const updatePassword = async (oldPassword: string, newPassword: string) =
 };
 
 export const updateAvailableTime = async (availableTime: any) => {
+    console.log(token);
 
     const res = await axiosInstance.patch(`doctors/${doctorId}/available-times`, {
         availableTime,

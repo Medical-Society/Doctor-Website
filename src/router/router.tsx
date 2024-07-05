@@ -16,6 +16,7 @@ import FinishedAppointments from "../pages/FinishedAppointments";
 import MedicalHistory from "../pages/MedicalHistory";
 import UpdatePassword from "../pages/UpdatePassword";
 import AvailableTime from "../pages/AvailableTime";
+import UploadDocuments from "../pages/VerifyImages";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -69,17 +70,42 @@ const router = createBrowserRouter(
                     <Route index element={<ChatBox />} />
                     <Route path=":id" element={<ChatBox />} />
                 </Route>
-                <Route path="patient/:id/medical-history" element={<MedicalHistory />} />
-                <Route path="models" element={<Models />} />
+                <Route path="patient/:id/medical-history" element={
+                    <ProtectedRoute redirectPath="/" isAuth={true}>
+                        <MedicalHistory />
+                    </ProtectedRoute>
+                } />
+                <Route path="models" element={
+                    <ProtectedRoute redirectPath="/" isAuth={true}>
+                        <Models />
+                    </ProtectedRoute>
+                } />
                 <Route path="settings" element={
                     <ProtectedRoute redirectPath="/" isAuth={true}>
                         <SettingsLayout />
                     </ProtectedRoute>
                 }>
-                    <Route index element={<UpdatePassword />} />
-                    <Route path="update-password" index element={<UpdatePassword />} />
-                    <Route path="available-time" element={<AvailableTime />} />
+                    <Route index element={
+                        <ProtectedRoute redirectPath="/" isAuth={true}>
+                            <Profile />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="update-password" index element={
+                        <ProtectedRoute redirectPath="/" isAuth={true}>
+                            <UpdatePassword />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="available-time" element={
+                        <ProtectedRoute redirectPath="/" isAuth={true}>
+                            <AvailableTime />
+                        </ProtectedRoute>
+                    } />
                 </Route>
+                <Route path="verify-email/doctors" element={
+                    <ProtectedRoute redirectPath="/" isAuth={false}>
+                        <UploadDocuments />
+                    </ProtectedRoute>
+                } />
             </Route>
 
             {/* Page Not Found */}

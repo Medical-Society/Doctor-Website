@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
 import NotificationBadge from './ui/NotificationBadge'
@@ -13,8 +13,10 @@ const Navbar: React.FC<IProps> = () => {
 
   const dispatch = useDispatch()
   const location = useLocation()
+  const navigate = useNavigate()
   const handleLogout = () => {
     dispatch(logoutReducer())
+    navigate('/login')
   }
 
   const profileMenuItems: MenuItem[] = [

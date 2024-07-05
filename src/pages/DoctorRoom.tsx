@@ -22,13 +22,21 @@ const DoctorRoom = () => {
   const [prescription, setPrescription] = useState<IPrescription>(defaultPrescription);
   const [queryVersion, setQueryVersion] = useState(0);
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  console.log(today.toISOString());
+
   const { isLoading, data } = useCustomQuery({
     queryKey: [`all-appointment-${queryVersion}`],
-    url: "doctors/appointments?limit=50",
+    url: "doctors/appointments?limit=50&startDate=" + today.toISOString() + "&endDate=" + tomorrow.toISOString(),
     config: {
       headers: { Authorization: `Bearer ${token}` },
     },
   });
+
+  console.log("doctor room data", data);
 
   const appointments = data?.data?.appointments || [];
   const filteredAppointments = appointments.filter(
