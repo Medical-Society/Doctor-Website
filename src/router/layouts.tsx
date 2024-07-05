@@ -4,6 +4,7 @@ import SideBar from "../Components/clinic/SideBar";
 import ChatBar from "../Components/chats/ChatBar";
 import { FaCalendarAlt, FaUserMd } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { GiSkeleton } from "react-icons/gi";
 
 export const MainLayout = () => {
   return (
@@ -53,16 +54,17 @@ export const ClinicLayout = () => {
           <FaCalendarAlt />
           Finished Appointments
         </NavLink>
-          <NavLink 
-          to="/models" 
+        <NavLink
+          to="models"
           className={({ isActive }) =>
-          `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-lg transition duration-200 ease-in-out pl-10 ${
-            isActive ? "border border-primary" : ""
-          }`
-        }
-          >
-            Models
-          </NavLink>
+            `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-2 rounded-lg transition duration-200 ease-in-out ${
+              isActive ? "border border-primary" : ""
+            }`
+          }
+        >
+          <GiSkeleton size={25}/>
+          Models
+        </NavLink>
       </SideBar>
       <div className="w-full h-full overflow-y-auto">
         <Outlet />
@@ -87,15 +89,15 @@ export const SettingsLayout = () => {
     <div className="flex flex-col lg:flex-row h-full">
       <SideBar>
         <NavLink
-            to="update-password"
-            className={({ isActive }) =>
-                `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-lg transition duration-200 ease-in-out ${
-                    isActive ? "border border-primary" : ""
-                }`
-            }
+          to="update-password"
+          className={({ isActive }) =>
+            `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-lg transition duration-200 ease-in-out ${
+              isActive ? "border border-primary" : ""
+            }`
+          }
         >
-            <RiLockPasswordLine />
-            Update Password
+          <RiLockPasswordLine />
+          Update Password
         </NavLink>
         <NavLink
           to="available-time"
