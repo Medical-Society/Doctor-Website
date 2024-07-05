@@ -12,6 +12,7 @@ const DoctorCard = ({}: IProps) => {
   const dispatch = useDispatch();
   const { doctor } = useSelector((state: RootState) => state.auth);
   const [image, setImage] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
   const {
     englishFullName,
     clinicAddress,
@@ -43,6 +44,7 @@ const DoctorCard = ({}: IProps) => {
     const formData = new FormData();
     formData.append("image", image);
     try {
+      setLoading(true);
       const res = await updateAvatar(formData);
       const doctor = res.data;
       dispatch(updateDoctor(doctor));
@@ -52,6 +54,7 @@ const DoctorCard = ({}: IProps) => {
     } finally {
       setImage(null);
       setIsModalOpen(false);
+      setLoading(false);
     }
   };
 
@@ -118,7 +121,12 @@ const DoctorCard = ({}: IProps) => {
             onChange={handleImageChange}
             className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
           />
-          <button className="p-2 bg-primary text-white rounded">Update</button>
+          <button 
+            className="p-2 bg-primary text-white rounded"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Save Image"}
+          </button>
         </form>
       </Modal>
     </div>
