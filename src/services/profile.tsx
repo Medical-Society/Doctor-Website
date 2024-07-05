@@ -68,7 +68,7 @@ export async function updateProfile(specialization: string, clinicAddress: strin
 }
 
 export async function updateAvatar(formData: FormData) {
-
+    
     const res = await axiosInstance.post(`doctors/avatar`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',

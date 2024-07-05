@@ -13,6 +13,7 @@ const TodayAppointments = ({}: IProps) => {
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
   console.log(today.toISOString());
+
   const { isLoading, data, isError } = useCustomQuery({
     queryKey: ['todayAppointments'],
     url: 'doctors/appointments?limit=50&startDate='+today.toISOString()+'&endDate='+tomorrow.toISOString(),

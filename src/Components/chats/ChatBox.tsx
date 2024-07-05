@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useCustomQuery from "../../hooks/useCustomQuery";
 import { IMessage } from "../../interfaces";
-import { sendMessage, socket } from "../../services/socket";
+import { sendMessage, initializeSocket, disconnectSocket } from "../../services/socket";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 
@@ -27,18 +27,23 @@ const ChatBox = () => {
   const [inputMessage, setInputMessage] = useState<string>("");
 
   useEffect(() => {
-    socket.on("listen message", (msg: IMessage) => {
-      console.log("listen message:", msg);
-      setMessages((prev) => [
-        ...prev,
-        msg,
-      ]);
-    });
+    const socket = initializeSocket();
 
-    // Cleanup listener on component unmount
-    return () => {
-      socket.off("listen message");
-    };
+    if (socket) {
+      socket.on("listen message", (msg: IMessage) => {
+        console.log("listen message:", msg);
+        setMessages((prev) => [
+          ...prev,
+          msg,
+        ]);
+      });
+
+      // Cleanup listener on component unmount
+      return () => {
+        socket.off("listen message");
+        disconnectSocket();
+      };
+    }
   }, [data]);
 
   useEffect(() => {

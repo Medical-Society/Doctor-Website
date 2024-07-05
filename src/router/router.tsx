@@ -26,6 +26,7 @@ import MedicalHistory from "../pages/MedicalHistory";
 import UpdatePassword from "../pages/UpdatePassword";
 import AvailableTime from "../pages/AvailableTime";
 import UploadDocuments from "../pages/VerifyImages";
+import Model from "../Components/3dModels/Model";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -95,6 +96,8 @@ const router = createBrowserRouter(
               </ProtectedRoute>
             }
           />
+          <Route path="models/:id" element={<Model />} />
+
         </Route>
         <Route
           path="chats"
@@ -150,6 +153,7 @@ const router = createBrowserRouter(
             </ProtectedRoute>
           }
         />
+        
       </Route>
 
       {/* Page Not Found */}

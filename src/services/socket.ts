@@ -1,14 +1,34 @@
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import Cookies from 'js-cookie';
 
-const token = Cookies.get('token');
-const apiUrl = "https://api.medical-society.fr.to/"
-export const socket = io(apiUrl, {
-    extraHeaders: {
-        Authorization: `bearer ${token}`
+const apiUrl = "https://api.medical-society.fr.to/";
+
+let socket: Socket | null = null;
+
+export const initializeSocket = () => {
+    const token = Cookies.get('token');
+    if (!token) {
+        console.error('No token found');
+        return null;
     }
-});
+
+    socket = io(apiUrl, {
+        extraHeaders: {
+            Authorization: `bearer ${token}`
+        }
+    });
+
+    return socket;
+};
 
 export const sendMessage = (message: string, chatId: string) => {
-    socket.emit('send message', { chatId, message });
+    if (socket) {
+        socket.emit('send message', { chatId, message });
+    }
+}
+
+export const disconnectSocket = () => {
+    if (socket) {
+        socket.disconnect();
+    }
 }
