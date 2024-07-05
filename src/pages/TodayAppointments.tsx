@@ -33,16 +33,12 @@ const TodayAppointments = ({}: IProps) => {
     }
   }, [isError]);
 
+  let appointments = data?.data?.appointments || [];
+  appointments = appointments.filter((appointment: any) => 
+    appointment.status === "PENDING" || appointment.status === "IN_PROGRESS"
+  );
+
   const PatientsCards = () => {
-    let appointments = data?.data?.appointments || [];
-
-    // Sort appointments by date
-    appointments = appointments.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-    // Filter appointments by status
-    appointments = appointments.filter((appointment: any) => 
-      appointment.status === "PENDING" || appointment.status === "IN_PROGRESS"
-    );
 
     return (
       <>
@@ -82,6 +78,15 @@ const TodayAppointments = ({}: IProps) => {
     );
   }
 
+  if(appointments.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-full w-full">
+        <p className="text-3xl text-gray-500">No appointments available</p>
+
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center px-6 py-5">
       <h1 className="text-primary text-3xl font-medium font-cairo mb-4 md:-ml-80">Today's Appointments</h1>
@@ -91,7 +96,7 @@ const TodayAppointments = ({}: IProps) => {
         </div>
       ) : isError ? (
         <div className="flex justify-center items-center h-full w-full text-red-500">
-          <p>Failed to load appointments. Please try again later.</p>
+          <p>Failed to fetch appointments</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 w-full justify-items-center">

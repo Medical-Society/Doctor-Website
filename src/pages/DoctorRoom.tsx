@@ -44,6 +44,8 @@ const DoctorRoom = () => {
       appointment.status === "PENDING" || appointment.status === "IN_PROGRESS"
   );
 
+  console.log("filtered appointments", filteredAppointments);
+
   const handleShowMedicalHistory = () => {
     navigate(`/patient/${filteredAppointments[0]?.patient?._id}/medical-history`);
   };
@@ -142,10 +144,10 @@ const DoctorRoom = () => {
     );
   }
 
-  if (appointments.length === 0) {
+  if (filteredAppointments.length === 0) {
     return (
       <div className="h-full w-full flex flex-col justify-center items-center">
-        <h1 className="text-3xl">No appointments available</h1>
+        <p className="text-3xl text-gray-500">No appointments available</p>
       </div>
     );
   }
@@ -154,7 +156,7 @@ const DoctorRoom = () => {
 
   return (
     <div className="flex flex-col items-center h-full">
-      {appointments[0].status === "PENDING" ? (
+      {filteredAppointments[0].status === "PENDING" ? (
         <div className="h-full w-full flex flex-col justify-center items-center">
           <h1 className="text-3xl">No patient in the room</h1>
           <button
