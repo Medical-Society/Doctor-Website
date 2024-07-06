@@ -30,7 +30,7 @@ const ChatBar = ({ open, setIsOpen }: IProps) => {
   if (data?.data?.chats?.length === 0) {
     return (
       <div
-        className={`w-full lg:w-80 h-full lg:p-6 bg-white shadow-lg rounded-lg absolute lg:static top-0 left-0 z-40 transform ${
+        className={`w-full lg:w-80 h-full lg:p-6 bg-white shadow-lg rounded-lg absolute lg:static top-0 left-0 z-30 transform ${
           open ? 'translate-x-0' : '-translate-x-full'
         } transition-transform duration-300 ease-in-out lg:translate-x-0`}
       >

@@ -74,7 +74,7 @@ const Navbar: React.FC<IProps> = () => {
         <NavbarDropDown
           menuItems={navMenuItems}
           buttonClassName="md:hidden inline-flex items-center gap-2 rounded-md py-1.5 px-3 text-sm font-semibold text-white focus:outline-none"
-          menuClassName="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
+          menuClassName="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-50"
           itemClassName="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-white/10 hover:bg-white/10"
           buttonLabel="Menu"
           hideOnDesktop
@@ -136,7 +136,7 @@ const Navbar: React.FC<IProps> = () => {
             <NavbarDropDown
               menuItems={profileMenuItems}
               buttonClassName="inline-flex w-full justify-center px-3 py-1 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 rounded-3xl"
-              menuClassName="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
+              menuClassName="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-50"
               itemClassName="group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-gray-100"
               buttonLabel="Actions"
             >
