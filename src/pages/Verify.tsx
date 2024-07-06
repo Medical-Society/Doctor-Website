@@ -14,6 +14,7 @@ const UploadDocuments = () => {
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [locationMessage, setLocationMessage] = useState("Please allow location access to help us verify your documents.");
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -21,14 +22,17 @@ const UploadDocuments = () => {
         (position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
+          setLocationMessage(""); // Clear the message if location is obtained
         },
         (error) => {
           console.error(error);
           toast.error("Failed to get location");
+          setLocationMessage("Please allow location access to help us verify your documents.");
         }
       );
     } else {
       toast.error("Geolocation is not supported by this browser");
+      setLocationMessage("Geolocation is not supported by your browser. Please use a compatible browser.");
     }
   }, []);
 
@@ -88,6 +92,11 @@ const UploadDocuments = () => {
         <h1 className="text-primary text-3xl font-medium font-cairo mb-4">Upload Documents</h1>
         <div className="rounded-[9px] bg-gradient-to-r from-primary to-secondary p-0.5 w-4/5 max-w-3xl">
           <form className="flex flex-col bg-white rounded-[9px] py-4 px-5" onSubmit={handleSubmit}>
+            {locationMessage && (
+              <div className="mb-4 text-center text-red-500">
+                {locationMessage}
+              </div>
+            )}
             <div className="flex flex-col mb-4">
               <label className="font-semibold mb-1">ID Front Image</label>
               <input
@@ -146,6 +155,3 @@ const UploadDocuments = () => {
 };
 
 export default UploadDocuments;
-
-
-
