@@ -45,6 +45,7 @@ const Navbar: React.FC<IProps> = () => {
       },
     },
     pollInterval: 60000,
+    enabled: !!token,
   });
 
   useEffect(() => {

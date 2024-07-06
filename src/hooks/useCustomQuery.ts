@@ -7,9 +7,10 @@ interface IAuthQuery {
     url: string;
     config?: AxiosRequestConfig;
     pollInterval?: number;
+    enabled?: boolean;
 }
 
-const useCustomQuery = ({queryKey, url, config, pollInterval}: IAuthQuery) => {
+const useCustomQuery = ({queryKey, url, config, pollInterval, enabled = true}: IAuthQuery) => {
     return useQuery({
         queryKey,
         queryFn: async () => {
@@ -17,6 +18,7 @@ const useCustomQuery = ({queryKey, url, config, pollInterval}: IAuthQuery) => {
           return data;
         },
         refetchInterval: pollInterval,
+        enabled,
       })
 }
 
