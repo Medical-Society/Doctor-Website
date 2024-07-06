@@ -5,6 +5,7 @@ import ChatBar from "../Components/chats/ChatBar";
 import { FaCalendarAlt, FaUserMd } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { GiSkeleton } from "react-icons/gi";
+import { useState } from "react";
 
 export const MainLayout = () => {
   return (
@@ -62,7 +63,7 @@ export const ClinicLayout = () => {
             }`
           }
         >
-          <GiSkeleton size={25}/>
+          <GiSkeleton size={25} />
           Models
         </NavLink>
       </SideBar>
@@ -74,12 +75,34 @@ export const ClinicLayout = () => {
 };
 
 export const ChatsLayout = () => {
+  const [openChatsBar, setOpenChatsBar] = useState(true);
   return (
-    <div className="flex flex-col md:flex-row h-full">
-      <ChatBar />
-      <div className="flex flex-col flex-1 h-full">
-        <Outlet />
+    <div className="flex flex-col md:flex-row h-full relative">
+      <ChatBar open={openChatsBar} setIsOpen={setOpenChatsBar} />
+      <div className="w-full absolute top-0 left-1 z-20 bg-white py-1 px-5">
+        <button
+          className="md:hidden w-40 bg-white text-black  rounded-[10px]"
+          onClick={() => setOpenChatsBar(!openChatsBar)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="black"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
       </div>
+        <div className="flex flex-col flex-1 h-full">
+          <Outlet />
+        </div>
     </div>
   );
 };

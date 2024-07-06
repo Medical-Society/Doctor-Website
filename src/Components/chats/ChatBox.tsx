@@ -6,6 +6,7 @@ import { IMessage } from "../../interfaces";
 import { sendMessage, initializeSocket, disconnectSocket } from "../../services/socket";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import { CircularProgress } from "@mui/material";
 
 const ChatBox = () => {
   const { id } = useParams<{ id: string }>();
@@ -66,15 +67,23 @@ const ChatBox = () => {
     setInputMessage("");
   };
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading messages.</p>;
+  if (isLoading) return (
+    <div className="flex items-center justify-center text-3xl text-center h-full">
+      <CircularProgress />
+      </div>
+    )
+  if (error) return (
+    <div className="flex items-center justify-center text-3xl text-center h-full">
+      Error fetching messages
+    </div>
+  );
   console.log("id: ", id);
 
   return (
     <div className="w-full h-full flex flex-col relative">
       <div className="flex-grow overflow-y-auto pb-16 p-3">
         {!id && (
-          <div className="flex items-center justify-center text-3xl text-center md:-ml-72">
+          <div className="flex h-full items-center justify-center text-3xl text-center">
             Select a chat to start messaging
           </div>
         )}
