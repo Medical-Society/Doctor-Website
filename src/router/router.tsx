@@ -127,9 +127,11 @@ const router = createBrowserRouter(
             </ProtectedRoute>
           }
         >
+          <Route index element={
+            <UpdatePassword />
+          } />
           <Route
             path="update-password"
-            index
             element={
               <ProtectedRoute redirectPath="/" isAuth={true}>
                 <UpdatePassword />
