@@ -25,7 +25,7 @@ import FinishedAppointments from "../pages/FinishedAppointments";
 import MedicalHistory from "../pages/MedicalHistory";
 import UpdatePassword from "../pages/UpdatePassword";
 import AvailableTime from "../pages/AvailableTime";
-import UploadDocuments from "../pages/VerifyImages";
+import UploadDocuments from "../pages/Verify";
 import Model from "../Components/3dModels/Model";
 
 const router = createBrowserRouter(

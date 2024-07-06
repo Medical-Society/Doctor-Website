@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { uploadImages } from "../services/documentsApi";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,7 +11,26 @@ const UploadDocuments = () => {
   const [idFrontImage, setIdFrontImage] = useState<File | null>(null);
   const [idBackImage, setIdBackImage] = useState<File | null>(null);
   const [graduationCertificateImage, setGraduationCertificateImage] = useState<File | null>(null);
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+        },
+        (error) => {
+          console.error(error);
+          toast.error("Failed to get location");
+        }
+      );
+    } else {
+      toast.error("Geolocation is not supported by this browser");
+    }
+  }, []);
 
   const handleIdFrontImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -38,10 +57,17 @@ const UploadDocuments = () => {
       return;
     }
 
+    if (latitude === null || longitude === null) {
+      toast.error("Location not available. Please enable location services.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("image", idFrontImage);
     formData.append("image", idBackImage);
     formData.append("image", graduationCertificateImage);
+    formData.append("location", longitude.toString());
+    formData.append("location", latitude.toString());
 
     try {
       setIsLoading(true);
@@ -120,3 +146,6 @@ const UploadDocuments = () => {
 };
 
 export default UploadDocuments;
+
+
+
