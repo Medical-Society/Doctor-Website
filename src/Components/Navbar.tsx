@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../app/store";
+import { useDispatch } from "react-redux";
 import NotificationBadge from "./ui/NotificationBadge";
 import NavbarDropDown, { MenuItem } from "./DropDownMenu";
 import { logoutReducer } from "../app/features/authSlice";
 import { disconnectSocket } from "../services/socket";
+import useCustomQuery from "../hooks/useCustomQuery";
+import Cookies from "js-cookie";
 
 interface IProps {}
 
 const Navbar: React.FC<IProps> = () => {
-  const { token, doctor } = useSelector((state: RootState) => state.auth);
+
+  const [numberOfChats, setNumberOfChats] = useState<number>(-1);
+  const doctor = JSON.parse(Cookies.get('doctor') || '{}');
+  console.log(doctor);
+  const token = Cookies.get('token');
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -30,6 +35,29 @@ const Navbar: React.FC<IProps> = () => {
   const navMenuItems: MenuItem[] = [
     { type: "navlink", label: "Clinic", path: "/clinic" },
   ];
+
+  const { data } = useCustomQuery({
+    queryKey: ["all-chats"],
+    url: "chats",
+    config: {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+    pollInterval: 60000,
+  });
+
+  useEffect(() => {
+    if (data) {
+      const chats = data.data.chats;
+      const numberOfChats = chats.filter((chat: any) => {
+        const lastMessage = chat.messages[chat.messages.length - 1];
+        return lastMessage.userId !== doctor?._id;
+      }).length;
+      setNumberOfChats(numberOfChats);
+    }
+  }
+  , [data]);
 
   return (
     <nav className="flex flex-wrap items-center justify-between py-1 px-3 md:px-10 w-full bg-[#060B73] h-14">
@@ -103,7 +131,7 @@ const Navbar: React.FC<IProps> = () => {
         {token && (
           <div className="flex gap-3 items-center">
             <NavLink to="/chats" className="hover:text-gray-800">
-              <NotificationBadge notificationCount={1} />
+              <NotificationBadge notificationCount={numberOfChats >= 0 ? numberOfChats : "..."} />
             </NavLink>
             <NavbarDropDown
               menuItems={profileMenuItems}

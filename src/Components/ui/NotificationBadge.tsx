@@ -1,5 +1,5 @@
 interface IProps {
-    notificationCount: number;
+    notificationCount: number | string;
 }
 
 const NotificationBadge = ({notificationCount}: IProps) => {
