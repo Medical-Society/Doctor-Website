@@ -64,7 +64,7 @@ const DoctorCard = ({}: IProps) => {
         <img
           src={avatar}
           alt="Doctor Image"
-          className="w-64 h-64 border-2 mt-2"
+          className= "w-auto h-64 border-2 mt-2"
         />
         <button
           onClick={handleOpenModal}
