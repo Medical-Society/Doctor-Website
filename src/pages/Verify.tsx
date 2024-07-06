@@ -22,7 +22,7 @@ const UploadDocuments = () => {
         (position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
-          setLocationMessage(""); // Clear the message if location is obtained
+          setLocationMessage("");
         },
         (error) => {
           console.error(error);
