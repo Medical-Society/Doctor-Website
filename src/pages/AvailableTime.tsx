@@ -8,12 +8,15 @@ import { updateDoctor } from "../app/features/authSlice";
 
 const AvailableTime = () => {
   const doctor = useMemo(() => JSON.parse(Cookies.get("doctor") || "{}"), []);
+  console.log(doctor);
   const dispatch = useDispatch();
   const doctorLimit = doctor?.availableTime?.limit || 0;
+  const doctorPrice = doctor?.availableTime.price || 0;
   const doctorWeekDays = doctor?.availableTime?.weekdays || {};
   console.log(doctorWeekDays);
   console.log(doctorLimit);
   const [limit, setLimit] = useState<number>(doctorLimit);
+  const [price, setPrice] = useState<number>(doctorPrice);
   const [weekDays, setWeekDays] = useState<IWeekDays>(doctorWeekDays);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -52,7 +55,7 @@ const AvailableTime = () => {
       return;
     }
 
-    const availableTime = { limit, weekdays: weekDays };
+    const availableTime = { limit, price, weekdays: weekDays };
 
     try {
       setLoading(true);
@@ -107,6 +110,15 @@ const AvailableTime = () => {
         </button>
       </div>
       <div className="space-y-4">
+        <div className="mb-4">
+          <label className="block font-cairo">Price</label>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(Number(e.target.value))}
+            className="p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+          />
+        </div>
         <div className="mb-4">
           <label className="block font-cairo">How many patients can you see in an hour?</label>
           <input
