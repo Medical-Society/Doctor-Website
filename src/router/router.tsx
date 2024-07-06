@@ -27,6 +27,7 @@ import UpdatePassword from "../pages/UpdatePassword";
 import AvailableTime from "../pages/AvailableTime";
 import UploadDocuments from "../pages/Verify";
 import Model from "../Components/3dModels/Model";
+import DeleteAccount from "../pages/DeleteAccount";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -143,6 +144,14 @@ const router = createBrowserRouter(
             element={
               <ProtectedRoute redirectPath="/" isAuth={true}>
                 <AvailableTime />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="delete-account"
+            element={
+              <ProtectedRoute redirectPath="/" isAuth={true}>
+                <DeleteAccount />
               </ProtectedRoute>
             }
           />

@@ -6,6 +6,7 @@ import { FaCalendarAlt, FaUserMd } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { GiSkeleton } from "react-icons/gi";
 import { useState } from "react";
+import { MdDelete } from "react-icons/md";
 
 export const MainLayout = () => {
   return (
@@ -132,6 +133,17 @@ export const SettingsLayout = () => {
         >
           <FaCalendarAlt />
           Available Time
+        </NavLink>
+        <NavLink
+          to="delete-account"
+          className={({ isActive }) =>
+            `flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 p-3 rounded-lg transition duration-200 ease-in-out ${
+              isActive ? "border border-primary" : ""
+            }`
+          }
+        >
+          <MdDelete />
+          Delete Account
         </NavLink>
       </SideBar>
       <div className="w-full h-full overflow-y-auto">

@@ -43,3 +43,14 @@ export const updateAvailableTime = async (availableTime: any) => {
 
   return res.data;
 };
+
+export const deleteAccount = async () => {
+    const token = Cookies.get("token");
+    const res = await axiosInstance.delete(`doctors`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return res.data;
+}
